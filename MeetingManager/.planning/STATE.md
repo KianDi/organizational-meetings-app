@@ -55,6 +55,10 @@ Recent decisions affecting current work:
 | 02-02 | kSecAttrAccessibleWhenUnlockedThisDeviceOnly | Maximum security: tokens only accessible when unlocked, not backed up |
 | 02-02 | Actor-based KeychainManager | Thread-safe credential access without manual locking |
 | 02-02 | Async/await for Keychain operations | Prevents UI blocking during Security framework calls |
+| 02-03 | Different password minimums (6 login, 8 signup) | Login accepts existing passwords, signup enforces stronger requirement |
+| 02-03 | Password confirmation on signup only | Prevents typos during account creation without annoying login users |
+| 02-03 | Async/await with Task wrapper in button actions | Modern Swift concurrency for auth operations from synchronous closures |
+| 02-03 | MainActor.run for UI updates after async calls | Ensures thread-safe UI state changes after async auth operations |
 
 ### Deferred Issues
 
