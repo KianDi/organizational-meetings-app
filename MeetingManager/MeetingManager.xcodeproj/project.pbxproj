@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		8DBD85A52F1877C7006D34D1 /* MeetingManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000002000000000000001 /* MeetingManagerApp.swift */; };
+		8DBD85A62F1877CB006D34D1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000003000000000000001 /* ContentView.swift */; };
+		8DBD85A72F1877D4006D34D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1000004000000000000001 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		A1000001000000000000001 /* MeetingManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeetingManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1000002000000000000001 /* MeetingManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingManagerApp.swift; sourceTree = "<group>"; };
@@ -109,6 +115,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DBD85A72F1877D4006D34D1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +126,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DBD85A62F1877CB006D34D1 /* ContentView.swift in Sources */,
+				8DBD85A52F1877C7006D34D1 /* MeetingManagerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,6 +261,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = WAQJRNFK2Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -280,6 +290,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = WAQJRNFK2Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
