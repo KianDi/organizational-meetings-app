@@ -77,8 +77,8 @@ final class AuthState {
         defer { isLoading = false }
 
         // Attempt to restore from Keychain
-        guard let accessToken = try? await keychainManager.retrieve(forKey: "accessToken"),
-              let refreshToken = try? await keychainManager.retrieve(forKey: "refreshToken") else {
+        guard let _ = try? await keychainManager.retrieve(forKey: "accessToken"),
+              let _ = try? await keychainManager.retrieve(forKey: "refreshToken") else {
             return
         }
 
