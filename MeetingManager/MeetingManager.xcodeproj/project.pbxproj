@@ -22,6 +22,7 @@
 		8DBD85B12F194308006D34D1 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBD85AF2F194308006D34D1 /* KeychainManager.swift */; };
 		8DBD85B22F194308006D34D1 /* SupabaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBD85B02F194308006D34D1 /* SupabaseConfig.swift */; };
 		8DBD85B32F194308006D34D1 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBD85AE2F194308006D34D1 /* AuthService.swift */; };
+		8DBD85C22F194308006D34D1 /* AuthState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBD85C12F194308006D34D1 /* AuthState.swift */; };
 		D253A8CE33A430AC9D379F2B /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B582DFB2973FE41ABFDDBDF7 /* AppCoordinator.swift */; };
 		F0B602655316EACB613D366E /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23F94C62A7268596F8DC2A6 /* RootView.swift */; };
 /* End PBXBuildFile section */
@@ -35,6 +36,7 @@
 		8DBD85A92F1942E8006D34D1 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		8DBD85AA2F1942E8006D34D1 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		8DBD85AE2F194308006D34D1 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		8DBD85C12F194308006D34D1 /* AuthState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthState.swift; sourceTree = "<group>"; };
 		8DBD85AF2F194308006D34D1 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		8DBD85B02F194308006D34D1 /* SupabaseConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseConfig.swift; sourceTree = "<group>"; };
 		A1000001000000000000001 /* MeetingManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeetingManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,6 +123,7 @@
 		isa = PBXGroup;
 		children = (
 			8DBD85AE2F194308006D34D1 /* AuthService.swift */,
+				8DBD85C12F194308006D34D1 /* AuthState.swift */,
 			8DBD85AF2F194308006D34D1 /* KeychainManager.swift */,
 			8DBD85B02F194308006D34D1 /* SupabaseConfig.swift */,
 		);
@@ -223,6 +226,7 @@
 				8DBD85B12F194308006D34D1 /* KeychainManager.swift in Sources */,
 				8DBD85B22F194308006D34D1 /* SupabaseConfig.swift in Sources */,
 				8DBD85B32F194308006D34D1 /* AuthService.swift in Sources */,
+				8DBD85C22F194308006D34D1 /* AuthState.swift in Sources */,
 				114468FFA21DF04B77FA77B5 /* Route.swift in Sources */,
 				F0B602655316EACB613D366E /* RootView.swift in Sources */,
 			);
