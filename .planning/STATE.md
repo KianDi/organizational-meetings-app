@@ -19,19 +19,19 @@ Progress: ██████░░░░ 67%
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 1
-- Average duration: ~15 min
-- Total execution time: 0.25 hours
+- Total plans completed: 2
+- Average duration: ~10 min
+- Total execution time: 0.32 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| 1 | 1 | 15 min | 15 min |
+| 1 | 2 | 19 min | 10 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (15 min)
-- Trend: Starting
+- Last 5 plans: 01-01 (15 min), 01-02 (4 min)
+- Trend: Accelerating
 
 ## Accumulated Context
 
