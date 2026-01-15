@@ -7,17 +7,43 @@
 
 import SwiftUI
 
-/// Root view that manages NavigationStack with AppCoordinator
+/// Root view that manages NavigationStack with AppCoordinator and auth routing
 struct RootView: View {
-    @EnvironmentObject var coordinator: AppCoordinator
+    @State private var authState: AuthState
+    @StateObject private var coordinator: AppCoordinator
+
+    init(authService: AuthService = AuthService()) {
+        _authState = State(wrappedValue: AuthState(authService: authService))
+        _coordinator = StateObject(wrappedValue: AppCoordinator())
+    }
 
     var body: some View {
-        NavigationStack(path: $coordinator.navigationPath) {
-            // Placeholder root view - will be replaced with auth/org list in Phase 2
-            ContentView()
-                .navigationDestination(for: Route.self) { route in
-                    destinationView(for: route)
+        Group {
+            if authState.isAuthenticated {
+                // Logged in - show main app
+                NavigationStack(path: $coordinator.navigationPath) {
+                    ContentView()
+                        .navigationDestination(for: Route.self) { route in
+                            destinationView(for: route)
+                        }
                 }
+                .environment(authState)
+                .environmentObject(coordinator)
+            } else {
+                // Logged out - show auth screens
+                AuthContainerView(
+                    authService: AuthService(),
+                    onAuthSuccess: {
+                        // Auth already handled by AuthState
+                        // This closure is called after successful auth
+                    }
+                )
+                .environment(authState)
+            }
+        }
+        .task {
+            // Attempt to restore session on app launch
+            await authState.restoreSession()
         }
     }
 
