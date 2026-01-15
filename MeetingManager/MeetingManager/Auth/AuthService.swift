@@ -35,8 +35,8 @@ actor AuthService {
             id: UUID(uuidString: response.user.id.uuidString) ?? UUID(),
             email: email,
             name: email.components(separatedBy: "@").first ?? "",
-            organizationIds: [],
-            createdAt: Date()
+            createdAt: Date(),
+            organizationIds: []
         )
     }
 
