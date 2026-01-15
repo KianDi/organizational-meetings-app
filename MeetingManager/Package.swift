@@ -22,9 +22,11 @@ let package = Package(
             name: "MeetingManager",
             dependencies: [
                 .product(name: "Supabase", package: "supabase-swift")
-            ]),
+            ],
+            path: "MeetingManager"),
         .testTarget(
             name: "MeetingManagerTests",
-            dependencies: ["MeetingManager"])
+            dependencies: ["MeetingManager"],
+            path: "Tests/MeetingManagerTests")
     ]
 )
