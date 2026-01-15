@@ -58,6 +58,10 @@ Recent decisions affecting current work:
 | 02-03 | Form validation disables submit button | Prevents invalid API calls and provides immediate user feedback |
 | 02-03 | Callback-based navigation (onAuthSuccess) | Decouples views from routing logic for coordinator integration |
 | 02-02 | Async/await for Keychain operations | Prevents UI blocking during Security framework calls |
+| 02-04 | @Observable over ObservableObject | Modern iOS 17+ pattern with cleaner syntax and better performance |
+| 02-04 | @MainActor on state-changing methods | Ensures UI updates happen on main thread for auth state changes |
+| 02-04 | Environment injection for AuthState | Cleaner dependency injection than passing parameters through view hierarchy |
+| 02-04 | Session restoration in .task modifier | Automatic restoration from Keychain on app launch without manual trigger |
 
 ### Deferred Issues
 
