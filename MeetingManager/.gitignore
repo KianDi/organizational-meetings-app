@@ -101,3 +101,6 @@ iOSInjectionProject/
 
 # macOS
 .DS_Store
+
+# Secrets (credentials not committed to git)
+**/Secrets.swift
