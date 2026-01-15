@@ -14,8 +14,8 @@ let package = Package(
             targets: ["MeetingManager"])
     ],
     dependencies: [
-        // Dependencies will be added in later phases as needed
-        // Phase 1: Keep minimal - no external dependencies yet
+        // Phase 2: Authentication system with Supabase
+        .package(url: "https://github.com/supabase/supabase-swift", from: "2.0.0")
     ],
     targets: [
         .target(
