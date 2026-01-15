@@ -20,6 +20,8 @@ let package = Package(
     targets: [
         .target(
             name: "MeetingManager",
-            dependencies: [])
+            dependencies: [
+                .product(name: "Supabase", package: "supabase-swift")
+            ])
     ]
 )
