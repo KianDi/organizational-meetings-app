@@ -6,13 +6,11 @@ import SwiftUI
 enum SupabaseConfig {
     // MARK: - Configuration
 
-    /// Supabase project URL
-    /// Replace with your actual Supabase project URL when setting up Supabase
-    static let url = URL(string: "https://YOUR_PROJECT.supabase.co")!
+    /// Supabase project URL (loaded from Secrets.swift)
+    static let url = URL(string: Secrets.supabaseURL)!
 
-    /// Supabase anonymous key (public API key)
-    /// Replace with your actual Supabase anon key when setting up Supabase
-    static let anonKey = "YOUR_ANON_KEY"
+    /// Supabase anonymous key (loaded from Secrets.swift)
+    static let anonKey = Secrets.supabaseAnonKey
 
     // MARK: - Shared Client
 
