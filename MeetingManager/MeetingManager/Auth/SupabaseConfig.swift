@@ -1,0 +1,40 @@
+import Supabase
+import SwiftUI
+
+/// Configuration for Supabase client with environment injection support.
+/// Provides a shared SupabaseClient instance and SwiftUI environment integration.
+enum SupabaseConfig {
+    // MARK: - Configuration
+
+    /// Supabase project URL
+    /// Replace with your actual Supabase project URL when setting up Supabase
+    static let url = URL(string: "https://YOUR_PROJECT.supabase.co")!
+
+    /// Supabase anonymous key (public API key)
+    /// Replace with your actual Supabase anon key when setting up Supabase
+    static let anonKey = "YOUR_ANON_KEY"
+
+    // MARK: - Shared Client
+
+    /// Shared Supabase client instance
+    /// Used throughout the app for authentication and database operations
+    static let shared = SupabaseClient(
+        supabaseURL: url,
+        supabaseKey: anonKey
+    )
+}
+
+// MARK: - SwiftUI Environment
+
+/// Environment key for injecting SupabaseClient into SwiftUI views
+struct SupabaseClientKey: EnvironmentKey {
+    static let defaultValue: SupabaseClient = SupabaseConfig.shared
+}
+
+extension EnvironmentValues {
+    /// Access Supabase client from SwiftUI environment
+    var supabase: SupabaseClient {
+        get { self[SupabaseClientKey.self] }
+        set { self[SupabaseClientKey.self] = newValue }
+    }
+}
