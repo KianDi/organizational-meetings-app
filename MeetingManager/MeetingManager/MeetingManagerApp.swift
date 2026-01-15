@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct MeetingManagerApp: App {
+    @StateObject private var coordinator = AppCoordinator()
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RootView()
+                .environmentObject(coordinator)
         }
     }
 }

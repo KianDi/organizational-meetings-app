@@ -10,6 +10,9 @@
 		8DBD85A52F1877C7006D34D1 /* MeetingManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000002000000000000001 /* MeetingManagerApp.swift */; };
 		8DBD85A62F1877CB006D34D1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000003000000000000001 /* ContentView.swift */; };
 		8DBD85A72F1877D4006D34D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1000004000000000000001 /* Assets.xcassets */; };
+		D253A8CE33A430AC9D379F2B /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B582DFB2973FE41ABFDDBDF7 /* AppCoordinator.swift */; };
+		114468FFA21DF04B77FA77B5 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE561D81FD8DC74E416DECF0 /* Route.swift */; };
+		F0B602655316EACB613D366E /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23F94C62A7268596F8DC2A6 /* RootView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -17,6 +20,9 @@
 		A1000002000000000000001 /* MeetingManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingManagerApp.swift; sourceTree = "<group>"; };
 		A1000003000000000000001 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A1000004000000000000001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B582DFB2973FE41ABFDDBDF7 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		EE561D81FD8DC74E416DECF0 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		C23F94C62A7268596F8DC2A6 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +50,8 @@
 				A1000002000000000000001 /* MeetingManagerApp.swift */,
 				A1000003000000000000001 /* ContentView.swift */,
 				A1000004000000000000001 /* Assets.xcassets */,
+				A0C5A84E943BBA30217884FE /* Navigation */,
+				E4D8353416E9E9075A524262 /* Views */,
 			);
 			path = MeetingManager;
 			sourceTree = "<group>";
@@ -54,6 +62,23 @@
 				A1000001000000000000001 /* MeetingManager.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		A0C5A84E943BBA30217884FE /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				B582DFB2973FE41ABFDDBDF7 /* AppCoordinator.swift */,
+				EE561D81FD8DC74E416DECF0 /* Route.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		E4D8353416E9E9075A524262 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C23F94C62A7268596F8DC2A6 /* RootView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,6 +153,9 @@
 			files = (
 				8DBD85A62F1877CB006D34D1 /* ContentView.swift in Sources */,
 				8DBD85A52F1877C7006D34D1 /* MeetingManagerApp.swift in Sources */,
+				D253A8CE33A430AC9D379F2B /* AppCoordinator.swift in Sources */,
+				114468FFA21DF04B77FA77B5 /* Route.swift in Sources */,
+				F0B602655316EACB613D366E /* RootView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
