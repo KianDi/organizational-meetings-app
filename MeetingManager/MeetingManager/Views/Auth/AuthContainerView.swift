@@ -2,8 +2,6 @@ import SwiftUI
 
 struct AuthContainerView: View {
     @State private var selectedTab = 0
-    let authService: AuthService
-    let onAuthSuccess: () -> Void
 
     var body: some View {
         VStack {
@@ -17,17 +15,11 @@ struct AuthContainerView: View {
 
             // Content
             TabView(selection: $selectedTab) {
-                LoginView(
-                    authService: authService,
-                    onLoginSuccess: onAuthSuccess
-                )
-                .tag(0)
+                LoginView()
+                    .tag(0)
 
-                SignupView(
-                    authService: authService,
-                    onSignupSuccess: onAuthSuccess
-                )
-                .tag(1)
+                SignupView()
+                    .tag(1)
             }
             .tabViewStyle(.page(indexDisplayMode: .never))
         }
@@ -35,8 +27,6 @@ struct AuthContainerView: View {
 }
 
 #Preview {
-    AuthContainerView(
-        authService: AuthService(),
-        onAuthSuccess: {}
-    )
+    AuthContainerView()
+        .environment(AuthState(authService: AuthService()))
 }
