@@ -52,6 +52,9 @@ Recent decisions affecting current work:
 | 02-01 | Supabase Auth over Firebase | Open-source flexibility and PostgreSQL RLS integration |
 | 02-01 | Actor pattern for AuthService | Prevents race conditions in concurrent auth operations |
 | 02-01 | Placeholder Supabase credentials | User configures actual project credentials when ready |
+| 02-02 | kSecAttrAccessibleWhenUnlockedThisDeviceOnly | Maximum security: tokens only accessible when unlocked, not backed up |
+| 02-02 | Actor-based KeychainManager | Thread-safe credential access without manual locking |
+| 02-02 | Async/await for Keychain operations | Prevents UI blocking during Security framework calls |
 
 ### Deferred Issues
 
