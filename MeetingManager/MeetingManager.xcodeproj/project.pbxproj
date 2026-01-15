@@ -7,22 +7,43 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		114468FFA21DF04B77FA77B5 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE561D81FD8DC74E416DECF0 /* Route.swift */; };
+		8D67F9A72F1947F700FAE479 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 8D67F9A62F1947F700FAE479 /* Supabase */; };
+		8D67F9AD2F19491200FAE479 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D67F9AB2F19491200FAE479 /* User.swift */; };
+		8D67F9AE2F19491200FAE479 /* Meeting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D67F9A82F19491200FAE479 /* Meeting.swift */; };
+		8D67F9AF2F19491200FAE479 /* MeetingTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D67F9A92F19491200FAE479 /* MeetingTask.swift */; };
+		8D67F9B02F19491200FAE479 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D67F9AA2F19491200FAE479 /* Organization.swift */; };
 		8DBD85A52F1877C7006D34D1 /* MeetingManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000002000000000000001 /* MeetingManagerApp.swift */; };
 		8DBD85A62F1877CB006D34D1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000003000000000000001 /* ContentView.swift */; };
 		8DBD85A72F1877D4006D34D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1000004000000000000001 /* Assets.xcassets */; };
+		8DBD85AB2F1942E8006D34D1 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBD85AA2F1942E8006D34D1 /* SignupView.swift */; };
+		8DBD85AC2F1942E8006D34D1 /* AuthContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBD85A82F1942E8006D34D1 /* AuthContainerView.swift */; };
+		8DBD85AD2F1942E8006D34D1 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBD85A92F1942E8006D34D1 /* LoginView.swift */; };
+		8DBD85B12F194308006D34D1 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBD85AF2F194308006D34D1 /* KeychainManager.swift */; };
+		8DBD85B22F194308006D34D1 /* SupabaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBD85B02F194308006D34D1 /* SupabaseConfig.swift */; };
+		8DBD85B32F194308006D34D1 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBD85AE2F194308006D34D1 /* AuthService.swift */; };
 		D253A8CE33A430AC9D379F2B /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B582DFB2973FE41ABFDDBDF7 /* AppCoordinator.swift */; };
-		114468FFA21DF04B77FA77B5 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE561D81FD8DC74E416DECF0 /* Route.swift */; };
 		F0B602655316EACB613D366E /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23F94C62A7268596F8DC2A6 /* RootView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8D67F9A82F19491200FAE479 /* Meeting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meeting.swift; sourceTree = "<group>"; };
+		8D67F9A92F19491200FAE479 /* MeetingTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingTask.swift; sourceTree = "<group>"; };
+		8D67F9AA2F19491200FAE479 /* Organization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
+		8D67F9AB2F19491200FAE479 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		8DBD85A82F1942E8006D34D1 /* AuthContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthContainerView.swift; sourceTree = "<group>"; };
+		8DBD85A92F1942E8006D34D1 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		8DBD85AA2F1942E8006D34D1 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
+		8DBD85AE2F194308006D34D1 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		8DBD85AF2F194308006D34D1 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		8DBD85B02F194308006D34D1 /* SupabaseConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseConfig.swift; sourceTree = "<group>"; };
 		A1000001000000000000001 /* MeetingManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeetingManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1000002000000000000001 /* MeetingManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingManagerApp.swift; sourceTree = "<group>"; };
 		A1000003000000000000001 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A1000004000000000000001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B582DFB2973FE41ABFDDBDF7 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
-		EE561D81FD8DC74E416DECF0 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		C23F94C62A7268596F8DC2A6 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		EE561D81FD8DC74E416DECF0 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -30,12 +51,33 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D67F9A72F1947F700FAE479 /* Supabase in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8D67F9AC2F19491200FAE479 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8D67F9A82F19491200FAE479 /* Meeting.swift */,
+				8D67F9A92F19491200FAE479 /* MeetingTask.swift */,
+				8D67F9AA2F19491200FAE479 /* Organization.swift */,
+				8D67F9AB2F19491200FAE479 /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A0C5A84E943BBA30217884FE /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				B582DFB2973FE41ABFDDBDF7 /* AppCoordinator.swift */,
+				EE561D81FD8DC74E416DECF0 /* Route.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
 		A1000020000000000000001 = {
 			isa = PBXGroup;
 			children = (
@@ -47,6 +89,8 @@
 		A1000021000000000000001 /* MeetingManager */ = {
 			isa = PBXGroup;
 			children = (
+				8D67F9AC2F19491200FAE479 /* Models */,
+				8DBD85B42F194400006D34D1 /* Auth */,
 				A1000002000000000000001 /* MeetingManagerApp.swift */,
 				A1000003000000000000001 /* ContentView.swift */,
 				A1000004000000000000001 /* Assets.xcassets */,
@@ -64,23 +108,35 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A0C5A84E943BBA30217884FE /* Navigation */ = {
-			isa = PBXGroup;
-			children = (
-				B582DFB2973FE41ABFDDBDF7 /* AppCoordinator.swift */,
-				EE561D81FD8DC74E416DECF0 /* Route.swift */,
-			);
-			path = Navigation;
-			sourceTree = "<group>";
-		};
 		E4D8353416E9E9075A524262 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8DBD85B52F194401006D34D1 /* Auth */,
 				C23F94C62A7268596F8DC2A6 /* RootView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
+	8DBD85B42F194400006D34D1 /* Auth */ = {
+		isa = PBXGroup;
+		children = (
+			8DBD85AE2F194308006D34D1 /* AuthService.swift */,
+			8DBD85AF2F194308006D34D1 /* KeychainManager.swift */,
+			8DBD85B02F194308006D34D1 /* SupabaseConfig.swift */,
+		);
+		path = Auth;
+		sourceTree = "<group>";
+	};
+	8DBD85B52F194401006D34D1 /* Auth */ = {
+		isa = PBXGroup;
+		children = (
+			8DBD85A82F1942E8006D34D1 /* AuthContainerView.swift */,
+			8DBD85A92F1942E8006D34D1 /* LoginView.swift */,
+			8DBD85AA2F1942E8006D34D1 /* SignupView.swift */,
+		);
+		path = Auth;
+		sourceTree = "<group>";
+	};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -125,6 +181,9 @@
 			);
 			mainGroup = A1000020000000000000001;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				8D67F9A52F1947F700FAE479 /* XCRemoteSwiftPackageReference "supabase-swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = A1000022000000000000001 /* Products */;
 			projectDirPath = "";
@@ -151,9 +210,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DBD85AB2F1942E8006D34D1 /* SignupView.swift in Sources */,
+				8DBD85AC2F1942E8006D34D1 /* AuthContainerView.swift in Sources */,
+				8DBD85AD2F1942E8006D34D1 /* LoginView.swift in Sources */,
+				8D67F9AD2F19491200FAE479 /* User.swift in Sources */,
+				8D67F9AE2F19491200FAE479 /* Meeting.swift in Sources */,
+				8D67F9AF2F19491200FAE479 /* MeetingTask.swift in Sources */,
+				8D67F9B02F19491200FAE479 /* Organization.swift in Sources */,
 				8DBD85A62F1877CB006D34D1 /* ContentView.swift in Sources */,
 				8DBD85A52F1877C7006D34D1 /* MeetingManagerApp.swift in Sources */,
 				D253A8CE33A430AC9D379F2B /* AppCoordinator.swift in Sources */,
+				8DBD85B12F194308006D34D1 /* KeychainManager.swift in Sources */,
+				8DBD85B22F194308006D34D1 /* SupabaseConfig.swift in Sources */,
+				8DBD85B32F194308006D34D1 /* AuthService.swift in Sources */,
 				114468FFA21DF04B77FA77B5 /* Route.swift in Sources */,
 				F0B602655316EACB613D366E /* RootView.swift in Sources */,
 			);
@@ -361,6 +430,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8D67F9A52F1947F700FAE479 /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/supabase/supabase-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.5.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8D67F9A62F1947F700FAE479 /* Supabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8D67F9A52F1947F700FAE479 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Supabase;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A1000040000000000000001 /* Project object */;
 }
