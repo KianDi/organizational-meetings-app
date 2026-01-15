@@ -1,14 +1,11 @@
 import SwiftUI
 
 struct SignupView: View {
+    @Environment(AuthState.self) private var authState
     @State private var email = ""
     @State private var password = ""
     @State private var confirmPassword = ""
     @State private var errorMessage: String?
-    @State private var isLoading = false
-
-    let authService: AuthService
-    let onSignupSuccess: () -> Void
 
     var body: some View {
         VStack(spacing: 20) {
@@ -54,7 +51,7 @@ struct SignupView: View {
                     await signUp()
                 }
             } label: {
-                if isLoading {
+                if authState.isLoading {
                     ProgressView()
                         .progressViewStyle(CircularProgressViewStyle(tint: .white))
                 } else {
@@ -62,7 +59,7 @@ struct SignupView: View {
                         .frame(maxWidth: .infinity)
                 }
             }
-            .disabled(isLoading || !isFormValid)
+            .disabled(authState.isLoading || !isFormValid)
             .frame(maxWidth: .infinity)
             .padding()
             .background(isFormValid ? Color.blue : Color.gray)
@@ -79,19 +76,11 @@ struct SignupView: View {
     }
 
     private func signUp() async {
-        isLoading = true
         errorMessage = nil
-
         do {
-            _ = try await authService.signUp(email: email, password: password)
-            await MainActor.run {
-                onSignupSuccess()
-            }
+            try await authState.signUp(email: email, password: password)
         } catch {
-            await MainActor.run {
-                errorMessage = error.localizedDescription
-                isLoading = false
-            }
+            errorMessage = error.localizedDescription
         }
     }
 }
