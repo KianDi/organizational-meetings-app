@@ -49,6 +49,9 @@ Recent decisions affecting current work:
 | 01-03 | Coordinator pattern for navigation | Centralizes navigation logic for testability and maintainability |
 | 01-03 | NavigationStack over NavigationView | Modern iOS 17+ approach with type-safe path binding |
 | 01-03 | Route enum with associated values | Type-safe routing with compile-time parameter checking |
+| 02-01 | Supabase Auth over Firebase | Open-source flexibility and PostgreSQL RLS integration |
+| 02-01 | Actor pattern for AuthService | Prevents race conditions in concurrent auth operations |
+| 02-01 | Placeholder Supabase credentials | User configures actual project credentials when ready |
 
 ### Deferred Issues
 
