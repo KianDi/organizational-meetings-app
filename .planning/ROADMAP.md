@@ -33,8 +33,8 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 3 plans
 
 Plans:
-- [ ] 01-01: Initialize iOS project and configure dependencies
-- [ ] 01-02: Create core data models (User, Organization, Meeting, Task)
+- [x] 01-01: Initialize iOS project and configure dependencies
+- [x] 01-02: Create core data models (User, Organization, Meeting, Task)
 - [ ] 01-03: Setup navigation structure and app architecture
 
 ### Phase 2: Authentication System
