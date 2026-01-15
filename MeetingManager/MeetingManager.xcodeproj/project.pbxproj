@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		67A160C44F91404DB80A05CD /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944784FE7EA0442090E412D8 /* Secrets.swift */; };
+
 		114468FFA21DF04B77FA77B5 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE561D81FD8DC74E416DECF0 /* Route.swift */; };
 		8D67F9A72F1947F700FAE479 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 8D67F9A62F1947F700FAE479 /* Supabase */; };
 		8D67F9AD2F19491200FAE479 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D67F9AB2F19491200FAE479 /* User.swift */; };
@@ -48,6 +50,8 @@
 		EE561D81FD8DC74E416DECF0 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+		944784FE7EA0442090E412D8 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		1BECC8AA4CF04810ADBC6FF5 /* Secrets.example.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.example.swift; sourceTree = "<group>"; };
 /* Begin PBXFrameworksBuildPhase section */
 		A1000010000000000000001 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -126,7 +130,9 @@
 				8DBD85C12F194308006D34D1 /* AuthState.swift */,
 			8DBD85AF2F194308006D34D1 /* KeychainManager.swift */,
 			8DBD85B02F194308006D34D1 /* SupabaseConfig.swift */,
-		);
+		
+				944784FE7EA0442090E412D8 /* Secrets.swift */,
+				1BECC8AA4CF04810ADBC6FF5 /* Secrets.example.swift */,);
 		path = Auth;
 		sourceTree = "<group>";
 	};
@@ -229,7 +235,8 @@
 				8DBD85C22F194308006D34D1 /* AuthState.swift in Sources */,
 				114468FFA21DF04B77FA77B5 /* Route.swift in Sources */,
 				F0B602655316EACB613D366E /* RootView.swift in Sources */,
-			);
+			
+				67A160C44F91404DB80A05CD /* Secrets.swift in Sources */,);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
