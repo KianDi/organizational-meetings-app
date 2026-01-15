@@ -40,7 +40,11 @@ Progress: ██████░░░░ 67%
 Decisions are logged in PROJECT.md Key Decisions table.
 Recent decisions affecting current work:
 
-(None yet)
+| Phase | Decision | Rationale |
+|-------|----------|-----------|
+| 01-02 | Used MeetingTask instead of Task | Avoids naming conflict with Swift Concurrency.Task |
+| 01-02 | UUID-based relationships | Clean Codable serialization with backend |
+| 01-02 | Admin auto-included in memberIds | Ensures consistency in Organization model |
 
 ### Deferred Issues
 
