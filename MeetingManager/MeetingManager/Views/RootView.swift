@@ -31,14 +31,8 @@ struct RootView: View {
                 .environmentObject(coordinator)
             } else {
                 // Logged out - show auth screens
-                AuthContainerView(
-                    authService: AuthService(),
-                    onAuthSuccess: {
-                        // Auth already handled by AuthState
-                        // This closure is called after successful auth
-                    }
-                )
-                .environment(authState)
+                AuthContainerView()
+                    .environment(authState)
             }
         }
         .task {
