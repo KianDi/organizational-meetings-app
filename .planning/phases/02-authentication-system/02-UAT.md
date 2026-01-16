@@ -3,15 +3,15 @@ status: testing
 phase: 02-authentication-system
 source: [02-01-SUMMARY.md, 02-02-SUMMARY.md, 02-03-SUMMARY.md, 02-04-SUMMARY.md]
 started: 2026-01-15T23:00:00Z
-updated: 2026-01-15T23:17:00Z
+updated: 2026-01-15T23:18:00Z
 ---
 
 ## Current Test
 
-number: 3
-name: Test login form validation
+number: 4
+name: Test signup form validation
 expected: |
-  On Login tab, enter invalid email (no @) - button stays disabled. Enter valid email with <6 char password - button disabled. Enter valid email with 6+ char password - button enables and turns blue.
+  On Signup tab, enter valid email and 8+ char password. Type different password in confirm field - button disabled. Type matching passwords - button enables and turns blue. Password hint appears when <8 characters.
 awaiting: user response
 
 ## Tests
@@ -26,7 +26,7 @@ result: pass
 
 ### 3. Test login form validation
 expected: On Login tab, enter invalid email (no @) - button stays disabled. Enter valid email with <6 char password - button disabled. Enter valid email with 6+ char password - button enables and turns blue.
-result: [pending]
+result: pass
 
 ### 4. Test signup form validation
 expected: On Signup tab, enter valid email and 8+ char password. Type different password in confirm field - button disabled. Type matching passwords - button enables and turns blue. Password hint appears when <8 characters.
