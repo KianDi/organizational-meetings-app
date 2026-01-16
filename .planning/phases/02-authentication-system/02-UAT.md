@@ -34,7 +34,7 @@ result: pass
 
 ### 5. Create test account (signup flow)
 expected: Fill valid email and matching 8+ char passwords on Signup tab. Tap Sign Up. Loading spinner shows briefly. Either: (a) Success → app navigates to main content view, or (b) Error message appears (if Supabase not configured or network issue).
-result: [pending]
+result: pass
 
 ### 6. Sign out and sign back in
 expected: If signup succeeded, find a way to trigger sign out (may need to manually call authState.signOut() from console or add temp logout button). After sign out, see auth screens again. Enter same credentials on Login tab. Tap Sign In. Should navigate back to main content.
