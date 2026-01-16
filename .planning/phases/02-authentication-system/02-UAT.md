@@ -51,9 +51,9 @@ result: [pending]
 ## Summary
 
 total: 8
-passed: 2
+passed: 3
 issues: 0
-pending: 6
+pending: 5
 skipped: 0
 
 ## Issues for /gsd:plan-fix
