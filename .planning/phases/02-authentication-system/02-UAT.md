@@ -3,15 +3,15 @@ status: testing
 phase: 02-authentication-system
 source: [02-01-SUMMARY.md, 02-02-SUMMARY.md, 02-03-SUMMARY.md, 02-04-SUMMARY.md]
 started: 2026-01-15T23:00:00Z
-updated: 2026-01-15T23:18:00Z
+updated: 2026-01-15T23:19:00Z
 ---
 
 ## Current Test
 
-number: 4
-name: Test signup form validation
+number: 5
+name: Create test account (signup flow)
 expected: |
-  On Signup tab, enter valid email and 8+ char password. Type different password in confirm field - button disabled. Type matching passwords - button enables and turns blue. Password hint appears when <8 characters.
+  Fill valid email and matching 8+ char passwords on Signup tab. Tap Sign Up. Loading spinner shows briefly. Either: (a) Success → app navigates to main content view, or (b) Error message appears (if Supabase not configured or network issue).
 awaiting: user response
 
 ## Tests
@@ -30,7 +30,7 @@ result: pass
 
 ### 4. Test signup form validation
 expected: On Signup tab, enter valid email and 8+ char password. Type different password in confirm field - button disabled. Type matching passwords - button enables and turns blue. Password hint appears when <8 characters.
-result: [pending]
+result: pass
 
 ### 5. Create test account (signup flow)
 expected: Fill valid email and matching 8+ char passwords on Signup tab. Tap Sign Up. Loading spinner shows briefly. Either: (a) Success → app navigates to main content view, or (b) Error message appears (if Supabase not configured or network issue).
