@@ -3,15 +3,15 @@ status: testing
 phase: 02-authentication-system
 source: [02-01-SUMMARY.md, 02-02-SUMMARY.md, 02-03-SUMMARY.md, 02-04-SUMMARY.md]
 started: 2026-01-15T23:00:00Z
-updated: 2026-01-15T23:19:00Z
+updated: 2026-01-15T23:20:00Z
 ---
 
 ## Current Test
 
-number: 5
-name: Create test account (signup flow)
+number: 6
+name: Sign out and sign back in
 expected: |
-  Fill valid email and matching 8+ char passwords on Signup tab. Tap Sign Up. Loading spinner shows briefly. Either: (a) Success → app navigates to main content view, or (b) Error message appears (if Supabase not configured or network issue).
+  Trigger sign out (temporary method: In Xcode, pause execution and use LLDB console to run: `expr await authState.signOut()`). After sign out, see auth screens again. Enter same credentials on Login tab. Tap Sign In. Should navigate back to main content.
 awaiting: user response
 
 ## Tests
