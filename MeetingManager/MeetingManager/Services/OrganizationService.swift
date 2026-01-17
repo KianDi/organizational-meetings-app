@@ -8,6 +8,27 @@ actor OrganizationService {
 
     private let supabase: SupabaseClient
 
+    // MARK: - Database Models
+
+    /// Database representation of Organization with snake_case column names
+    private struct OrganizationDTO: Codable {
+        let id: UUID
+        let name: String
+        let adminId: UUID
+        let createdAt: Date
+        let inviteCode: String?
+        let memberIds: [UUID]
+
+        enum CodingKeys: String, CodingKey {
+            case id
+            case name
+            case adminId = "admin_id"
+            case createdAt = "created_at"
+            case inviteCode = "invite_code"
+            case memberIds = "member_ids"
+        }
+    }
+
     // MARK: - Initialization
 
     init(supabaseClient: SupabaseClient = SupabaseConfig.shared) {
@@ -37,20 +58,20 @@ actor OrganizationService {
             memberIds: [adminId]
         )
 
-        // Map to database format (snake_case columns)
-        let dbOrganization: [String: Any] = [
-            "id": organization.id.uuidString,
-            "name": organization.name,
-            "admin_id": organization.adminId.uuidString,
-            "created_at": ISO8601DateFormatter().string(from: organization.createdAt),
-            "invite_code": organization.inviteCode ?? "",
-            "member_ids": organization.memberIds.map { $0.uuidString }
-        ]
+        // Map to database format
+        let dto = OrganizationDTO(
+            id: organization.id,
+            name: organization.name,
+            adminId: organization.adminId,
+            createdAt: organization.createdAt,
+            inviteCode: organization.inviteCode,
+            memberIds: organization.memberIds
+        )
 
         // Insert into Supabase organizations table
         try await supabase
             .from("organizations")
-            .insert(dbOrganization)
+            .insert(dto)
             .execute()
 
         return organization
