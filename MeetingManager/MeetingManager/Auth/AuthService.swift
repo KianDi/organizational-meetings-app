@@ -68,4 +68,19 @@ actor AuthService {
     func session() async -> Session? {
         return currentSession
     }
+
+    /// Restore session from stored tokens
+    /// - Parameters:
+    ///   - accessToken: Stored access token
+    ///   - refreshToken: Stored refresh token
+    /// - Returns: Restored session
+    /// - Throws: Supabase auth errors if tokens are invalid
+    func restoreSession(accessToken: String, refreshToken: String) async throws -> Session {
+        let session = try await supabase.auth.setSession(
+            accessToken: accessToken,
+            refreshToken: refreshToken
+        )
+        currentSession = session
+        return session
+    }
 }
