@@ -53,8 +53,8 @@ reason: SPM tests fail due to iOS UI code in macOS build. Tests passed in Xcode 
 total: 8
 passed: 5
 issues: 1
-pending: 1
-skipped: 1
+pending: 0
+skipped: 2
 
 ## Issues for /gsd:plan-fix
 
