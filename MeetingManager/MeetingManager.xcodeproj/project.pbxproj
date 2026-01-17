@@ -27,6 +27,7 @@
 		8DBD85C22F194308006D34D1 /* AuthState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBD85C12F194308006D34D1 /* AuthState.swift */; };
 		D253A8CE33A430AC9D379F2B /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B582DFB2973FE41ABFDDBDF7 /* AppCoordinator.swift */; };
 		F0B602655316EACB613D366E /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23F94C62A7268596F8DC2A6 /* RootView.swift */; };
+		8DBD85C32F194401006D34D1 /* OrganizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBD85C02F194401006D34D1 /* OrganizationService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		B582DFB2973FE41ABFDDBDF7 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		C23F94C62A7268596F8DC2A6 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		EE561D81FD8DC74E416DECF0 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		8DBD85C02F194401006D34D1 /* OrganizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 		944784FE7EA0442090E412D8 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			children = (
 				8D67F9AC2F19491200FAE479 /* Models */,
 				8DBD85B42F194400006D34D1 /* Auth */,
+				8DBD85C42F194402006D34D1 /* Services */,
 				A1000002000000000000001 /* MeetingManagerApp.swift */,
 				A1000003000000000000001 /* ContentView.swift */,
 				A1000004000000000000001 /* Assets.xcassets */,
@@ -123,6 +126,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+	8DBD85C42F194402006D34D1 /* Services */ = {
+		isa = PBXGroup;
+		children = (
+			8DBD85C02F194401006D34D1 /* OrganizationService.swift */,
+		);
+		path = Services;
+		sourceTree = "<group>";
+	};
 	8DBD85B42F194400006D34D1 /* Auth */ = {
 		isa = PBXGroup;
 		children = (
@@ -233,6 +244,7 @@
 				8DBD85B22F194308006D34D1 /* SupabaseConfig.swift in Sources */,
 				8DBD85B32F194308006D34D1 /* AuthService.swift in Sources */,
 				8DBD85C22F194308006D34D1 /* AuthState.swift in Sources */,
+				8DBD85C32F194401006D34D1 /* OrganizationService.swift in Sources */,
 				114468FFA21DF04B77FA77B5 /* Route.swift in Sources */,
 				F0B602655316EACB613D366E /* RootView.swift in Sources */,
 			
