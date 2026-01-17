@@ -77,15 +77,18 @@ final class AuthState {
         defer { isLoading = false }
 
         // Attempt to restore from Keychain
-        guard let _ = try? await keychainManager.retrieve(forKey: "accessToken"),
-              let _ = try? await keychainManager.retrieve(forKey: "refreshToken") else {
+        guard let accessToken = try? await keychainManager.retrieve(forKey: "accessToken"),
+              let refreshToken = try? await keychainManager.retrieve(forKey: "refreshToken") else {
             return
         }
 
-        // Token exists - attempt to validate with Supabase
-        // For now, assume valid if tokens exist (Phase 2 scope)
-        // Token refresh logic will be added in future phases
-        if let session = await authService.session() {
+        // Restore session in Supabase with stored tokens
+        do {
+            let session = try await authService.restoreSession(
+                accessToken: accessToken,
+                refreshToken: refreshToken
+            )
+
             currentUser = User(
                 id: UUID(uuidString: session.user.id.uuidString) ?? UUID(),
                 email: session.user.email ?? "",
@@ -94,6 +97,9 @@ final class AuthState {
                 organizationIds: []
             )
             isAuthenticated = true
+        } catch {
+            // Tokens invalid or expired - clear them
+            try? await keychainManager.deleteAll()
         }
     }
 }
