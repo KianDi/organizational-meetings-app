@@ -38,7 +38,8 @@ result: pass
 
 ### 6. Sign out and sign back in
 expected: If signup succeeded, find a way to trigger sign out (may need to manually call authState.signOut() from console or add temp logout button). After sign out, see auth screens again. Enter same credentials on Login tab. Tap Sign In. Should navigate back to main content.
-result: [pending]
+result: skipped
+reason: No logout UI implemented yet. LLDB async/await commands don't work. Will test in future phase when profile/settings screen with logout button is added.
 
 ### 7. Session persistence on app relaunch
 expected: Close and relaunch app (stop simulator and run again). App should automatically restore session from Keychain and show main content without requiring login again.
