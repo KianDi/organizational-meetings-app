@@ -43,7 +43,9 @@ reason: No logout UI implemented yet. LLDB async/await commands don't work. Will
 
 ### 7. Session persistence on app relaunch
 expected: Close and relaunch app (stop simulator and run again). App should automatically restore session from Keychain and show main content without requiring login again.
-result: [pending]
+result: issue
+reported: "The sign in/sign up screen shows again."
+severity: major
 
 ### 8. Keychain security
 expected: This is tested programmatically. Run unit tests: `swift test --filter KeychainManagerTests` from project directory. All tests should pass (save, retrieve, delete operations).
