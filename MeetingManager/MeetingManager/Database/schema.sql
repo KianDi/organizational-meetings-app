@@ -47,3 +47,60 @@ CREATE INDEX IF NOT EXISTS idx_organizations_admin_id ON organizations (admin_id
 
 -- Create index on invite_code for efficient join queries
 CREATE INDEX IF NOT EXISTS idx_organizations_invite_code ON organizations (invite_code);
+
+-- Users Table Schema
+-- Extends Supabase auth.users with application-specific data
+-- Tracks organization memberships for each user
+
+-- Create users table
+CREATE TABLE IF NOT EXISTS users (
+    id UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
+    email TEXT NOT NULL,
+    name TEXT NOT NULL,
+    created_at TIMESTAMPTZ DEFAULT now(),
+    organization_ids UUID[] NOT NULL DEFAULT '{}'
+);
+
+-- Enable Row Level Security
+ALTER TABLE users ENABLE ROW LEVEL SECURITY;
+
+-- Policy: Users can read their own user record
+CREATE POLICY "Users can view their own profile"
+    ON users
+    FOR SELECT
+    USING (id = auth.uid());
+
+-- Policy: Users can update their own record
+CREATE POLICY "Users can update their own profile"
+    ON users
+    FOR UPDATE
+    USING (id = auth.uid());
+
+-- Policy: Service role can insert user records (for auth trigger)
+CREATE POLICY "Service role can insert users"
+    ON users
+    FOR INSERT
+    WITH CHECK (true);
+
+-- Create function to auto-create user record when auth.users is created
+CREATE OR REPLACE FUNCTION public.handle_new_user()
+RETURNS trigger AS $$
+BEGIN
+    INSERT INTO public.users (id, email, name)
+    VALUES (
+        NEW.id,
+        NEW.email,
+        COALESCE(NEW.raw_user_meta_data->>'name', NEW.email)
+    );
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+
+-- Create trigger to automatically create user record
+DROP TRIGGER IF EXISTS on_auth_user_created ON auth.users;
+CREATE TRIGGER on_auth_user_created
+    AFTER INSERT ON auth.users
+    FOR EACH ROW EXECUTE FUNCTION public.handle_new_user();
+
+-- Create index on organization_ids for efficient membership queries
+CREATE INDEX IF NOT EXISTS idx_users_organization_ids ON users USING GIN (organization_ids);
