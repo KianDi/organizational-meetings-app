@@ -76,4 +76,125 @@ actor OrganizationService {
 
         return organization
     }
+
+    /// Find an organization by invite code
+    /// - Parameter code: The invite code to search for
+    /// - Returns: Organization if found, nil if not found
+    /// - Throws: Supabase database errors
+    func findByInviteCode(code: String) async throws -> Organization? {
+        let response: OrganizationDTO? = try await supabase
+            .from("organizations")
+            .select()
+            .eq("invite_code", value: code)
+            .maybeSingle()
+            .execute()
+            .value
+
+        guard let dto = response else {
+            return nil
+        }
+
+        return Organization(
+            id: dto.id,
+            name: dto.name,
+            adminId: dto.adminId,
+            createdAt: dto.createdAt,
+            inviteCode: dto.inviteCode,
+            memberIds: dto.memberIds
+        )
+    }
+
+    /// Join an organization by adding a user to its member list
+    /// - Parameters:
+    ///   - organizationId: The organization to join
+    ///   - userId: The user joining the organization
+    /// - Returns: Updated Organization model
+    /// - Throws: Supabase database errors
+    func joinOrganization(organizationId: UUID, userId: UUID) async throws -> Organization {
+        // Fetch current organization
+        let currentOrg: OrganizationDTO = try await supabase
+            .from("organizations")
+            .select()
+            .eq("id", value: organizationId)
+            .single()
+            .execute()
+            .value
+
+        // Check if user is already a member
+        if currentOrg.memberIds.contains(userId) {
+            // User already a member, return current organization
+            return Organization(
+                id: currentOrg.id,
+                name: currentOrg.name,
+                adminId: currentOrg.adminId,
+                createdAt: currentOrg.createdAt,
+                inviteCode: currentOrg.inviteCode,
+                memberIds: currentOrg.memberIds
+            )
+        }
+
+        // Append user to member list
+        var updatedMemberIds = currentOrg.memberIds
+        updatedMemberIds.append(userId)
+
+        // Update organization in database
+        let updatedDTO: OrganizationDTO = try await supabase
+            .from("organizations")
+            .update(["member_ids": updatedMemberIds])
+            .eq("id", value: organizationId)
+            .select()
+            .single()
+            .execute()
+            .value
+
+        return Organization(
+            id: updatedDTO.id,
+            name: updatedDTO.name,
+            adminId: updatedDTO.adminId,
+            createdAt: updatedDTO.createdAt,
+            inviteCode: updatedDTO.inviteCode,
+            memberIds: updatedDTO.memberIds
+        )
+    }
+
+    /// Update user's organization list
+    /// - Parameters:
+    ///   - userId: The user to update
+    ///   - organizationId: The organization to add to user's list
+    /// - Throws: Supabase database errors
+    func updateUserOrganizations(userId: UUID, organizationId: UUID) async throws {
+        // Define UserDTO for database mapping
+        struct UserDTO: Codable {
+            let organizationIds: [UUID]
+
+            enum CodingKeys: String, CodingKey {
+                case organizationIds = "organization_ids"
+            }
+        }
+
+        // Fetch current user's organization list
+        let currentUser: UserDTO = try await supabase
+            .from("users")
+            .select("organization_ids")
+            .eq("id", value: userId)
+            .single()
+            .execute()
+            .value
+
+        // Check if organization is already in user's list
+        if currentUser.organizationIds.contains(organizationId) {
+            return
+        }
+
+        // Append organization to user's list
+        var updatedOrgIds = currentUser.organizationIds
+        updatedOrgIds.append(organizationId)
+
+        // Update user in database
+        try await supabase
+            .from("users")
+            .update(["organization_ids": updatedOrgIds])
+            .eq("id", value: userId)
+            .execute()
+    }
 }
