@@ -82,26 +82,28 @@ actor OrganizationService {
     /// - Returns: Organization if found, nil if not found
     /// - Throws: Supabase database errors
     func findByInviteCode(code: String) async throws -> Organization? {
-        let response: OrganizationDTO? = try await supabase
-            .from("organizations")
-            .select()
-            .eq("invite_code", value: code)
-            .maybeSingle()
-            .execute()
-            .value
+        do {
+            let dto: OrganizationDTO = try await supabase
+                .from("organizations")
+                .select()
+                .eq("invite_code", value: code)
+                .single()
+                .execute()
+                .value
 
-        guard let dto = response else {
+            return Organization(
+                id: dto.id,
+                name: dto.name,
+                adminId: dto.adminId,
+                createdAt: dto.createdAt,
+                inviteCode: dto.inviteCode,
+                memberIds: dto.memberIds
+            )
+        } catch {
+            // If no matching invite code, return nil
+            // Other errors will be thrown
             return nil
         }
-
-        return Organization(
-            id: dto.id,
-            name: dto.name,
-            adminId: dto.adminId,
-            createdAt: dto.createdAt,
-            inviteCode: dto.inviteCode,
-            memberIds: dto.memberIds
-        )
     }
 
     /// Join an organization by adding a user to its member list
