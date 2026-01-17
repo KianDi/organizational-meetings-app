@@ -55,10 +55,10 @@ result: [pending]
 
 total: 8
 passed: 5
-issues: 0
-pending: 2
+issues: 1
+pending: 1
 skipped: 1
 
 ## Issues for /gsd:plan-fix
 
-[none yet]
+- UAT-001: Session not restored on app relaunch (major) - Test 7
