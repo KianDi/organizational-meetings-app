@@ -3,15 +3,15 @@ status: testing
 phase: 02-authentication-system
 source: [02-01-SUMMARY.md, 02-02-SUMMARY.md, 02-03-SUMMARY.md, 02-04-SUMMARY.md]
 started: 2026-01-15T23:00:00Z
-updated: 2026-01-15T23:22:00Z
+updated: 2026-01-15T23:23:00Z
 ---
 
 ## Current Test
 
-number: 7
-name: Session persistence on app relaunch
+number: 8
+name: Keychain security
 expected: |
-  Close and relaunch app (stop simulator and run again). App should automatically restore session from Keychain and show main content without requiring login again.
+  This is tested programmatically. Run unit tests: `swift test --filter KeychainManagerTests` from project directory. All tests should pass (save, retrieve, delete operations).
 awaiting: user response
 
 ## Tests
