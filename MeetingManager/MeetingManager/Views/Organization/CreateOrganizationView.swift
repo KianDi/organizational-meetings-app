@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct CreateOrganizationView: View {
-    @Environment(AuthState.self) private var authState
+    @Environment(\.authState) private var authState
     @Environment(\.dismiss) private var dismiss
 
     @State private var organizationName = ""
