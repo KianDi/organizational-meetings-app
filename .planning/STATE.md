@@ -63,6 +63,9 @@ Recent decisions affecting current work:
 | 02-04 | @MainActor on state-changing methods | Ensures UI updates happen on main thread for auth state changes |
 | 02-04 | Environment injection for AuthState | Cleaner dependency injection than passing parameters through view hierarchy |
 | 02-04 | Session restoration in .task modifier | Automatic restoration from Keychain on app launch without manual trigger |
+| 03-01 | Codable DTO for database mapping | Type-safe snake_case to camelCase mapping, cleaner than dictionaries |
+| 03-01 | 6-character invite code from UUID prefix | Short enough to type, unique enough to avoid collisions |
+| 03-01 | RLS policies for organizations table | Member-based read access, admin-only write access for security |
 
 ### Deferred Issues
 
