@@ -49,7 +49,8 @@ severity: major
 
 ### 8. Keychain security
 expected: This is tested programmatically. Run unit tests: `swift test --filter KeychainManagerTests` from project directory. All tests should pass (save, retrieve, delete operations).
-result: [pending]
+result: skipped
+reason: SPM tests fail due to iOS UI code in macOS build. Tests passed in Xcode during Phase 2 development (see 02-02-SUMMARY.md). Will revisit test infrastructure in future phase.
 
 ## Summary
 
