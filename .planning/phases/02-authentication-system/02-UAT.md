@@ -50,11 +50,13 @@ reason: SPM tests fail due to iOS UI code in macOS build. Tests passed in Xcode 
 ## Summary
 
 total: 8
-passed: 5
-issues: 1
+passed: 6
+issues: 0
 pending: 0
 skipped: 2
 
 ## Issues for /gsd:plan-fix
 
 - UAT-001: Session not restored on app relaunch (major) - Test 7
+  status: FIXED
+  fix: Added AuthService.restoreSession() to restore Supabase session from stored tokens
