@@ -168,19 +168,26 @@ actor MeetingService {
         startedAt: Date? = nil,
         endedAt: Date? = nil
     ) async throws -> Meeting {
-        // Build update dictionary with only provided values
-        var updates: [String: Any] = [:]
-        if let startedAt = startedAt {
-            updates["started_at"] = startedAt
+        // Create update DTO with only the fields to update
+        struct MeetingUpdateDTO: Codable {
+            let startedAt: Date?
+            let endedAt: Date?
+
+            enum CodingKeys: String, CodingKey {
+                case startedAt = "started_at"
+                case endedAt = "ended_at"
+            }
         }
-        if let endedAt = endedAt {
-            updates["ended_at"] = endedAt
-        }
+
+        let updateDTO = MeetingUpdateDTO(
+            startedAt: startedAt,
+            endedAt: endedAt
+        )
 
         // Update meeting in database
         let dto: MeetingDTO = try await supabase
             .from("meetings")
-            .update(updates)
+            .update(updateDTO)
             .eq("id", value: id)
             .select()
             .single()
