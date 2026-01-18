@@ -74,6 +74,10 @@ Recent decisions affecting current work:
 | 03-03 | Admin-first sorting in member list | Highlights organization leader, provides consistent UX |
 | 03-03 | ShareSheet UIKit wrapper | Native iOS sharing experience for invite codes |
 | 03-03 | LabeledContent for detail rows | Consistent iOS design language for organization details |
+| 03-04 | OrganizationState follows AuthState pattern | Consistent with Phase 2, ensures thread-safe UI updates with @MainActor |
+| 03-04 | OrganizationListView as authenticated home screen | Provides immediate value on login, central hub for organization access |
+| 03-04 | Wrapper views for create/join integration | Maintains backwards compatibility while integrating with app-wide state |
+| 03-04 | Organization Hashable conformance | Required for modern SwiftUI NavigationLink value-based navigation |
 
 ### Deferred Issues
 
