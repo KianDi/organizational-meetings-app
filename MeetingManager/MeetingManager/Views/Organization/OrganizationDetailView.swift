@@ -153,6 +153,6 @@ struct ShareSheet: UIViewControllerRepresentable {
 #Preview {
     NavigationStack {
         OrganizationDetailView(organizationId: UUID())
-            .environment(AuthState())
+            .environment(AuthState(authService: AuthService()))
     }
 }
