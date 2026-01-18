@@ -133,6 +133,6 @@ struct MemberListView: View {
                 memberIds: [UUID(), UUID()]
             )
         )
-        .environment(AuthState())
+        .environment(AuthState(authService: AuthService()))
     }
 }
