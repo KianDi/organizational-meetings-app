@@ -2,7 +2,7 @@ import Foundation
 
 /// Represents an organization (student group) in the meeting management system.
 /// Organizations have an admin/leader and can have multiple members.
-struct Organization: Identifiable, Codable, Equatable {
+struct Organization: Identifiable, Codable, Equatable, Hashable {
     // MARK: - Properties
 
     /// Unique identifier for the organization
