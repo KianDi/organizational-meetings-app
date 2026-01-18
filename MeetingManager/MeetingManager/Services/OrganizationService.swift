@@ -199,4 +199,79 @@ actor OrganizationService {
             .eq("id", value: userId)
             .execute()
     }
+
+    /// Fetch an organization by ID
+    /// - Parameter id: The organization ID to fetch
+    /// - Returns: Organization model
+    /// - Throws: Supabase database errors if not found
+    func fetchOrganization(id: UUID) async throws -> Organization {
+        let dto: OrganizationDTO = try await supabase
+            .from("organizations")
+            .select()
+            .eq("id", value: id)
+            .single()
+            .execute()
+            .value
+
+        return Organization(
+            id: dto.id,
+            name: dto.name,
+            adminId: dto.adminId,
+            createdAt: dto.createdAt,
+            inviteCode: dto.inviteCode,
+            memberIds: dto.memberIds
+        )
+    }
+
+    /// Fetch all members of an organization
+    /// - Parameter organizationId: The organization ID
+    /// - Returns: Array of User models sorted by name
+    /// - Throws: Supabase database errors
+    func fetchMembers(organizationId: UUID) async throws -> [User] {
+        // First fetch the organization to get memberIds
+        let organization = try await fetchOrganization(id: organizationId)
+
+        // If no members, return empty array
+        if organization.memberIds.isEmpty {
+            return []
+        }
+
+        // Define UserDTO for database mapping
+        struct UserDTO: Codable {
+            let id: UUID
+            let email: String
+            let name: String
+            let createdAt: Date
+            let organizationIds: [UUID]
+
+            enum CodingKeys: String, CodingKey {
+                case id
+                case email
+                case name
+                case createdAt = "created_at"
+                case organizationIds = "organization_ids"
+            }
+        }
+
+        // Query users using .in() filter for array membership
+        let dtos: [UserDTO] = try await supabase
+            .from("users")
+            .select()
+            .in("id", values: organization.memberIds)
+            .execute()
+            .value
+
+        // Map to User models and sort by name
+        let users = dtos.map { dto in
+            User(
+                id: dto.id,
+                email: dto.email,
+                name: dto.name,
+                createdAt: dto.createdAt,
+                organizationIds: dto.organizationIds
+            )
+        }
+
+        return users.sorted { $0.name.lowercased() < $1.name.lowercased() }
+    }
 }
