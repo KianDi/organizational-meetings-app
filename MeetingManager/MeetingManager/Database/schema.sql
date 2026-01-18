@@ -104,3 +104,98 @@ CREATE TRIGGER on_auth_user_created
 
 -- Create index on organization_ids for efficient membership queries
 CREATE INDEX IF NOT EXISTS idx_users_organization_ids ON users USING GIN (organization_ids);
+
+-- Meetings Table Schema
+-- Tracks meetings within organizations with scheduling, attendance, and document linking
+-- Meetings have a lifecycle: scheduled → started → ended
+
+-- Create meetings table
+CREATE TABLE IF NOT EXISTS meetings (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    organization_id UUID NOT NULL REFERENCES organizations(id) ON DELETE CASCADE,
+    title TEXT NOT NULL,
+    scheduled_at TIMESTAMPTZ NOT NULL,
+    started_at TIMESTAMPTZ,
+    ended_at TIMESTAMPTZ,
+    google_docs_url TEXT,
+    summary TEXT,
+    attendee_ids UUID[] NOT NULL DEFAULT '{}',
+    created_by_id UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
+    created_at TIMESTAMPTZ DEFAULT now()
+);
+
+-- Enable Row Level Security
+ALTER TABLE meetings ENABLE ROW LEVEL SECURITY;
+
+-- Policy: Members can view meetings for their organizations
+CREATE POLICY "Members can view organization meetings"
+    ON meetings
+    FOR SELECT
+    USING (
+        organization_id IN (
+            SELECT id FROM organizations
+            WHERE member_ids @> ARRAY[auth.uid()]
+        )
+    );
+
+-- Policy: Admins can insert meetings for their organizations
+CREATE POLICY "Admins can create meetings"
+    ON meetings
+    FOR INSERT
+    WITH CHECK (
+        organization_id IN (
+            SELECT id FROM organizations
+            WHERE admin_id = auth.uid()
+        )
+    );
+
+-- Policy: Admins can update meetings for their organizations
+CREATE POLICY "Admins can update meetings"
+    ON meetings
+    FOR UPDATE
+    USING (
+        organization_id IN (
+            SELECT id FROM organizations
+            WHERE admin_id = auth.uid()
+        )
+    );
+
+-- Policy: Members can update attendee_ids only (for check-in)
+CREATE POLICY "Members can check in to meetings"
+    ON meetings
+    FOR UPDATE
+    USING (
+        organization_id IN (
+            SELECT id FROM organizations
+            WHERE member_ids @> ARRAY[auth.uid()]
+        )
+    )
+    WITH CHECK (
+        organization_id IN (
+            SELECT id FROM organizations
+            WHERE member_ids @> ARRAY[auth.uid()]
+        )
+    );
+
+-- Policy: Admins can delete meetings for their organizations
+CREATE POLICY "Admins can delete meetings"
+    ON meetings
+    FOR DELETE
+    USING (
+        organization_id IN (
+            SELECT id FROM organizations
+            WHERE admin_id = auth.uid()
+        )
+    );
+
+-- Create GIN index on attendee_ids for efficient attendance queries
+CREATE INDEX IF NOT EXISTS idx_meetings_attendee_ids ON meetings USING GIN (attendee_ids);
+
+-- Create B-tree index on organization_id for efficient organization queries
+CREATE INDEX IF NOT EXISTS idx_meetings_organization_id ON meetings (organization_id);
+
+-- Create B-tree index on created_by_id for efficient creator queries
+CREATE INDEX IF NOT EXISTS idx_meetings_created_by_id ON meetings (created_by_id);
+
+-- Create B-tree index on scheduled_at for efficient time-based queries
+CREATE INDEX IF NOT EXISTS idx_meetings_scheduled_at ON meetings (scheduled_at);
