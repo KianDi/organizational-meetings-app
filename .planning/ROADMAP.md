@@ -18,7 +18,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Foundation & Project Setup** - iOS project initialization, dependencies, and core architecture
 - [x] **Phase 2: Authentication System** - Email/password auth with user management
-- [ ] **Phase 3: Organization Management** - Create orgs, invite system, member roles
+- [x] **Phase 3: Organization Management** - Create orgs, invite system, member roles
 - [ ] **Phase 4: Meeting Management** - Schedule meetings, check-in system, attendance tracking
 - [ ] **Phase 5: Document Upload & AI Processing** - Google Docs upload, AI summary generation, task extraction
 - [ ] **Phase 6: Task & Calendar Views** - Task list UI, calendar with meetings and deadlines
