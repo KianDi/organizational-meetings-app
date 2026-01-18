@@ -5,7 +5,7 @@
 See: .planning/PROJECT.md (updated 2026-01-14)
 
 **Core value:** Keeping members informed through AI-powered meeting summaries and reliable attendance tracking, so everyone knows what's happening and what their tasks are without reading full meeting documents.
-**Current focus:** Phase 3 — Organization Management
+**Current focus:** Phase 4 — Meeting Management
 
 ## Current Position
 
