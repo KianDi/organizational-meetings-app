@@ -79,6 +79,10 @@ Recent decisions affecting current work:
 | 03-04 | OrganizationListView as authenticated home screen | Provides immediate value on login, central hub for organization access |
 | 03-04 | Wrapper views for create/join integration | Maintains backwards compatibility while integrating with app-wide state |
 | 03-04 | Organization Hashable conformance | Required for modern SwiftUI NavigationLink value-based navigation |
+| 04-01 | RLS policies for member SELECT, admin INSERT/UPDATE/DELETE | Separates read access (all members) from write access (admins only) for security |
+| 04-01 | Separate member UPDATE policy for attendee_ids | Enables members to check in without granting full update permissions |
+| 04-01 | MeetingUpdateDTO with optional fields | Type-safe partial updates using Encodable instead of [String: Any] dictionaries |
+| 04-01 | Default scheduled time 1 hour from now | Better UX than current time, provides reasonable starting point organizers can adjust |
 
 ### Deferred Issues
 
