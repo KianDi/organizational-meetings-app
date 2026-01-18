@@ -10,6 +10,7 @@ import SwiftUI
 /// Root view that manages NavigationStack with AppCoordinator and auth routing
 struct RootView: View {
     @State private var authState: AuthState
+    @State private var organizationState = OrganizationState()
     @StateObject private var coordinator: AppCoordinator
 
     init(authService: AuthService = AuthService()) {
@@ -20,15 +21,10 @@ struct RootView: View {
     var body: some View {
         Group {
             if authState.isAuthenticated {
-                // Logged in - show main app
-                NavigationStack(path: $coordinator.navigationPath) {
-                    ContentView()
-                        .navigationDestination(for: Route.self) { route in
-                            destinationView(for: route)
-                        }
-                }
-                .environment(authState)
-                .environmentObject(coordinator)
+                // Logged in - show organization list as home screen
+                OrganizationListView()
+                    .environment(authState)
+                    .environment(organizationState)
             } else {
                 // Logged out - show auth screens
                 AuthContainerView()
