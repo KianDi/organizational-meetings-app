@@ -59,8 +59,8 @@ Plans:
 Plans:
 - [x] 03-01: Organization creation and admin assignment
 - [x] 03-02: Invite link/code generation and joining flow
-- [ ] 03-03: Member list and role management UI
-- [ ] 03-04: Organization settings and permissions logic
+- [x] 03-03: Member list and role management UI
+- [x] 03-04: Organization state integration and navigation
 
 ### Phase 4: Meeting Management
 **Goal**: Organizers can schedule meetings, members can check in, attendance is tracked
