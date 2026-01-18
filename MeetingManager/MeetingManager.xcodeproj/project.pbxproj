@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		67A160C44F91404DB80A05CD /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944784FE7EA0442090E412D8 /* Secrets.swift */; };
-
 		114468FFA21DF04B77FA77B5 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE561D81FD8DC74E416DECF0 /* Route.swift */; };
+		2180389B76D7E38E8023EE06 /* CreateMeetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0947B9A65E4A762CA700F9A3 /* CreateMeetingView.swift */; };
+		4FF3971C647AACDA6B8FCDDA /* JoinOrganizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D486B3EC9EF7F49EE99E1D /* JoinOrganizationView.swift */; };
+		5CEA0EB028714E915A848A7A /* MemberListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FCB748FC7CC6B3DF1C96A7 /* MemberListView.swift */; };
+		67A160C44F91404DB80A05CD /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944784FE7EA0442090E412D8 /* Secrets.swift */; };
 		8D67F9A72F1947F700FAE479 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 8D67F9A62F1947F700FAE479 /* Supabase */; };
 		8D67F9AD2F19491200FAE479 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D67F9AB2F19491200FAE479 /* User.swift */; };
 		8D67F9AE2F19491200FAE479 /* Meeting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D67F9A82F19491200FAE479 /* Meeting.swift */; };
@@ -25,13 +27,20 @@
 		8DBD85B22F194308006D34D1 /* SupabaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBD85B02F194308006D34D1 /* SupabaseConfig.swift */; };
 		8DBD85B32F194308006D34D1 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBD85AE2F194308006D34D1 /* AuthService.swift */; };
 		8DBD85C22F194308006D34D1 /* AuthState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBD85C12F194308006D34D1 /* AuthState.swift */; };
-		D253A8CE33A430AC9D379F2B /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B582DFB2973FE41ABFDDBDF7 /* AppCoordinator.swift */; };
-		F0B602655316EACB613D366E /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23F94C62A7268596F8DC2A6 /* RootView.swift */; };
 		8DBD85C32F194401006D34D1 /* OrganizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBD85C02F194401006D34D1 /* OrganizationService.swift */; };
 		8DBD85C52F194403006D34D1 /* CreateOrganizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBD85C62F194403006D34D1 /* CreateOrganizationView.swift */; };
+		D253A8CE33A430AC9D379F2B /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B582DFB2973FE41ABFDDBDF7 /* AppCoordinator.swift */; };
+		DC33884453586499E28D853A /* OrganizationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAA49D663290A25C8C46DD1 /* OrganizationListView.swift */; };
+		E1B5F6C0B7263A4DF5E02E8F /* OrganizationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95749220EAF41B305883E0A2 /* OrganizationDetailView.swift */; };
+		F0B602655316EACB613D366E /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23F94C62A7268596F8DC2A6 /* RootView.swift */; };
+		F5257161A38E9F0402DB2E94 /* MeetingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA51400AE1FEEE97FE5BB0B0 /* MeetingService.swift */; };
+		F91AB99EA9F2AC3D01BD09AD /* OrganizationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EAA28A966DD935C73098E6 /* OrganizationState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0947B9A65E4A762CA700F9A3 /* CreateMeetingView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateMeetingView.swift; sourceTree = "<group>"; };
+		1BECC8AA4CF04810ADBC6FF5 /* Secrets.example.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.example.swift; sourceTree = "<group>"; };
+		72D486B3EC9EF7F49EE99E1D /* JoinOrganizationView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JoinOrganizationView.swift; sourceTree = "<group>"; };
 		8D67F9A82F19491200FAE479 /* Meeting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meeting.swift; sourceTree = "<group>"; };
 		8D67F9A92F19491200FAE479 /* MeetingTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingTask.swift; sourceTree = "<group>"; };
 		8D67F9AA2F19491200FAE479 /* Organization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
@@ -40,22 +49,26 @@
 		8DBD85A92F1942E8006D34D1 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		8DBD85AA2F1942E8006D34D1 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		8DBD85AE2F194308006D34D1 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
-		8DBD85C12F194308006D34D1 /* AuthState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthState.swift; sourceTree = "<group>"; };
 		8DBD85AF2F194308006D34D1 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		8DBD85B02F194308006D34D1 /* SupabaseConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseConfig.swift; sourceTree = "<group>"; };
+		8DBD85C02F194401006D34D1 /* OrganizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationService.swift; sourceTree = "<group>"; };
+		8DBD85C12F194308006D34D1 /* AuthState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthState.swift; sourceTree = "<group>"; };
+		8DBD85C62F194403006D34D1 /* CreateOrganizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrganizationView.swift; sourceTree = "<group>"; };
+		944784FE7EA0442090E412D8 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		95749220EAF41B305883E0A2 /* OrganizationDetailView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OrganizationDetailView.swift; sourceTree = "<group>"; };
+		95FCB748FC7CC6B3DF1C96A7 /* MemberListView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MemberListView.swift; sourceTree = "<group>"; };
 		A1000001000000000000001 /* MeetingManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeetingManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1000002000000000000001 /* MeetingManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingManagerApp.swift; sourceTree = "<group>"; };
 		A1000003000000000000001 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A1000004000000000000001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		ACAA49D663290A25C8C46DD1 /* OrganizationListView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OrganizationListView.swift; sourceTree = "<group>"; };
 		B582DFB2973FE41ABFDDBDF7 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		C23F94C62A7268596F8DC2A6 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		EE561D81FD8DC74E416DECF0 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
-		8DBD85C02F194401006D34D1 /* OrganizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationService.swift; sourceTree = "<group>"; };
-		8DBD85C62F194403006D34D1 /* CreateOrganizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrganizationView.swift; sourceTree = "<group>"; };
+		F1EAA28A966DD935C73098E6 /* OrganizationState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OrganizationState.swift; sourceTree = "<group>"; };
+		FA51400AE1FEEE97FE5BB0B0 /* MeetingService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MeetingService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-		944784FE7EA0442090E412D8 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
-		1BECC8AA4CF04810ADBC6FF5 /* Secrets.example.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.example.swift; sourceTree = "<group>"; };
 /* Begin PBXFrameworksBuildPhase section */
 		A1000010000000000000001 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -68,6 +81,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		16526F6BB89E4A14B0EE9E79 /* Meeting */ = {
+			isa = PBXGroup;
+			children = (
+				0947B9A65E4A762CA700F9A3 /* CreateMeetingView.swift */,
+			);
+			name = Meeting;
+			path = Meeting;
+			sourceTree = "<group>";
+		};
 		8D67F9AC2F19491200FAE479 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -77,6 +99,50 @@
 				8D67F9AB2F19491200FAE479 /* User.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		8DBD85B42F194400006D34D1 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				8DBD85AE2F194308006D34D1 /* AuthService.swift */,
+				8DBD85C12F194308006D34D1 /* AuthState.swift */,
+				8DBD85AF2F194308006D34D1 /* KeychainManager.swift */,
+				8DBD85B02F194308006D34D1 /* SupabaseConfig.swift */,
+				944784FE7EA0442090E412D8 /* Secrets.swift */,
+				1BECC8AA4CF04810ADBC6FF5 /* Secrets.example.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		8DBD85B52F194401006D34D1 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				8DBD85A82F1942E8006D34D1 /* AuthContainerView.swift */,
+				8DBD85A92F1942E8006D34D1 /* LoginView.swift */,
+				8DBD85AA2F1942E8006D34D1 /* SignupView.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		8DBD85C42F194402006D34D1 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				8DBD85C02F194401006D34D1 /* OrganizationService.swift */,
+				FA51400AE1FEEE97FE5BB0B0 /* MeetingService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		8DBD85C72F194404006D34D1 /* Organization */ = {
+			isa = PBXGroup;
+			children = (
+				8DBD85C62F194403006D34D1 /* CreateOrganizationView.swift */,
+				ACAA49D663290A25C8C46DD1 /* OrganizationListView.swift */,
+				95FCB748FC7CC6B3DF1C96A7 /* MemberListView.swift */,
+				95749220EAF41B305883E0A2 /* OrganizationDetailView.swift */,
+				72D486B3EC9EF7F49EE99E1D /* JoinOrganizationView.swift */,
+			);
+			path = Organization;
 			sourceTree = "<group>";
 		};
 		A0C5A84E943BBA30217884FE /* Navigation */ = {
@@ -107,6 +173,7 @@
 				A1000004000000000000001 /* Assets.xcassets */,
 				A0C5A84E943BBA30217884FE /* Navigation */,
 				E4D8353416E9E9075A524262 /* Views */,
+				F3ED61C55A898577FBD4DE4E /* State */,
 			);
 			path = MeetingManager;
 			sourceTree = "<group>";
@@ -125,49 +192,20 @@
 				8DBD85B52F194401006D34D1 /* Auth */,
 				8DBD85C72F194404006D34D1 /* Organization */,
 				C23F94C62A7268596F8DC2A6 /* RootView.swift */,
+				16526F6BB89E4A14B0EE9E79 /* Meeting */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-	8DBD85C42F194402006D34D1 /* Services */ = {
-		isa = PBXGroup;
-		children = (
-			8DBD85C02F194401006D34D1 /* OrganizationService.swift */,
-		);
-		path = Services;
-		sourceTree = "<group>";
-	};
-	8DBD85B42F194400006D34D1 /* Auth */ = {
-		isa = PBXGroup;
-		children = (
-			8DBD85AE2F194308006D34D1 /* AuthService.swift */,
-				8DBD85C12F194308006D34D1 /* AuthState.swift */,
-			8DBD85AF2F194308006D34D1 /* KeychainManager.swift */,
-			8DBD85B02F194308006D34D1 /* SupabaseConfig.swift */,
-		
-				944784FE7EA0442090E412D8 /* Secrets.swift */,
-				1BECC8AA4CF04810ADBC6FF5 /* Secrets.example.swift */,);
-		path = Auth;
-		sourceTree = "<group>";
-	};
-	8DBD85C72F194404006D34D1 /* Organization */ = {
-		isa = PBXGroup;
-		children = (
-			8DBD85C62F194403006D34D1 /* CreateOrganizationView.swift */,
-		);
-		path = Organization;
-		sourceTree = "<group>";
-	};
-	8DBD85B52F194401006D34D1 /* Auth */ = {
-		isa = PBXGroup;
-		children = (
-			8DBD85A82F1942E8006D34D1 /* AuthContainerView.swift */,
-			8DBD85A92F1942E8006D34D1 /* LoginView.swift */,
-			8DBD85AA2F1942E8006D34D1 /* SignupView.swift */,
-		);
-		path = Auth;
-		sourceTree = "<group>";
-	};
+		F3ED61C55A898577FBD4DE4E /* State */ = {
+			isa = PBXGroup;
+			children = (
+				F1EAA28A966DD935C73098E6 /* OrganizationState.swift */,
+			);
+			name = State;
+			path = State;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -259,8 +297,15 @@
 				8DBD85C52F194403006D34D1 /* CreateOrganizationView.swift in Sources */,
 				114468FFA21DF04B77FA77B5 /* Route.swift in Sources */,
 				F0B602655316EACB613D366E /* RootView.swift in Sources */,
-			
-				67A160C44F91404DB80A05CD /* Secrets.swift in Sources */,);
+				67A160C44F91404DB80A05CD /* Secrets.swift in Sources */,
+				F91AB99EA9F2AC3D01BD09AD /* OrganizationState.swift in Sources */,
+				DC33884453586499E28D853A /* OrganizationListView.swift in Sources */,
+				5CEA0EB028714E915A848A7A /* MemberListView.swift in Sources */,
+				E1B5F6C0B7263A4DF5E02E8F /* OrganizationDetailView.swift in Sources */,
+				4FF3971C647AACDA6B8FCDDA /* JoinOrganizationView.swift in Sources */,
+				F5257161A38E9F0402DB2E94 /* MeetingService.swift in Sources */,
+				2180389B76D7E38E8023EE06 /* CreateMeetingView.swift in Sources */,
+			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
