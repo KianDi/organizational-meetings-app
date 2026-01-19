@@ -11,6 +11,7 @@ import SwiftUI
 struct RootView: View {
     @State private var authState: AuthState
     @State private var organizationState = OrganizationState()
+    @State private var meetingState = MeetingState()
     @StateObject private var coordinator: AppCoordinator
 
     init(authService: AuthService = AuthService()) {
@@ -25,6 +26,7 @@ struct RootView: View {
                 OrganizationListView()
                     .environment(authState)
                     .environment(organizationState)
+                    .environment(meetingState)
             } else {
                 // Logged out - show auth screens
                 AuthContainerView()
