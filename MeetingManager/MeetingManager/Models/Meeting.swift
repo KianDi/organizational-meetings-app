@@ -35,6 +35,15 @@ struct Meeting: Identifiable, Codable, Equatable {
     /// User ID of the organizer who created this meeting
     let createdById: UUID
 
+    /// Extracted plain text from uploaded document (added in Phase 5)
+    var documentText: String?
+
+    /// Original document URL or identifier (added in Phase 5)
+    var documentUrl: String?
+
+    /// Timestamp when document was uploaded (added in Phase 5)
+    var uploadedAt: Date?
+
     // MARK: - Initialization
 
     init(
