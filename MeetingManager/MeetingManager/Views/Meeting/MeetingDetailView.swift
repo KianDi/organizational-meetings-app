@@ -61,11 +61,11 @@ struct MeetingDetailView: View {
 
                     VStack(spacing: 12) {
                         LabeledContent("Scheduled") {
-                            Text(formattedDate(refreshedMeeting.scheduledAt))
+                            Text(formattedDate(currentMeeting.scheduledAt))
                         }
 
                         LabeledContent("Started") {
-                            if let startedAt = refreshedMeeting.startedAt {
+                            if let startedAt = currentMeeting.startedAt {
                                 Text(formattedDate(startedAt))
                             } else {
                                 Text("Not started")
@@ -74,9 +74,9 @@ struct MeetingDetailView: View {
                         }
 
                         LabeledContent("Ended") {
-                            if let endedAt = refreshedMeeting.endedAt {
+                            if let endedAt = currentMeeting.endedAt {
                                 Text(formattedDate(endedAt))
-                            } else if refreshedMeeting.startedAt != nil {
+                            } else if currentMeeting.startedAt != nil {
                                 Text("Ongoing")
                                     .foregroundColor(.secondary)
                             } else {
