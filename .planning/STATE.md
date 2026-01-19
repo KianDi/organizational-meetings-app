@@ -83,6 +83,12 @@ Recent decisions affecting current work:
 | 04-01 | Separate member UPDATE policy for attendee_ids | Enables members to check in without granting full update permissions |
 | 04-01 | MeetingUpdateDTO with optional fields | Type-safe partial updates using Encodable instead of [String: Any] dictionaries |
 | 04-01 | Default scheduled time 1 hour from now | Better UX than current time, provides reasonable starting point organizers can adjust |
+| 04-02 | Idempotent check-in with early return | Prevents duplicate entries in attendeeIds, safe to retry operations |
+| 04-02 | State-conditional button rendering in SwiftUI | Separate if/else branches avoid ternary ButtonStyle type mismatch |
+| 04-02 | MeetingError enum with LocalizedError | User-friendly validation messages for meeting state and membership checks |
+| 04-02 | Three-stage validation order | Check started → not ended → membership for most relevant error messages |
+| 04-02 | Atomic attendee_ids updates | Only update attendee_ids column to prevent race conditions with other meeting fields |
+| 04-02 | Haptic feedback on successful check-in | UINotificationFeedbackGenerator provides tactile confirmation for better UX |
 
 ### Deferred Issues
 
