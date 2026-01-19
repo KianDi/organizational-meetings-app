@@ -42,7 +42,7 @@ struct MeetingListView: View {
                     .buttonStyle(.borderedProminent)
                 }
                 .padding()
-            } else if meetings.isEmpty {
+            } else if meetingState.meetings.isEmpty {
                 ContentUnavailableView(
                     "No meetings scheduled",
                     systemImage: "calendar.badge.plus",
