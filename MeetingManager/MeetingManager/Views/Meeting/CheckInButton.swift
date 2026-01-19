@@ -38,7 +38,7 @@ struct CheckInButton: View {
                 }
                 .frame(maxWidth: .infinity)
             }
-            .buttonStyle(isCheckedIn ? .bordered : .borderedProminent)
+            .buttonStyle(isCheckedIn ? BorderedButtonStyle() : BorderedProminentButtonStyle())
             .tint(isCheckedIn ? .green : .blue)
             .disabled(isCheckedIn || isSubmitting)
 
