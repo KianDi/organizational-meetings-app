@@ -1,6 +1,24 @@
 import Supabase
 import Foundation
 
+/// Errors that can occur during meeting operations
+enum MeetingError: Error, LocalizedError {
+    case notStarted
+    case alreadyEnded
+    case notAMember
+
+    var errorDescription: String? {
+        switch self {
+        case .notStarted:
+            return "This meeting has not started yet. Only active meetings allow check-in."
+        case .alreadyEnded:
+            return "This meeting has already ended. Check-in is no longer available."
+        case .notAMember:
+            return "You are not a member of this organization and cannot check in to this meeting."
+        }
+    }
+}
+
 /// Actor-based meeting service for thread-safe database operations.
 /// Manages meeting creation, updates, and queries with Supabase backend.
 actor MeetingService {
