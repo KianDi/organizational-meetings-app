@@ -118,17 +118,17 @@ struct MeetingListView: View {
 
     /// Meetings that are currently active (started but not ended)
     private var activeMeetings: [Meeting] {
-        meetings.filter { $0.isActive }
+        meetingState.meetings.filter { $0.isActive }
     }
 
     /// Meetings that are scheduled in the future
     private var upcomingMeetings: [Meeting] {
-        meetings.filter { $0.isUpcoming }
+        meetingState.meetings.filter { $0.isUpcoming }
     }
 
     /// Meetings that have concluded
     private var pastMeetings: [Meeting] {
-        meetings.filter { $0.isPast }
+        meetingState.meetings.filter { $0.isPast }
     }
 
     // MARK: - Methods
