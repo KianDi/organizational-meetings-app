@@ -313,9 +313,7 @@ struct MeetingDetailView: View {
     /// Refresh meeting data from service
     private func refreshMeeting() async {
         do {
-            let service = MeetingService()
-            let updated = try await service.fetchMeeting(id: refreshedMeeting.id)
-            refreshedMeeting = updated
+            try await meetingState.loadMeetings(organizationId: currentMeeting.organizationId)
             await loadAttendees()
         } catch {
             errorMessage = "Failed to refresh meeting: \(error.localizedDescription)"
