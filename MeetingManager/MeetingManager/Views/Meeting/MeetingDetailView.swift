@@ -32,6 +32,13 @@ struct MeetingDetailView: View {
         self.currentUserId = currentUserId
     }
 
+    // MARK: - Computed Properties
+
+    /// Get the current meeting state from MeetingState
+    private var currentMeeting: Meeting {
+        meetingState.meetings.first(where: { $0.id == meeting.id }) ?? meeting
+    }
+
     // MARK: - Body
 
     var body: some View {
@@ -39,7 +46,7 @@ struct MeetingDetailView: View {
             VStack(alignment: .leading, spacing: 24) {
                 // Header section
                 VStack(alignment: .leading, spacing: 8) {
-                    Text(refreshedMeeting.title)
+                    Text(currentMeeting.title)
                         .font(.largeTitle)
                         .fontWeight(.bold)
 
