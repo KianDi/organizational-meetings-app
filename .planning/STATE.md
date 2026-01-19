@@ -120,21 +120,20 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-19T17:17:00Z
-Stopped at: Completed Phase 5 planning (05-RESEARCH.md + 5 execution plans)
+Last session: 2026-01-19T17:34:00Z
+Stopped at: Completed 05-01-PLAN.md
 Resume file: None
 
-**Phase 5 Plans Created:**
-- 05-01: Google Docs upload and document parsing (Wave 1)
-- 05-02: AI service integration with SwiftAnthropic (Wave 1)
+**Phase 5 Progress:**
+- ✓ 05-01: Google Docs upload and document parsing (Wave 1) - COMPLETE
+- 05-02: AI service integration with SwiftAnthropic (Wave 1) - NEXT
 - 05-03: Summary generation and processing (Wave 2)
 - 05-04: Task and position extraction logic (Wave 3)
 - 05-05: Display summaries and extracted content (Wave 4)
 
-**Key Architecture Decisions:**
-- Claude 3.5 Sonnet over GPT-4 (100% structured output reliability)
-- SwiftAnthropic package for API client
-- Prompt caching for 90% cost savings (~$0.009 per summary)
-- Exponential backoff retry logic (1s, 2s, 4s)
-- Fuzzy name matching for task assignees
-- Security-scoped resource handling for document picker
+**05-01 Accomplishments:**
+- Document upload with PDF/text parsing using PDFKit
+- DocumentService actor for thread-safe operations
+- DocumentPickerView SwiftUI wrapper with UIKit coordinator
+- Database schema extended with document fields
+- Admin-only upload UI in MeetingDetailView with status display
