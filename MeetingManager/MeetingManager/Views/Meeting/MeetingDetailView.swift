@@ -390,6 +390,43 @@ struct MeetingDetailView: View {
         }
     }
 
+    /// Handle document selection from picker
+    private func handleDocumentPicked(url: URL) async {
+        errorMessage = nil
+        successMessage = nil
+        isUploadingDocument = true
+        defer { isUploadingDocument = false }
+
+        do {
+            // Parse document using DocumentService
+            let documentService = DocumentService()
+            let extractedText = try await documentService.parseDocument(url: url)
+
+            // Upload to meeting via DocumentService
+            let updatedMeeting = try await documentService.uploadDocumentToMeeting(
+                meetingId: currentMeeting.id,
+                documentText: extractedText,
+                documentUrl: url.lastPathComponent
+            )
+
+            // Refresh meeting state
+            try await meetingState.loadMeetings(organizationId: currentMeeting.organizationId)
+
+            successMessage = "Document uploaded successfully"
+
+            // Clear success message after 3 seconds
+            Task {
+                try? await Task.sleep(nanoseconds: 3_000_000_000)
+                successMessage = nil
+            }
+
+        } catch let error as DocumentError {
+            errorMessage = error.localizedDescription
+        } catch {
+            errorMessage = "Failed to upload document: \(error.localizedDescription)"
+        }
+    }
+
     /// Check if user is admin (simplified - would need to fetch organization)
     /// For now, we'll check if user is the meeting creator
     private func isAdmin(userId: UUID) -> Bool {
