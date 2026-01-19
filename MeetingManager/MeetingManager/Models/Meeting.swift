@@ -56,7 +56,10 @@ struct Meeting: Identifiable, Codable, Equatable {
         googleDocsUrl: String? = nil,
         summary: String? = nil,
         attendeeIds: [UUID] = [],
-        createdById: UUID
+        createdById: UUID,
+        documentText: String? = nil,
+        documentUrl: String? = nil,
+        uploadedAt: Date? = nil
     ) {
         self.id = id
         self.organizationId = organizationId
@@ -68,6 +71,9 @@ struct Meeting: Identifiable, Codable, Equatable {
         self.summary = summary
         self.attendeeIds = attendeeIds
         self.createdById = createdById
+        self.documentText = documentText
+        self.documentUrl = documentUrl
+        self.uploadedAt = uploadedAt
     }
 
     // MARK: - Computed Properties
