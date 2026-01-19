@@ -95,6 +95,10 @@ Recent decisions affecting current work:
 | 04-03 | Direct Supabase query for attendees | Follows OrganizationService.fetchMembers pattern with .in() filter for efficiency |
 | 04-03 | Creator-based admin check in detail view | Simplified admin logic - meeting creator can start/end meetings |
 | 04-03 | ContentUnavailableView for empty meetings | iOS 17+ standard component for consistent empty state UX |
+| 04-04 | MeetingState follows OrganizationState pattern | Consistent centralized state management across the app |
+| 04-04 | Environment injection for MeetingState | Makes state available throughout view hierarchy without prop drilling |
+| 04-04 | Local array updates after service calls | Instant UI feedback by updating meetings array immediately after backend operations |
+| 04-04 | Computed currentMeeting property | Reactive state derivation in MeetingDetailView instead of separate @State |
 
 ### Deferred Issues
 
