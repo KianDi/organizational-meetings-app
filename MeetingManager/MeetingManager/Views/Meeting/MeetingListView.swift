@@ -24,7 +24,7 @@ struct MeetingListView: View {
 
     var body: some View {
         Group {
-            if isLoading {
+            if meetingState.isLoading {
                 ProgressView("Loading meetings...")
             } else if let error = errorMessage {
                 VStack(spacing: 16) {
