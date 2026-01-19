@@ -111,7 +111,10 @@ actor MeetingService {
             googleDocsUrl: meeting.googleDocsUrl,
             summary: meeting.summary,
             attendeeIds: meeting.attendeeIds,
-            createdById: meeting.createdById
+            createdById: meeting.createdById,
+            documentText: meeting.documentText,
+            documentUrl: meeting.documentUrl,
+            uploadedAt: meeting.uploadedAt
         )
 
         // Insert into Supabase meetings table
