@@ -229,7 +229,7 @@ struct MeetingDetailView: View {
                         Capsule()
                             .fill(Color.green)
                     )
-            } else if refreshedMeeting.isUpcoming {
+            } else if currentMeeting.isUpcoming {
                 Text("Upcoming")
                     .font(.caption)
                     .fontWeight(.semibold)
