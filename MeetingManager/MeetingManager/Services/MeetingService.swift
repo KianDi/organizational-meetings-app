@@ -297,7 +297,10 @@ actor MeetingService {
             googleDocsUrl: dto.googleDocsUrl,
             summary: dto.summary,
             attendeeIds: dto.attendeeIds,
-            createdById: dto.createdById
+            createdById: dto.createdById,
+            documentText: dto.documentText,
+            documentUrl: dto.documentUrl,
+            uploadedAt: dto.uploadedAt
         )
     }
 
