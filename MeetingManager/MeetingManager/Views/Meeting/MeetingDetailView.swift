@@ -192,6 +192,26 @@ struct MeetingDetailView: View {
                                 .tint(.red)
                                 .disabled(isEnding)
                             }
+
+                            // Upload document button (only if no document uploaded yet)
+                            if currentMeeting.documentText == nil {
+                                Button {
+                                    showDocumentPicker = true
+                                } label: {
+                                    HStack {
+                                        if isUploadingDocument {
+                                            ProgressView()
+                                                .progressViewStyle(CircularProgressViewStyle())
+                                        } else {
+                                            Image(systemName: "doc.badge.plus")
+                                            Text("Upload Document")
+                                        }
+                                    }
+                                    .frame(maxWidth: .infinity)
+                                }
+                                .buttonStyle(.bordered)
+                                .disabled(isUploadingDocument)
+                            }
                         }
                     }
                 }
