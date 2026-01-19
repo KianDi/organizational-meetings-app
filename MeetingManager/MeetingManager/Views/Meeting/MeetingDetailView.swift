@@ -146,7 +146,7 @@ struct MeetingDetailView: View {
 
                         VStack(spacing: 12) {
                             // Start meeting button
-                            if refreshedMeeting.startedAt == nil {
+                            if currentMeeting.startedAt == nil {
                                 Button {
                                     Task {
                                         await startMeeting()
@@ -167,7 +167,7 @@ struct MeetingDetailView: View {
                             }
 
                             // End meeting button
-                            if refreshedMeeting.startedAt != nil && refreshedMeeting.endedAt == nil {
+                            if currentMeeting.startedAt != nil && currentMeeting.endedAt == nil {
                                 Button {
                                     Task {
                                         await endMeeting()
