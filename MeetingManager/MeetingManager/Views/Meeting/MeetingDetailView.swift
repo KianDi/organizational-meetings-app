@@ -101,7 +101,7 @@ struct MeetingDetailView: View {
                             ProgressView("Loading attendees...")
                             Spacer()
                         }
-                    } else if refreshedMeeting.attendeeIds.isEmpty {
+                    } else if currentMeeting.attendeeIds.isEmpty {
                         Text("No attendees yet")
                             .font(.subheadline)
                             .foregroundColor(.secondary)
@@ -109,7 +109,7 @@ struct MeetingDetailView: View {
                             .padding()
                     } else {
                         VStack(alignment: .leading, spacing: 4) {
-                            Text("\(refreshedMeeting.attendeeIds.count) checked in")
+                            Text("\(currentMeeting.attendeeIds.count) checked in")
                                 .font(.subheadline)
                                 .foregroundColor(.secondary)
 
