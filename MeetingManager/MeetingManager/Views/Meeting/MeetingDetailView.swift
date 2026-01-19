@@ -94,6 +94,50 @@ struct MeetingDetailView: View {
 
                 Divider()
 
+                // Document section
+                VStack(alignment: .leading, spacing: 16) {
+                    Text("Document")
+                        .font(.headline)
+                        .foregroundColor(.secondary)
+
+                    if let uploadedAt = currentMeeting.uploadedAt {
+                        HStack {
+                            Image(systemName: "doc.text.fill")
+                                .foregroundColor(.green)
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("Uploaded")
+                                    .font(.body)
+                                    .fontWeight(.medium)
+                                Text("Uploaded \(formattedDate(uploadedAt))")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
+                            Spacer()
+                        }
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 8)
+                                .fill(Color.green.opacity(0.1))
+                        )
+                    } else {
+                        HStack {
+                            Image(systemName: "doc.badge.plus")
+                                .foregroundColor(.secondary)
+                            Text("Not uploaded")
+                                .font(.body)
+                                .foregroundColor(.secondary)
+                            Spacer()
+                        }
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 8)
+                                .fill(Color.gray.opacity(0.1))
+                        )
+                    }
+                }
+
+                Divider()
+
                 // Attendance section
                 VStack(alignment: .leading, spacing: 16) {
                     Text("Attendance")
