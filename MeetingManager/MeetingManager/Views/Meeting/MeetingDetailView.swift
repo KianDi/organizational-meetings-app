@@ -11,9 +11,6 @@ struct MeetingDetailView: View {
     /// Current user's ID for check-in and admin checks
     let currentUserId: UUID
 
-    /// Refreshed meeting state (updated after actions)
-    @State private var refreshedMeeting: Meeting
-
     /// List of attendees (User models)
     @State private var attendees: [User] = []
 
@@ -24,6 +21,9 @@ struct MeetingDetailView: View {
 
     /// Error messages
     @State private var errorMessage: String?
+
+    /// Meeting state for centralized meeting management
+    @Environment(MeetingState.self) private var meetingState
 
     // MARK: - Initialization
 
