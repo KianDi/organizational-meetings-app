@@ -215,12 +215,10 @@ struct MeetingDetailView: View {
         }
     }
 
-    // MARK: - Computed Properties
-
     /// Status badge view
     private var statusBadge: some View {
         Group {
-            if refreshedMeeting.isActive {
+            if currentMeeting.isActive {
                 Text("Active")
                     .font(.caption)
                     .fontWeight(.semibold)
