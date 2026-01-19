@@ -89,6 +89,12 @@ Recent decisions affecting current work:
 | 04-02 | Three-stage validation order | Check started → not ended → membership for most relevant error messages |
 | 04-02 | Atomic attendee_ids updates | Only update attendee_ids column to prevent race conditions with other meeting fields |
 | 04-02 | Haptic feedback on successful check-in | UINotificationFeedbackGenerator provides tactile confirmation for better UX |
+| 04-03 | Three-tier meeting categorization | Active/Upcoming/Past sections improve meeting discovery and status visibility |
+| 04-03 | Relative date formatting in meeting list | "Today 3pm" more user-friendly than absolute timestamps for scheduled times |
+| 04-03 | Green indicator dot for active meetings | Visual prominence helps users quickly identify ongoing meetings in list |
+| 04-03 | Direct Supabase query for attendees | Follows OrganizationService.fetchMembers pattern with .in() filter for efficiency |
+| 04-03 | Creator-based admin check in detail view | Simplified admin logic - meeting creator can start/end meetings |
+| 04-03 | ContentUnavailableView for empty meetings | iOS 17+ standard component for consistent empty state UX |
 
 ### Deferred Issues
 
