@@ -403,7 +403,7 @@ struct MeetingDetailView: View {
             let extractedText = try await documentService.parseDocument(url: url)
 
             // Upload to meeting via DocumentService
-            let updatedMeeting = try await documentService.uploadDocumentToMeeting(
+            _ = try await documentService.uploadDocumentToMeeting(
                 meetingId: currentMeeting.id,
                 documentText: extractedText,
                 documentUrl: url.lastPathComponent
