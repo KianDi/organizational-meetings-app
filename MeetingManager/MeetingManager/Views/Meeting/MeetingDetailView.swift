@@ -259,7 +259,7 @@ struct MeetingDetailView: View {
 
     /// Load attendees from service
     private func loadAttendees() async {
-        if refreshedMeeting.attendeeIds.isEmpty {
+        if currentMeeting.attendeeIds.isEmpty {
             attendees = []
             return
         }
@@ -291,7 +291,7 @@ struct MeetingDetailView: View {
             let dtos: [UserDTO] = try await supabase
                 .from("users")
                 .select()
-                .in("id", values: refreshedMeeting.attendeeIds)
+                .in("id", values: currentMeeting.attendeeIds)
                 .execute()
                 .value
 
