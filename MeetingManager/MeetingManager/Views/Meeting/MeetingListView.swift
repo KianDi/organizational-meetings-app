@@ -135,16 +135,10 @@ struct MeetingListView: View {
 
     /// Load meetings from service
     private func loadMeetings() async {
-        isLoading = true
         errorMessage = nil
 
-        defer {
-            isLoading = false
-        }
-
         do {
-            let fetchedMeetings = try await MeetingService().fetchMeetingsForOrganization(organizationId: organization.id)
-            meetings = fetchedMeetings
+            try await meetingState.loadMeetings(organizationId: organization.id)
         } catch {
             errorMessage = "Failed to load meetings: \(error.localizedDescription)"
         }
