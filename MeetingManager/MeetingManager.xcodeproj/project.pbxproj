@@ -308,6 +308,7 @@
 				4FF3971C647AACDA6B8FCDDA /* JoinOrganizationView.swift in Sources */,
 				F5257161A38E9F0402DB2E94 /* MeetingService.swift in Sources */,
 				2180389B76D7E38E8023EE06 /* CreateMeetingView.swift in Sources */,
+				633A24C490F24DD7AE9C5906 /* CheckInButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
