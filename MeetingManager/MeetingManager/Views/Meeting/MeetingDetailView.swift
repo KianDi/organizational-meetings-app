@@ -131,19 +131,12 @@ struct MeetingDetailView: View {
                 Divider()
 
                 // Check-in button section
-                if refreshedMeeting.isActive && !refreshedMeeting.attendeeIds.contains(currentUserId) {
-                    CheckInButton(meeting: refreshedMeeting, userId: currentUserId)
-                        .onChange(of: refreshedMeeting.id) {
-                            // Refresh meeting when check-in completes
-                            Task {
-                                await refreshMeeting()
-                            }
-                        }
+                if currentMeeting.isActive && !currentMeeting.attendeeIds.contains(currentUserId) {
+                    CheckInButton(meeting: currentMeeting, userId: currentUserId)
                 }
 
                 // Admin actions section
-                if let organization = refreshedMeeting.organizationId as UUID?,
-                   isAdmin(userId: currentUserId) {
+                if isAdmin(userId: currentUserId) {
                     Divider()
 
                     VStack(alignment: .leading, spacing: 16) {
