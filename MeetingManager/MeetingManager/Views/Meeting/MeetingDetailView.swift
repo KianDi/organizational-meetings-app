@@ -18,9 +18,14 @@ struct MeetingDetailView: View {
     @State private var isLoadingAttendees: Bool = false
     @State private var isStarting: Bool = false
     @State private var isEnding: Bool = false
+    @State private var isUploadingDocument: Bool = false
+
+    /// Document picker state
+    @State private var showDocumentPicker: Bool = false
 
     /// Error messages
     @State private var errorMessage: String?
+    @State private var successMessage: String?
 
     /// Meeting state for centralized meeting management
     @Environment(MeetingState.self) private var meetingState
