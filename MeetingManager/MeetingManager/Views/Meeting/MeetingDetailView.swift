@@ -30,7 +30,6 @@ struct MeetingDetailView: View {
     init(meeting: Meeting, currentUserId: UUID) {
         self.meeting = meeting
         self.currentUserId = currentUserId
-        self._refreshedMeeting = State(initialValue: meeting)
     }
 
     // MARK: - Body
