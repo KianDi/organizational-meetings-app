@@ -73,6 +73,23 @@ struct OrganizationDetailView: View {
                             }
                         }
                     }
+
+                    Section("Meetings") {
+                        NavigationLink {
+                            MeetingListView(organization: org)
+                        } label: {
+                            HStack {
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text("View meetings")
+                                        .font(.body)
+                                }
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
+                        }
+                    }
                 }
                 .listStyle(.insetGrouped)
             }
