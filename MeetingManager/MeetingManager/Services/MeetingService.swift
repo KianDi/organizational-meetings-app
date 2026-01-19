@@ -207,4 +207,58 @@ actor MeetingService {
             createdById: dto.createdById
         )
     }
+
+    /// Check in a user to a meeting
+    /// - Parameters:
+    ///   - meetingId: The meeting ID to check in to
+    ///   - userId: The user ID checking in
+    /// - Returns: Updated Meeting model with user added to attendeeIds
+    /// - Throws: Supabase database errors
+    func checkIn(meetingId: UUID, userId: UUID) async throws -> Meeting {
+        // Fetch current meeting state
+        let meeting = try await fetchMeeting(id: meetingId)
+
+        // Early return if user already checked in (idempotent)
+        if meeting.attendeeIds.contains(userId) {
+            return meeting
+        }
+
+        // Add user to attendee list
+        var updatedAttendeeIds = meeting.attendeeIds
+        updatedAttendeeIds.append(userId)
+
+        // Create update DTO with only attendee_ids field
+        struct AttendeeUpdateDTO: Codable {
+            let attendeeIds: [UUID]
+
+            enum CodingKeys: String, CodingKey {
+                case attendeeIds = "attendee_ids"
+            }
+        }
+
+        let updateDTO = AttendeeUpdateDTO(attendeeIds: updatedAttendeeIds)
+
+        // Update database with new attendee list
+        let dto: MeetingDTO = try await supabase
+            .from("meetings")
+            .update(updateDTO)
+            .eq("id", value: meetingId)
+            .select()
+            .single()
+            .execute()
+            .value
+
+        return Meeting(
+            id: dto.id,
+            organizationId: dto.organizationId,
+            title: dto.title,
+            scheduledAt: dto.scheduledAt,
+            startedAt: dto.startedAt,
+            endedAt: dto.endedAt,
+            googleDocsUrl: dto.googleDocsUrl,
+            summary: dto.summary,
+            attendeeIds: dto.attendeeIds,
+            createdById: dto.createdById
+        )
+    }
 }
