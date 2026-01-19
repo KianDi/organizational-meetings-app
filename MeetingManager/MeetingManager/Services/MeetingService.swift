@@ -40,6 +40,9 @@ actor MeetingService {
         let summary: String?
         let attendeeIds: [UUID]
         let createdById: UUID
+        let documentText: String?
+        let documentUrl: String?
+        let uploadedAt: Date?
 
         enum CodingKeys: String, CodingKey {
             case id
@@ -52,6 +55,9 @@ actor MeetingService {
             case summary
             case attendeeIds = "attendee_ids"
             case createdById = "created_by_id"
+            case documentText = "document_text"
+            case documentUrl = "document_url"
+            case uploadedAt = "uploaded_at"
         }
     }
 
