@@ -231,10 +231,29 @@ actor MeetingService {
     ///   - meetingId: The meeting ID to check in to
     ///   - userId: The user ID checking in
     /// - Returns: Updated Meeting model with user added to attendeeIds
-    /// - Throws: Supabase database errors
+    /// - Throws: MeetingError for validation failures, Supabase database errors
     func checkIn(meetingId: UUID, userId: UUID) async throws -> Meeting {
         // Fetch current meeting state
         let meeting = try await fetchMeeting(id: meetingId)
+
+        // Validate meeting state - must be started
+        if meeting.startedAt == nil {
+            throw MeetingError.notStarted
+        }
+
+        // Validate meeting hasn't ended
+        if meeting.endedAt != nil {
+            throw MeetingError.alreadyEnded
+        }
+
+        // Fetch organization to verify membership
+        let organizationService = OrganizationService()
+        let organization = try await organizationService.fetchOrganization(id: meeting.organizationId)
+
+        // Validate user is a member of the organization
+        if !organization.memberIds.contains(userId) {
+            throw MeetingError.notAMember
+        }
 
         // Early return if user already checked in (idempotent)
         if meeting.attendeeIds.contains(userId) {
