@@ -147,6 +147,66 @@ actor MeetingService {
         }
     }
 
+    /// Upload document to a meeting
+    /// - Parameters:
+    ///   - meetingId: Meeting ID to update
+    ///   - documentText: Extracted plain text from document
+    ///   - documentUrl: Original file URL or identifier
+    ///   - uploadedAt: Timestamp of document upload
+    /// - Returns: Updated Meeting model
+    /// - Throws: Supabase database errors
+    func uploadDocument(
+        meetingId: UUID,
+        documentText: String,
+        documentUrl: String,
+        uploadedAt: Date = Date()
+    ) async throws -> Meeting {
+        // Create update DTO with document fields
+        struct DocumentUpdateDTO: Codable {
+            let documentText: String
+            let documentUrl: String
+            let uploadedAt: Date
+
+            enum CodingKeys: String, CodingKey {
+                case documentText = "document_text"
+                case documentUrl = "document_url"
+                case uploadedAt = "uploaded_at"
+            }
+        }
+
+        let updateDTO = DocumentUpdateDTO(
+            documentText: documentText,
+            documentUrl: documentUrl,
+            uploadedAt: uploadedAt
+        )
+
+        // Update meeting in database
+        let dto: MeetingDTO = try await supabase
+            .from("meetings")
+            .update(updateDTO)
+            .eq("id", value: meetingId)
+            .select()
+            .single()
+            .execute()
+            .value
+
+        return Meeting(
+            id: dto.id,
+            organizationId: dto.organizationId,
+            title: dto.title,
+            scheduledAt: dto.scheduledAt,
+            startedAt: dto.startedAt,
+            endedAt: dto.endedAt,
+            googleDocsUrl: dto.googleDocsUrl,
+            summary: dto.summary,
+            attendeeIds: dto.attendeeIds,
+            createdById: dto.createdById,
+            documentText: dto.documentText,
+            documentUrl: dto.documentUrl,
+            uploadedAt: dto.uploadedAt
+        )
+    }
+
     /// Fetch a specific meeting by ID
     /// - Parameter id: The meeting ID to fetch
     /// - Returns: Meeting model
