@@ -351,7 +351,7 @@ struct MeetingDetailView: View {
     private func isAdmin(userId: UUID) -> Bool {
         // TODO: Fetch organization and check adminId properly
         // For now, treat meeting creator as admin
-        return refreshedMeeting.createdById == userId
+        return currentMeeting.createdById == userId
     }
 
     /// Format date for display
