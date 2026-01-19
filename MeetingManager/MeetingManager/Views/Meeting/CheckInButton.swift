@@ -23,24 +23,45 @@ struct CheckInButton: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Button {
-                Task {
-                    await checkIn()
-                }
-            } label: {
-                HStack {
-                    if isSubmitting {
-                        ProgressView()
-                            .progressViewStyle(CircularProgressViewStyle())
-                    } else {
-                        Text(isCheckedIn ? "Checked In ✓" : "Check In")
+            if isCheckedIn {
+                Button {
+                    Task {
+                        await checkIn()
                     }
+                } label: {
+                    HStack {
+                        if isSubmitting {
+                            ProgressView()
+                                .progressViewStyle(CircularProgressViewStyle())
+                        } else {
+                            Text("Checked In ✓")
+                        }
+                    }
+                    .frame(maxWidth: .infinity)
                 }
-                .frame(maxWidth: .infinity)
+                .buttonStyle(.bordered)
+                .tint(.green)
+                .disabled(true)
+            } else {
+                Button {
+                    Task {
+                        await checkIn()
+                    }
+                } label: {
+                    HStack {
+                        if isSubmitting {
+                            ProgressView()
+                                .progressViewStyle(CircularProgressViewStyle())
+                        } else {
+                            Text("Check In")
+                        }
+                    }
+                    .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.borderedProminent)
+                .tint(.blue)
+                .disabled(isSubmitting)
             }
-            .buttonStyle(isCheckedIn ? BorderedButtonStyle() : BorderedProminentButtonStyle())
-            .tint(isCheckedIn ? .green : .blue)
-            .disabled(isCheckedIn || isSubmitting)
 
             if let errorMessage {
                 Text(errorMessage)
