@@ -227,6 +227,18 @@ struct MeetingDetailView: View {
                                 .fill(Color.red.opacity(0.1))
                         )
                 }
+
+                // Success message
+                if let successMessage {
+                    Text(successMessage)
+                        .foregroundStyle(.green)
+                        .font(.caption)
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 8)
+                                .fill(Color.green.opacity(0.1))
+                        )
+                }
             }
             .padding()
         }
@@ -237,6 +249,13 @@ struct MeetingDetailView: View {
         }
         .task {
             await loadAttendees()
+        }
+        .sheet(isPresented: $showDocumentPicker) {
+            DocumentPickerView { url in
+                Task {
+                    await handleDocumentPicked(url: url)
+                }
+            }
         }
     }
 
