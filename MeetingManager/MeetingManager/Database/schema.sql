@@ -199,3 +199,16 @@ CREATE INDEX IF NOT EXISTS idx_meetings_created_by_id ON meetings (created_by_id
 
 -- Create B-tree index on scheduled_at for efficient time-based queries
 CREATE INDEX IF NOT EXISTS idx_meetings_scheduled_at ON meetings (scheduled_at);
+
+-- Phase 5: Document Upload & AI Processing
+-- Add document storage columns to meetings table
+
+-- Add columns for document storage
+ALTER TABLE meetings
+  ADD COLUMN IF NOT EXISTS document_text TEXT,
+  ADD COLUMN IF NOT EXISTS document_url TEXT,
+  ADD COLUMN IF NOT EXISTS uploaded_at TIMESTAMPTZ;
+
+-- document_text: extracted plain text from uploaded document
+-- document_url: original file URL or identifier
+-- uploaded_at: timestamp of document upload
