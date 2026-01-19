@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		114468FFA21DF04B77FA77B5 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE561D81FD8DC74E416DECF0 /* Route.swift */; };
 		2180389B76D7E38E8023EE06 /* CreateMeetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0947B9A65E4A762CA700F9A3 /* CreateMeetingView.swift */; };
+		633A24C490F24DD7AE9C5906 /* CheckInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0DC6BA2EF4E9FBE2B1B3C /* CheckInButton.swift */; };
 		4FF3971C647AACDA6B8FCDDA /* JoinOrganizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D486B3EC9EF7F49EE99E1D /* JoinOrganizationView.swift */; };
 		5CEA0EB028714E915A848A7A /* MemberListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FCB748FC7CC6B3DF1C96A7 /* MemberListView.swift */; };
 		67A160C44F91404DB80A05CD /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944784FE7EA0442090E412D8 /* Secrets.swift */; };
