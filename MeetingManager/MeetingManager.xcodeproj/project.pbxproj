@@ -86,6 +86,7 @@
 		16526F6BB89E4A14B0EE9E79 /* Meeting */ = {
 			isa = PBXGroup;
 			children = (
+				68C0DC6BA2EF4E9FBE2B1B3C /* CheckInButton.swift */,
 				0947B9A65E4A762CA700F9A3 /* CreateMeetingView.swift */,
 			);
 			name = Meeting;
