@@ -8,12 +8,6 @@ struct MeetingListView: View {
     /// The organization whose meetings to display
     let organization: Organization
 
-    /// List of organization meetings
-    @State private var meetings: [Meeting] = []
-
-    /// Loading state while fetching meetings
-    @State private var isLoading: Bool = false
-
     /// Error message if meeting fetch fails
     @State private var errorMessage: String?
 
@@ -22,6 +16,9 @@ struct MeetingListView: View {
 
     /// Authentication state for current user
     @Environment(AuthState.self) private var authState
+
+    /// Meeting state for centralized meeting management
+    @Environment(MeetingState.self) private var meetingState
 
     // MARK: - Body
 
