@@ -327,12 +327,7 @@ struct MeetingDetailView: View {
         defer { isStarting = false }
 
         do {
-            let service = MeetingService()
-            let updated = try await service.updateMeeting(
-                id: refreshedMeeting.id,
-                startedAt: Date()
-            )
-            refreshedMeeting = updated
+            try await meetingState.startMeeting(meetingId: currentMeeting.id)
         } catch {
             errorMessage = "Failed to start meeting: \(error.localizedDescription)"
         }
@@ -345,12 +340,7 @@ struct MeetingDetailView: View {
         defer { isEnding = false }
 
         do {
-            let service = MeetingService()
-            let updated = try await service.updateMeeting(
-                id: refreshedMeeting.id,
-                endedAt: Date()
-            )
-            refreshedMeeting = updated
+            try await meetingState.endMeeting(meetingId: currentMeeting.id)
         } catch {
             errorMessage = "Failed to end meeting: \(error.localizedDescription)"
         }
