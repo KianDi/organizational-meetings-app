@@ -100,6 +100,11 @@ Recent decisions affecting current work:
 | 04-04 | Environment injection for MeetingState | Makes state available throughout view hierarchy without prop drilling |
 | 04-04 | Local array updates after service calls | Instant UI feedback by updating meetings array immediately after backend operations |
 | 04-04 | Computed currentMeeting property | Reactive state derivation in MeetingDetailView instead of separate @State |
+| 05-01 | PDFKit for PDF text extraction | Native iOS 11+ framework, no external dependencies, handles multi-page PDFs efficiently |
+| 05-01 | Security-scoped resource handling | Required for accessing files from document picker, proper startAccessingSecurityScopedResource pattern |
+| 05-01 | 10MB file size limit | Prevents database bloat while supporting typical meeting documents |
+| 05-01 | Store text in PostgreSQL TEXT column | Simplifies architecture, no external blob storage needed for text content |
+| 05-01 | Admin-only upload with re-upload capability | Prevents accidental overwrites while allowing flexibility for corrections |
 
 ### Deferred Issues
 
