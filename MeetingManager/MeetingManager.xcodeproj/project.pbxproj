@@ -255,6 +255,10 @@
 			dependencies = (
 			);
 			name = MeetingManager;
+			packageProductDependencies = (
+				8D67F9A62F1947F700FAE479 /* Supabase */,
+				9E78F0B22F2058A100ABC124 /* SwiftAnthropic */,
+			);
 			productName = MeetingManager;
 			productReference = A1000001000000000000001 /* MeetingManager.app */;
 			productType = "com.apple.product-type.application";
