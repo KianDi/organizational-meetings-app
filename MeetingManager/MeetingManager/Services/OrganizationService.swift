@@ -69,12 +69,22 @@ actor OrganizationService {
         )
 
         // Insert into Supabase organizations table
-        try await supabase
+        let response: OrganizationDTO = try await supabase
             .from("organizations")
             .insert(dto)
+            .select()
+            .single()
             .execute()
+            .value
 
-        return organization
+        return Organization(
+            id: response.id,
+            name: response.name,
+            adminId: response.adminId,
+            createdAt: response.createdAt,
+            inviteCode: response.inviteCode,
+            memberIds: response.memberIds
+        )
     }
 
     /// Find an organization by invite code
