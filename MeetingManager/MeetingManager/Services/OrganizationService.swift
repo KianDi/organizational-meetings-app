@@ -69,22 +69,14 @@ actor OrganizationService {
         )
 
         // Insert into Supabase organizations table
-        let response: OrganizationDTO = try await supabase
+        try await supabase
             .from("organizations")
             .insert(dto)
-            .select()
-            .single()
             .execute()
-            .value
 
-        return Organization(
-            id: response.id,
-            name: response.name,
-            adminId: response.adminId,
-            createdAt: response.createdAt,
-            inviteCode: response.inviteCode,
-            memberIds: response.memberIds
-        )
+        // Return the locally constructed organization
+        // (no need to select back - we have all the data)
+        return organization
     }
 
     /// Find an organization by invite code
