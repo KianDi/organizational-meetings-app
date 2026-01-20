@@ -199,22 +199,13 @@ actor OrganizationService {
             updatedOrgIds = [organizationId]
         }
 
-        // Upsert user in database (insert if not exists, update if exists)
-        struct UserUpsertDTO: Codable {
-            let id: UUID
-            let organizationIds: [UUID]
-
-            enum CodingKeys: String, CodingKey {
-                case id
-                case organizationIds = "organization_ids"
-            }
-        }
-
-        let upsertData = UserUpsertDTO(id: userId, organizationIds: updatedOrgIds)
-
+        // Update user's organization_ids in database
+        // Note: The auth trigger should create the user record on signup,
+        // but we use a simple update here and rely on the trigger
         try await supabase
             .from("users")
-            .upsert(upsertData)
+            .update(["organization_ids": updatedOrgIds])
+            .eq("id", value: userId)
             .execute()
     }
 
