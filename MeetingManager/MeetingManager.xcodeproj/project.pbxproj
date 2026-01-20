@@ -279,6 +279,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				8D67F9A52F1947F700FAE479 /* XCRemoteSwiftPackageReference "supabase-swift" */,
+				9E78F0B12F2058A100ABC123 /* XCRemoteSwiftPackageReference "SwiftAnthropic" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = A1000022000000000000001 /* Products */;
