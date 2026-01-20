@@ -54,6 +54,16 @@ struct OrganizationListView: View {
                         Image(systemName: "plus")
                     }
                 }
+
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        Task {
+                            await authState.signOut()
+                        }
+                    } label: {
+                        Label("Logout", systemImage: "rectangle.portrait.and.arrow.right")
+                    }
+                }
             }
             .sheet(isPresented: $showCreateSheet) {
                 CreateOrganizationViewWrapper()
