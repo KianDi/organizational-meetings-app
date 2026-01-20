@@ -21,6 +21,13 @@ CREATE POLICY "Users can view their organizations"
     FOR SELECT
     USING (member_ids @> ARRAY[auth.uid()]);
 
+-- Policy: Users can find organizations by invite code (for joining)
+-- This allows querying organizations by invite_code even if not a member yet
+CREATE POLICY "Users can find organizations by invite code"
+    ON organizations
+    FOR SELECT
+    USING (invite_code IS NOT NULL);
+
 -- Policy: Admins can update their own organizations
 CREATE POLICY "Admins can update their organizations"
     ON organizations
