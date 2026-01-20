@@ -343,7 +343,8 @@
 				64A9E9F5E1074727A8ADC8E7 /* MeetingDetailView.swift in Sources */,
 				F826999FB4DC42ED94A30F6F /* MeetingListView.swift in Sources */,
 			FE63D20D331840089239AA5E /* MeetingState.swift in Sources */,
-				);
+				EF56GH78IJ9012345678EFGH /* AnthropicConfig.swift in Sources */,
+			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
