@@ -85,6 +85,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D67F9A72F1947F700FAE479 /* Supabase in Frameworks */,
+				9E78F0B22F2058A100ABC124 /* SwiftAnthropic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
