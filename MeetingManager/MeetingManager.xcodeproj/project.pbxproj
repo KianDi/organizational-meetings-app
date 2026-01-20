@@ -38,10 +38,10 @@
 		E1B5F6C0B7263A4DF5E02E8F /* OrganizationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95749220EAF41B305883E0A2 /* OrganizationDetailView.swift */; };
 		F0B602655316EACB613D366E /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23F94C62A7268596F8DC2A6 /* RootView.swift */; };
 		F5257161A38E9F0402DB2E94 /* MeetingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA51400AE1FEEE97FE5BB0B0 /* MeetingService.swift */; };
-		F91AB99EA9F2AC3D01BD09AD /* OrganizationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EAA28A966DD935C73098E6 /* OrganizationState.swift */; };		C955247937184CB7A741D993 /* DocumentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A6ADACBA7D4B978BF7AA87 /* DocumentService.swift */; };
+		F91AB99EA9F2AC3D01BD09AD /* OrganizationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EAA28A966DD935C73098E6 /* OrganizationState.swift */; };
+		C955247937184CB7A741D993 /* DocumentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A6ADACBA7D4B978BF7AA87 /* DocumentService.swift */; };
 		C07FFFB7329745FD9DEBC413 /* DocumentPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19302157153244F4BC979EE3 /* DocumentPickerView.swift */; };
 		EF56GH78IJ9012345678EFGH /* AnthropicConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB12CD34EF5678901234ABCD /* AnthropicConfig.swift */; };
-		GH78IJ90KL1234567890GHIJ /* AIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD34EF56AB7890123456CDEF /* AIService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,7 +80,6 @@
 		FA51400AE1FEEE97FE5BB0B0 /* MeetingService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MeetingService.swift; sourceTree = "<group>"; };		E6A6ADACBA7D4B978BF7AA87 /* DocumentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentService.swift; sourceTree = "<group>"; };
 		19302157153244F4BC979EE3 /* DocumentPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPickerView.swift; sourceTree = "<group>"; };
 		AB12CD34EF5678901234ABCD /* AnthropicConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnthropicConfig.swift; sourceTree = "<group>"; };
-		CD34EF56AB7890123456CDEF /* AIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,7 +159,6 @@
 				E6A6ADACBA7D4B978BF7AA87 /* DocumentService.swift */,
 				FA51400AE1FEEE97FE5BB0B0 /* MeetingService.swift */,
 				AB12CD34EF5678901234ABCD /* AnthropicConfig.swift */,
-				CD34EF56AB7890123456CDEF /* AIService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -347,7 +345,6 @@
 				F826999FB4DC42ED94A30F6F /* MeetingListView.swift in Sources */,
 			FE63D20D331840089239AA5E /* MeetingState.swift in Sources */,
 				EF56GH78IJ9012345678EFGH /* AnthropicConfig.swift in Sources */,
-				GH78IJ90KL1234567890GHIJ /* AIService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
