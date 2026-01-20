@@ -199,11 +199,22 @@ actor OrganizationService {
             updatedOrgIds = [organizationId]
         }
 
-        // Update or insert user in database
+        // Upsert user in database (insert if not exists, update if exists)
+        struct UserUpsertDTO: Codable {
+            let id: UUID
+            let organizationIds: [UUID]
+
+            enum CodingKeys: String, CodingKey {
+                case id
+                case organizationIds = "organization_ids"
+            }
+        }
+
+        let upsertData = UserUpsertDTO(id: userId, organizationIds: updatedOrgIds)
+
         try await supabase
             .from("users")
-            .update(["organization_ids": updatedOrgIds])
-            .eq("id", value: userId)
+            .upsert(upsertData)
             .execute()
     }
 
