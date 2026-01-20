@@ -105,6 +105,11 @@ Recent decisions affecting current work:
 | 05-01 | 10MB file size limit | Prevents database bloat while supporting typical meeting documents |
 | 05-01 | Store text in PostgreSQL TEXT column | Simplifies architecture, no external blob storage needed for text content |
 | 05-01 | Admin-only upload with re-upload capability | Prevents accidental overwrites while allowing flexibility for corrections |
+| 05-02 | Claude 3.5 Sonnet over GPT-4 | 100% structured output reliability vs <40% for GPT-4 based on research |
+| 05-02 | SwiftAnthropic package | Broader iOS version support and active Swift community maintenance |
+| 05-02 | Prompt caching enabled | 90% cost savings on system prompts with cache control |
+| 05-02 | Exponential backoff with jitter | 3 retries (1s, 2s, 4s) for network errors only, no retry for API errors |
+| 05-02 | Placeholder API key in config | Tracked in git for easy setup, users replace with actual key |
 
 ### Deferred Issues
 
