@@ -160,6 +160,7 @@
 				E6A6ADACBA7D4B978BF7AA87 /* DocumentService.swift */,
 				FA51400AE1FEEE97FE5BB0B0 /* MeetingService.swift */,
 				AB12CD34EF5678901234ABCD /* AnthropicConfig.swift */,
+				CD34EF56AB7890123456CDEF /* AIService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
