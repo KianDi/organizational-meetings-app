@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FE63D20D331840089239AA5E /* MeetingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACC833823E44F6BBD6F5055 /* MeetingState.swift */; };
 		114468FFA21DF04B77FA77B5 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE561D81FD8DC74E416DECF0 /* Route.swift */; };
 		2180389B76D7E38E8023EE06 /* CreateMeetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0947B9A65E4A762CA700F9A3 /* CreateMeetingView.swift */; };
 		633A24C490F24DD7AE9C5906 /* CheckInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0DC6BA2EF4E9FBE2B1B3C /* CheckInButton.swift */; };
@@ -38,11 +37,7 @@
 		E1B5F6C0B7263A4DF5E02E8F /* OrganizationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95749220EAF41B305883E0A2 /* OrganizationDetailView.swift */; };
 		F0B602655316EACB613D366E /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23F94C62A7268596F8DC2A6 /* RootView.swift */; };
 		F5257161A38E9F0402DB2E94 /* MeetingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA51400AE1FEEE97FE5BB0B0 /* MeetingService.swift */; };
-		F91AB99EA9F2AC3D01BD09AD /* OrganizationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EAA28A966DD935C73098E6 /* OrganizationState.swift */; };
-		C955247937184CB7A741D993 /* DocumentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A6ADACBA7D4B978BF7AA87 /* DocumentService.swift */; };
-		C07FFFB7329745FD9DEBC413 /* DocumentPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19302157153244F4BC979EE3 /* DocumentPickerView.swift */; };
-		EF56GH78IJ9012345678EFGH /* AnthropicConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB12CD34EF5678901234ABCD /* AnthropicConfig.swift */; };
-/* End PBXBuildFile section */
+		F91AB99EA9F2AC3D01BD09AD /* OrganizationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EAA28A966DD935C73098E6 /* OrganizationState.swift */; };/* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0947B9A65E4A762CA700F9A3 /* CreateMeetingView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateMeetingView.swift; sourceTree = "<group>"; };
@@ -76,12 +71,7 @@
 		C23F94C62A7268596F8DC2A6 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		EE561D81FD8DC74E416DECF0 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		F1EAA28A966DD935C73098E6 /* OrganizationState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OrganizationState.swift; sourceTree = "<group>"; };
-		BACC833823E44F6BBD6F5055 /* MeetingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingState.swift; sourceTree = "<group>"; };
-		FA51400AE1FEEE97FE5BB0B0 /* MeetingService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MeetingService.swift; sourceTree = "<group>"; };
-		E6A6ADACBA7D4B978BF7AA87 /* DocumentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentService.swift; sourceTree = "<group>"; };
-		19302157153244F4BC979EE3 /* DocumentPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPickerView.swift; sourceTree = "<group>"; };
-		AB12CD34EF5678901234ABCD /* AnthropicConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnthropicConfig.swift; sourceTree = "<group>"; };
-/* End PBXFileReference section */
+		FA51400AE1FEEE97FE5BB0B0 /* MeetingService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MeetingService.swift; sourceTree = "<group>"; };/* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		A1000010000000000000001 /* Frameworks */ = {
@@ -89,7 +79,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D67F9A72F1947F700FAE479 /* Supabase in Frameworks */,
-				9E78F0B22F2058A100ABC124 /* SwiftAnthropic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,15 +97,6 @@
 			);
 			name = Meeting;
 			path = Meeting;
-			sourceTree = "<group>";
-		};
-		D513D8DD94BC4D2D9046D8A4 /* Document */ = {
-			isa = PBXGroup;
-			children = (
-				19302157153244F4BC979EE3 /* DocumentPickerView.swift */,
-			);
-			name = Document;
-			path = Document;
 			sourceTree = "<group>";
 		};
 		8D67F9AC2F19491200FAE479 /* Models */ = {
@@ -157,9 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				8DBD85C02F194401006D34D1 /* OrganizationService.swift */,
-				E6A6ADACBA7D4B978BF7AA87 /* DocumentService.swift */,
 				FA51400AE1FEEE97FE5BB0B0 /* MeetingService.swift */,
-				AB12CD34EF5678901234ABCD /* AnthropicConfig.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -224,7 +202,6 @@
 				8DBD85C72F194404006D34D1 /* Organization */,
 				C23F94C62A7268596F8DC2A6 /* RootView.swift */,
 				16526F6BB89E4A14B0EE9E79 /* Meeting */,
-				D513D8DD94BC4D2D9046D8A4 /* Document */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -232,7 +209,6 @@
 		F3ED61C55A898577FBD4DE4E /* State */ = {
 			isa = PBXGroup;
 			children = (
-				BACC833823E44F6BBD6F5055 /* MeetingState.swift */,
 				F1EAA28A966DD935C73098E6 /* OrganizationState.swift */,
 			);
 			name = State;
@@ -255,10 +231,6 @@
 			dependencies = (
 			);
 			name = MeetingManager;
-			packageProductDependencies = (
-				8D67F9A62F1947F700FAE479 /* Supabase */,
-				9E78F0B22F2058A100ABC124 /* SwiftAnthropic */,
-			);
 			productName = MeetingManager;
 			productReference = A1000001000000000000001 /* MeetingManager.app */;
 			productType = "com.apple.product-type.application";
@@ -289,7 +261,6 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				8D67F9A52F1947F700FAE479 /* XCRemoteSwiftPackageReference "supabase-swift" */,
-				9E78F0B12F2058A100ABC123 /* XCRemoteSwiftPackageReference "SwiftAnthropic" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = A1000022000000000000001 /* Products */;
@@ -342,14 +313,10 @@
 				E1B5F6C0B7263A4DF5E02E8F /* OrganizationDetailView.swift in Sources */,
 				4FF3971C647AACDA6B8FCDDA /* JoinOrganizationView.swift in Sources */,
 				F5257161A38E9F0402DB2E94 /* MeetingService.swift in Sources */,
-				C955247937184CB7A741D993 /* DocumentService.swift in Sources */,
-				C07FFFB7329745FD9DEBC413 /* DocumentPickerView.swift in Sources */,
 				2180389B76D7E38E8023EE06 /* CreateMeetingView.swift in Sources */,
 				633A24C490F24DD7AE9C5906 /* CheckInButton.swift in Sources */,
 				64A9E9F5E1074727A8ADC8E7 /* MeetingDetailView.swift in Sources */,
 				F826999FB4DC42ED94A30F6F /* MeetingListView.swift in Sources */,
-				FE63D20D331840089239AA5E /* MeetingState.swift in Sources */,
-				EF56GH78IJ9012345678EFGH /* AnthropicConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -565,14 +532,6 @@
 				minimumVersion = 2.5.1;
 			};
 		};
-		9E78F0B12F2058A100ABC123 /* XCRemoteSwiftPackageReference "SwiftAnthropic" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/jamesrochabrun/SwiftAnthropic";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -580,11 +539,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8D67F9A52F1947F700FAE479 /* XCRemoteSwiftPackageReference "supabase-swift" */;
 			productName = Supabase;
-		};
-		9E78F0B22F2058A100ABC124 /* SwiftAnthropic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9E78F0B12F2058A100ABC123 /* XCRemoteSwiftPackageReference "SwiftAnthropic" */;
-			productName = SwiftAnthropic;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
