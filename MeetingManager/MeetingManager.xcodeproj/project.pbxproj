@@ -77,6 +77,7 @@
 		BACC833823E44F6BBD6F5055 /* MeetingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingState.swift; sourceTree = "<group>"; };
 		FA51400AE1FEEE97FE5BB0B0 /* MeetingService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MeetingService.swift; sourceTree = "<group>"; };		E6A6ADACBA7D4B978BF7AA87 /* DocumentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentService.swift; sourceTree = "<group>"; };
 		19302157153244F4BC979EE3 /* DocumentPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPickerView.swift; sourceTree = "<group>"; };
+		AB12CD34EF5678901234ABCD /* AnthropicConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnthropicConfig.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
