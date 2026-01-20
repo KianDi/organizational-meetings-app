@@ -34,6 +34,14 @@ CREATE POLICY "Admins can update their organizations"
     FOR UPDATE
     USING (admin_id = auth.uid());
 
+-- Policy: Users can update member_ids when joining via invite code
+-- This allows non-members to join organizations by updating member_ids
+CREATE POLICY "Users can join organizations"
+    ON organizations
+    FOR UPDATE
+    USING (invite_code IS NOT NULL)
+    WITH CHECK (invite_code IS NOT NULL);
+
 -- Policy: Admins can delete their own organizations
 CREATE POLICY "Admins can delete their organizations"
     ON organizations
