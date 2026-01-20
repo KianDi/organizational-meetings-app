@@ -176,8 +176,8 @@ actor OrganizationService {
             }
         }
 
-        // Fetch current user's organization list
-        let currentUser: UserDTO = try await supabase
+        // Try to fetch current user's organization list
+        let currentUser: UserDTO? = try? await supabase
             .from("users")
             .select("organization_ids")
             .eq("id", value: userId)
@@ -185,16 +185,21 @@ actor OrganizationService {
             .execute()
             .value
 
-        // Check if organization is already in user's list
-        if currentUser.organizationIds.contains(organizationId) {
-            return
+        // Determine the updated organization list
+        let updatedOrgIds: [UUID]
+        if let currentUser = currentUser {
+            // User exists - check if organization is already in list
+            if currentUser.organizationIds.contains(organizationId) {
+                return
+            }
+            // Append organization to existing list
+            updatedOrgIds = currentUser.organizationIds + [organizationId]
+        } else {
+            // User doesn't exist yet - create with just this organization
+            updatedOrgIds = [organizationId]
         }
 
-        // Append organization to user's list
-        var updatedOrgIds = currentUser.organizationIds
-        updatedOrgIds.append(organizationId)
-
-        // Update user in database
+        // Update or insert user in database
         try await supabase
             .from("users")
             .update(["organization_ids": updatedOrgIds])
