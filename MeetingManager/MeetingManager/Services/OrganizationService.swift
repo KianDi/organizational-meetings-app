@@ -169,17 +169,23 @@ actor OrganizationService {
     func updateUserOrganizations(userId: UUID, organizationId: UUID) async throws {
         // Define UserDTO for database mapping
         struct UserDTO: Codable {
+            let id: UUID
+            let email: String
+            let name: String
             let organizationIds: [UUID]
 
             enum CodingKeys: String, CodingKey {
+                case id
+                case email
+                case name
                 case organizationIds = "organization_ids"
             }
         }
 
-        // Try to fetch current user's organization list
+        // Try to fetch current user's full record
         let currentUser: UserDTO? = try? await supabase
             .from("users")
-            .select("organization_ids")
+            .select()
             .eq("id", value: userId)
             .single()
             .execute()
@@ -194,19 +200,35 @@ actor OrganizationService {
             }
             // Append organization to existing list
             updatedOrgIds = currentUser.organizationIds + [organizationId]
-        } else {
-            // User doesn't exist yet - create with just this organization
-            updatedOrgIds = [organizationId]
-        }
 
-        // Update user's organization_ids in database
-        // Note: The auth trigger should create the user record on signup,
-        // but we use a simple update here and rely on the trigger
-        try await supabase
-            .from("users")
-            .update(["organization_ids": updatedOrgIds])
-            .eq("id", value: userId)
-            .execute()
+            // Update existing user record
+            try await supabase
+                .from("users")
+                .update(["organization_ids": updatedOrgIds])
+                .eq("id", value: userId)
+                .execute()
+        } else {
+            // User doesn't exist yet - fetch from auth to create full record
+            // Get current session to fetch email
+            let session = try await supabase.auth.session
+            guard let userEmail = session.user.email else {
+                throw NSError(domain: "OrganizationService", code: -1,
+                             userInfo: [NSLocalizedDescriptionKey: "Could not get user email"])
+            }
+
+            // Create new user record with organization
+            let newUser = UserDTO(
+                id: userId,
+                email: userEmail,
+                name: userEmail, // Default to email as name
+                organizationIds: [organizationId]
+            )
+
+            try await supabase
+                .from("users")
+                .insert(newUser)
+                .execute()
+        }
     }
 
     /// Fetch an organization by ID
