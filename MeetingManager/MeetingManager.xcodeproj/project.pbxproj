@@ -41,6 +41,7 @@
 		F91AB99EA9F2AC3D01BD09AD /* OrganizationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EAA28A966DD935C73098E6 /* OrganizationState.swift */; };		C955247937184CB7A741D993 /* DocumentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A6ADACBA7D4B978BF7AA87 /* DocumentService.swift */; };
 		C07FFFB7329745FD9DEBC413 /* DocumentPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19302157153244F4BC979EE3 /* DocumentPickerView.swift */; };
 		EF56GH78IJ9012345678EFGH /* AnthropicConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB12CD34EF5678901234ABCD /* AnthropicConfig.swift */; };
+		GH78IJ90KL1234567890GHIJ /* AIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD34EF56AB7890123456CDEF /* AIService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
