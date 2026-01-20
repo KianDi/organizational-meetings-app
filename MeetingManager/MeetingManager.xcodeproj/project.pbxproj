@@ -571,6 +571,11 @@
 			package = 8D67F9A52F1947F700FAE479 /* XCRemoteSwiftPackageReference "supabase-swift" */;
 			productName = Supabase;
 		};
+		9E78F0B22F2058A100ABC124 /* SwiftAnthropic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9E78F0B12F2058A100ABC123 /* XCRemoteSwiftPackageReference "SwiftAnthropic" */;
+			productName = SwiftAnthropic;
+		};
 /* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A1000040000000000000001 /* Project object */;
