@@ -27,10 +27,19 @@ struct RootView: View {
                     .environment(authState)
                     .environment(organizationState)
                     .environment(meetingState)
+                    .id("authenticated") // Force view recreation on auth change
             } else {
                 // Logged out - show auth screens
                 AuthContainerView()
                     .environment(authState)
+                    .id("unauthenticated") // Force view recreation on auth change
+            }
+        }
+        .onChange(of: authState.isAuthenticated) { oldValue, newValue in
+            if !newValue {
+                // User logged out - reset state
+                organizationState = OrganizationState()
+                meetingState = MeetingState()
             }
         }
         .task {
