@@ -104,3 +104,8 @@ iOSInjectionProject/
 
 # Secrets (credentials not committed to git)
 **/Secrets.swift
+
+# API Keys
+# Note: AnthropicConfig.swift is tracked with placeholder key
+# Users should replace YOUR_ANTHROPIC_API_KEY_HERE with their actual key
+# Consider using environment variables for production deployment
