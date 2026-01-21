@@ -12,16 +12,16 @@ See: .planning/PROJECT.md (updated 2026-01-14)
 Phase: 5 of 7 (Document Upload & AI Processing)
 Plan: 2 of 5 in current phase
 Status: In progress
-Last activity: 2026-01-20 — Completed 05-02-PLAN.md
+Last activity: 2026-01-21 — Completed 05-02-PLAN.md
 
-Progress: ██████████░ 54%
+Progress: ███████████ 58%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 17
+- Total plans completed: 18
 - Average duration: ~9 min
-- Total execution time: 2.87 hours
+- Total execution time: 3.25 hours
 
 **By Phase:**
 
@@ -31,10 +31,10 @@ Progress: ██████████░ 54%
 | 2 | 4 | 27 min | 7 min |
 | 3 | 4 | 42 min | 11 min |
 | 4 | 4 | 39 min | 10 min |
-| 5 | 2 | 40 min | 20 min |
+| 5 | 3 | 63 min | 21 min |
 
 **Recent Trend:**
-- Last 5 plans: 04-03 (8 min), 04-04 (8 min), 05-01 (17 min), 05-02 (23 min)
+- Last 5 plans: 04-04 (8 min), 05-01 (17 min), 05-02 (23 min)
 - Trend: Phase 5 plans taking longer due to AI integration complexity
 
 ## Accumulated Context
@@ -105,9 +105,9 @@ Recent decisions affecting current work:
 | 05-01 | 10MB file size limit | Prevents database bloat while supporting typical meeting documents |
 | 05-01 | Store text in PostgreSQL TEXT column | Simplifies architecture, no external blob storage needed for text content |
 | 05-01 | Admin-only upload with re-upload capability | Prevents accidental overwrites while allowing flexibility for corrections |
-| 05-02 | Claude 3.5 Sonnet over GPT-4 | 100% structured output reliability vs <40% for GPT-4 based on research |
-| 05-02 | SwiftAnthropic package | Broader iOS version support and active Swift community maintenance |
-| 05-02 | Prompt caching enabled | 90% cost savings on system prompts with cache control |
+| 05-02 | DeepSeek via OpenRouter instead of Claude | 10x cost savings ($0.27/$1.10 vs $3/$15 per million tokens) while maintaining quality |
+| 05-02 | Native URLSession over external SDK | OpenRouter uses OpenAI-compatible API, no package dependencies needed |
+| 05-02 | JSON mode for structured outputs | Enables reliable task extraction with predictable data format |
 | 05-02 | Exponential backoff with jitter | 3 retries (1s, 2s, 4s) for network errors only, no retry for API errors |
 | 05-02 | Placeholder API key in config | Tracked in git for easy setup, users replace with actual key |
 
@@ -125,21 +125,22 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-20T16:42:18Z
+Last session: 2026-01-21T17:23:00Z
 Stopped at: Completed 05-02-PLAN.md
 Resume file: None
 
 **Phase 5 Progress:**
 - ✓ 05-01: Document upload and document parsing (Wave 1) - COMPLETE
-- ✓ 05-02: AI service integration with SwiftAnthropic (Wave 1) - COMPLETE
+- ✓ 05-02: AI service integration with DeepSeek/OpenRouter (Wave 1) - COMPLETE
 - 05-03: Summary generation and processing (Wave 2) - NEXT
 - 05-04: Task and position extraction logic (Wave 3)
 - 05-05: Display summaries and extracted content (Wave 4)
 
 **05-02 Accomplishments:**
-- AIService actor with Claude 3.5 Sonnet integration
-- AnthropicConfig for API key management with placeholder
-- generateSummary method with prompt caching (90% cost savings)
-- Exponential backoff retry logic for network resilience
-- extractTasks stub ready for Plan 05-04
-- Fixed corrupted project.pbxproj file from auto-commits
+- AIService actor with DeepSeek/OpenRouter integration using native URLSession
+- OpenRouterConfig for API key management with placeholder
+- generateSummary method with OpenAI-compatible API format
+- Exponential backoff retry logic for network resilience (1s, 2s, 4s)
+- ExtractedTaskData struct ready for Plan 05-04
+- JSON mode for structured outputs
+- 10x cost reduction compared to Claude approach
