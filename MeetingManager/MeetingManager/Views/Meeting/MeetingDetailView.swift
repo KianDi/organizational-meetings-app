@@ -318,6 +318,23 @@ struct MeetingDetailView: View {
         }
     }
 
+    /// Summary section view
+    @ViewBuilder
+    private func summarySection(_ summary: String) -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("AI Summary")
+                .font(.headline)
+
+            Text(summary)
+                .font(.body)
+                .foregroundStyle(.primary)
+                .padding()
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(Color(.secondarySystemBackground))
+                .cornerRadius(8)
+        }
+    }
+
     /// Processing status view
     @ViewBuilder
     private var processingStatusView: some View {
