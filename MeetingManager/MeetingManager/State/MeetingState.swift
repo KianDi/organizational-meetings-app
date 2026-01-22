@@ -6,11 +6,14 @@ import Foundation
 final class MeetingState {
     private(set) var meetings: [Meeting] = []
     private(set) var isLoading: Bool = false
+    private(set) var processingState: ProcessingState = .idle
 
     private let meetingService: MeetingService
+    private let aiService: AIService
 
-    init(meetingService: MeetingService = MeetingService()) {
+    init(meetingService: MeetingService = MeetingService(), aiService: AIService = AIService()) {
         self.meetingService = meetingService
+        self.aiService = aiService
     }
 
     @MainActor
