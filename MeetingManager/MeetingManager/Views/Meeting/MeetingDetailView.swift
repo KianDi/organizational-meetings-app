@@ -61,8 +61,10 @@ struct MeetingDetailView: View {
                     statusBadge
                 }
 
-                // Processing status section (if processing or just completed)
-                if meetingState.processingState.isProcessing || meetingState.processingState == .completed {
+                // Processing status section (if processing, completed, or failed)
+                if meetingState.processingState.isProcessing
+                    || meetingState.processingState == .completed
+                    || (case .failed = meetingState.processingState) {
                     processingStatusView
                 }
 
