@@ -315,6 +315,7 @@ struct MeetingDetailView: View {
                     showReuploadConfirmation = true
                 } else {
                     // First upload - process immediately
+                    lastFailedDocumentUrl = url
                     Task {
                         await meetingState.processDocument(
                             meetingId: currentMeeting.id,
@@ -330,6 +331,7 @@ struct MeetingDetailView: View {
             }
             Button("Re-upload") {
                 if let url = pendingDocumentUrl {
+                    lastFailedDocumentUrl = url
                     Task {
                         await meetingState.processDocument(
                             meetingId: currentMeeting.id,
