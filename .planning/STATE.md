@@ -130,22 +130,23 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-21T17:23:00Z
-Stopped at: Completed 05-02-PLAN.md
+Last session: 2026-01-22T20:23:00Z
+Stopped at: Completed 05-03-PLAN.md
 Resume file: None
 
 **Phase 5 Progress:**
 - ✓ 05-01: Document upload and document parsing (Wave 1) - COMPLETE
 - ✓ 05-02: AI service integration with DeepSeek/OpenRouter (Wave 1) - COMPLETE
-- 05-03: Summary generation and processing (Wave 2) - NEXT
-- 05-04: Task and position extraction logic (Wave 3)
+- ✓ 05-03: Summary generation and processing (Wave 2) - COMPLETE
+- 05-04: Task and position extraction logic (Wave 3) - NEXT
 - 05-05: Display summaries and extracted content (Wave 4)
 
-**05-02 Accomplishments:**
-- AIService actor with DeepSeek/OpenRouter integration using native URLSession
-- OpenRouterConfig for API key management with placeholder
-- generateSummary method with OpenAI-compatible API format
-- Exponential backoff retry logic for network resilience (1s, 2s, 4s)
-- ExtractedTaskData struct ready for Plan 05-04
-- JSON mode for structured outputs
-- 10x cost reduction compared to Claude approach
+**05-03 Accomplishments:**
+- Complete AI processing pipeline: upload → parse → summarize → save → update UI
+- ProcessingState enum tracking 7 workflow states with UI helpers (displayText, isProcessing)
+- MeetingState.processDocument orchestrating multi-step async workflow with conditional regeneration
+- Real-time processing status UI with spinner, checkmark, error icons, and retry button
+- Re-upload confirmation dialog preventing accidental summary overwrites
+- Auto-dismissing status messages (2s completed, 5s errors)
+- Summary display integrated into meeting detail view
+- Error recovery with retry button using lastFailedDocumentUrl
