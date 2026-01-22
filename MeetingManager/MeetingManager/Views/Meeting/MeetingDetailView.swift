@@ -251,25 +251,23 @@ struct MeetingDetailView: View {
                                 .disabled(isEnding)
                             }
 
-                            // Upload document button (only if no document uploaded yet)
-                            if currentMeeting.documentText == nil {
-                                Button {
-                                    showDocumentPicker = true
-                                } label: {
-                                    HStack {
-                                        if isUploadingDocument {
-                                            ProgressView()
-                                                .progressViewStyle(CircularProgressViewStyle())
-                                        } else {
-                                            Image(systemName: "doc.badge.plus")
-                                            Text("Upload Document")
-                                        }
+                            // Upload/Re-upload document button
+                            Button {
+                                showDocumentPicker = true
+                            } label: {
+                                HStack {
+                                    if isUploadingDocument {
+                                        ProgressView()
+                                            .progressViewStyle(CircularProgressViewStyle())
+                                    } else {
+                                        Image(systemName: currentMeeting.documentText == nil ? "doc.badge.plus" : "arrow.clockwise.circle")
+                                        Text(currentMeeting.documentText == nil ? "Upload Document" : "Re-upload Document")
                                     }
-                                    .frame(maxWidth: .infinity)
                                 }
-                                .buttonStyle(.bordered)
-                                .disabled(isUploadingDocument)
+                                .frame(maxWidth: .infinity)
                             }
+                            .buttonStyle(.bordered)
+                            .disabled(isUploadingDocument)
                         }
                     }
                 }
