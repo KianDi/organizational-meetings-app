@@ -184,6 +184,13 @@ struct MeetingDetailView: View {
 
                 Divider()
 
+                // Summary section
+                if let summary = currentMeeting.summary {
+                    summarySection(summary)
+
+                    Divider()
+                }
+
                 // Check-in button section
                 if currentMeeting.isActive && !currentMeeting.attendeeIds.contains(currentUserId) {
                     CheckInButton(meeting: currentMeeting, userId: currentUserId)
