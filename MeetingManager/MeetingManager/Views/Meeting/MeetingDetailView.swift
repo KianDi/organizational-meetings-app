@@ -311,6 +311,28 @@ struct MeetingDetailView: View {
         }
     }
 
+    /// Processing status view
+    @ViewBuilder
+    private var processingStatusView: some View {
+        HStack(spacing: 12) {
+            if meetingState.processingState.isProcessing {
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle())
+            } else if meetingState.processingState == .completed {
+                Image(systemName: "checkmark.circle.fill")
+                    .foregroundStyle(.green)
+            }
+
+            Text(meetingState.processingState.displayText)
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+        }
+        .padding()
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(Color(.secondarySystemBackground))
+        .cornerRadius(8)
+    }
+
     /// Status badge view
     private var statusBadge: some View {
         Group {
