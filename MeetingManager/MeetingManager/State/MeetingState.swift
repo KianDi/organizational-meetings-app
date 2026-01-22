@@ -84,7 +84,8 @@ final class MeetingState {
     @MainActor
     func processDocument(
         meetingId: UUID,
-        documentUrl: URL
+        documentUrl: URL,
+        regenerateSummary: Bool = true
     ) async {
         processingState = .uploadingDocument
 
@@ -102,9 +103,15 @@ final class MeetingState {
                 documentUrl: urlString
             )
 
-            // Step 3: Generate summary
-            processingState = .generatingSummary
-            let summary = try await aiService.generateSummary(from: documentText)
+            // Get current meeting to check if summary exists
+            guard let currentMeeting = meetings.first(where: { $0.id == meetingId }) else {
+                throw NSError(domain: "MeetingState", code: -1, userInfo: [NSLocalizedDescriptionKey: "Meeting not found"])
+            }
+
+            // Step 3: Generate summary (only if needed)
+            if regenerateSummary || currentMeeting.summary == nil {
+                processingState = .generatingSummary
+                let summary = try await aiService.generateSummary(from: documentText)
 
             // Step 4: Save summary
             let updatedMeeting = try await meetingService.updateSummary(
