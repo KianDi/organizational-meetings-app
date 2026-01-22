@@ -58,6 +58,11 @@ struct MeetingDetailView: View {
                     statusBadge
                 }
 
+                // Processing status section (if processing or just completed)
+                if meetingState.processingState.isProcessing || meetingState.processingState == .completed {
+                    processingStatusView
+                }
+
                 // Details section
                 VStack(alignment: .leading, spacing: 16) {
                     Text("Details")
