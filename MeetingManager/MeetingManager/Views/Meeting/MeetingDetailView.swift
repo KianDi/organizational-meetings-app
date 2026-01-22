@@ -22,6 +22,8 @@ struct MeetingDetailView: View {
 
     /// Document picker state
     @State private var showDocumentPicker: Bool = false
+    @State private var showReuploadConfirmation: Bool = false
+    @State private var pendingDocumentUrl: URL?
 
     /// Error messages
     @State private var errorMessage: String?
