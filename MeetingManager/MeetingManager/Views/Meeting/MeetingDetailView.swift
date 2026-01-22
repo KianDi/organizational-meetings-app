@@ -58,6 +58,14 @@ struct MeetingDetailView: View {
         return false
     }
 
+    /// Check if processing failed
+    private var isProcessingFailed: Bool {
+        if case .failed = meetingState.processingState {
+            return true
+        }
+        return false
+    }
+
     // MARK: - Body
 
     var body: some View {
