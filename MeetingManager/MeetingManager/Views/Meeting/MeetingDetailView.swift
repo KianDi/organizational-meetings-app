@@ -62,9 +62,7 @@ struct MeetingDetailView: View {
                 }
 
                 // Processing status section (if processing, completed, or failed)
-                if meetingState.processingState.isProcessing
-                    || meetingState.processingState == .completed
-                    || (case .failed = meetingState.processingState) {
+                if shouldShowProcessingStatus {
                     processingStatusView
                 }
 
