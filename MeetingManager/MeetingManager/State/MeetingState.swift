@@ -109,18 +109,21 @@ final class MeetingState {
             }
 
             // Step 3: Generate summary (only if needed)
+            var updatedMeeting: Meeting?
             if regenerateSummary || currentMeeting.summary == nil {
                 processingState = .generatingSummary
                 let summary = try await aiService.generateSummary(from: documentText)
 
-            // Step 4: Save summary
-            let updatedMeeting = try await meetingService.updateSummary(
-                meetingId: meetingId,
-                summary: summary
-            )
+                // Step 4: Save summary
+                updatedMeeting = try await meetingService.updateSummary(
+                    meetingId: meetingId,
+                    summary: summary
+                )
+            }
 
             // Step 5: Update local state
-            if let index = meetings.firstIndex(where: { $0.id == meetingId }) {
+            if let updatedMeeting = updatedMeeting,
+               let index = meetings.firstIndex(where: { $0.id == meetingId }) {
                 meetings[index] = updatedMeeting
             }
 
