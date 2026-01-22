@@ -393,9 +393,7 @@ struct MeetingDetailView: View {
 
                 Text(meetingState.processingState.displayText)
                     .font(.subheadline)
-                    .foregroundStyle(
-                        case .failed = meetingState.processingState ? .red : .secondary
-                    )
+                    .foregroundStyle(isProcessingFailed ? .red : .secondary)
             }
 
             // Retry button for failed processing
