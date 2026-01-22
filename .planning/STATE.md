@@ -110,6 +110,11 @@ Recent decisions affecting current work:
 | 05-02 | JSON mode for structured outputs | Enables reliable task extraction with predictable data format |
 | 05-02 | Exponential backoff with jitter | 3 retries (1s, 2s, 4s) for network errors only, no retry for API errors |
 | 05-02 | Placeholder API key in config | Tracked in git for easy setup, users replace with actual key |
+| 05-03 | Auto-generate summary on document upload | No manual trigger needed, summary generation automatic after successful parse |
+| 05-03 | Summary regeneration with confirmation dialog | Re-upload shows confirmation: "Re-uploading will regenerate the AI summary. Continue?" |
+| 05-03 | Auto-dismissing status messages | Completed state clears after 2s, error state after 5s to keep UI clean |
+| 05-03 | Inline retry button for failed processing | Retry button appears for 5s after failure, reuses lastFailedDocumentUrl |
+| 05-03 | ProcessingState enum for workflow tracking | 7 states (idle/uploading/parsing/generating/extracting/completed/failed) with UI helpers |
 
 ### Deferred Issues
 
