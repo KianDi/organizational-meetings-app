@@ -308,13 +308,39 @@ struct MeetingDetailView: View {
         }
         .sheet(isPresented: $showDocumentPicker) {
             DocumentPickerView { url in
-                Task {
-                    await meetingState.processDocument(
-                        meetingId: currentMeeting.id,
-                        documentUrl: url
-                    )
+                // If document already exists, show confirmation dialog
+                if currentMeeting.documentText != nil {
+                    pendingDocumentUrl = url
+                    showReuploadConfirmation = true
+                } else {
+                    // First upload - process immediately
+                    Task {
+                        await meetingState.processDocument(
+                            meetingId: currentMeeting.id,
+                            documentUrl: url
+                        )
+                    }
                 }
             }
+        }
+        .alert("Re-upload Document?", isPresented: $showReuploadConfirmation) {
+            Button("Cancel", role: .cancel) {
+                pendingDocumentUrl = nil
+            }
+            Button("Re-upload") {
+                if let url = pendingDocumentUrl {
+                    Task {
+                        await meetingState.processDocument(
+                            meetingId: currentMeeting.id,
+                            documentUrl: url,
+                            regenerateSummary: true
+                        )
+                        pendingDocumentUrl = nil
+                    }
+                }
+            }
+        } message: {
+            Text("Re-uploading will regenerate the AI summary. Continue?")
         }
     }
 
