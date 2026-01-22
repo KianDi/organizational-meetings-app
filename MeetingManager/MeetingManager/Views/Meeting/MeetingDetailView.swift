@@ -365,18 +365,44 @@ struct MeetingDetailView: View {
     /// Processing status view
     @ViewBuilder
     private var processingStatusView: some View {
-        HStack(spacing: 12) {
-            if meetingState.processingState.isProcessing {
-                ProgressView()
-                    .progressViewStyle(CircularProgressViewStyle())
-            } else if meetingState.processingState == .completed {
-                Image(systemName: "checkmark.circle.fill")
-                    .foregroundStyle(.green)
+        VStack(alignment: .leading, spacing: 12) {
+            HStack(spacing: 12) {
+                if meetingState.processingState.isProcessing {
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle())
+                } else if meetingState.processingState == .completed {
+                    Image(systemName: "checkmark.circle.fill")
+                        .foregroundStyle(.green)
+                } else if case .failed = meetingState.processingState {
+                    Image(systemName: "exclamationmark.circle.fill")
+                        .foregroundStyle(.red)
+                }
+
+                Text(meetingState.processingState.displayText)
+                    .font(.subheadline)
+                    .foregroundStyle(
+                        case .failed = meetingState.processingState ? .red : .secondary
+                    )
             }
 
-            Text(meetingState.processingState.displayText)
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
+            // Retry button for failed processing
+            if case .failed = meetingState.processingState,
+               let url = lastFailedDocumentUrl {
+                Button {
+                    Task {
+                        await meetingState.processDocument(
+                            meetingId: currentMeeting.id,
+                            documentUrl: url
+                        )
+                    }
+                } label: {
+                    Text("Retry")
+                        .font(.caption)
+                        .fontWeight(.medium)
+                }
+                .buttonStyle(.borderedProminent)
+                .tint(.blue)
+            }
         }
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)
