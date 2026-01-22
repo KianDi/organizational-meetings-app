@@ -47,6 +47,17 @@ struct MeetingDetailView: View {
         meetingState.meetings.first(where: { $0.id == meeting.id }) ?? meeting
     }
 
+    /// Check if processing status should be shown
+    private var shouldShowProcessingStatus: Bool {
+        if meetingState.processingState.isProcessing || meetingState.processingState == .completed {
+            return true
+        }
+        if case .failed = meetingState.processingState {
+            return true
+        }
+        return false
+    }
+
     // MARK: - Body
 
     var body: some View {
