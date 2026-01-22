@@ -304,6 +304,50 @@ actor MeetingService {
         )
     }
 
+    /// Update meeting summary after AI generation
+    /// - Parameters:
+    ///   - meetingId: Meeting ID to update
+    ///   - summary: AI-generated summary text
+    /// - Returns: Updated Meeting model
+    /// - Throws: Supabase database errors
+    func updateSummary(
+        meetingId: UUID,
+        summary: String
+    ) async throws -> Meeting {
+        // Create update DTO with summary field
+        struct SummaryUpdateDTO: Codable {
+            let summary: String
+        }
+
+        let updateDTO = SummaryUpdateDTO(summary: summary)
+
+        // Update meeting in database
+        let dto: MeetingDTO = try await supabase
+            .from("meetings")
+            .update(updateDTO)
+            .eq("id", value: meetingId)
+            .select()
+            .single()
+            .execute()
+            .value
+
+        return Meeting(
+            id: dto.id,
+            organizationId: dto.organizationId,
+            title: dto.title,
+            scheduledAt: dto.scheduledAt,
+            startedAt: dto.startedAt,
+            endedAt: dto.endedAt,
+            googleDocsUrl: dto.googleDocsUrl,
+            summary: dto.summary,
+            attendeeIds: dto.attendeeIds,
+            createdById: dto.createdById,
+            documentText: dto.documentText,
+            documentUrl: dto.documentUrl,
+            uploadedAt: dto.uploadedAt
+        )
+    }
+
     /// Check in a user to a meeting
     /// - Parameters:
     ///   - meetingId: The meeting ID to check in to
