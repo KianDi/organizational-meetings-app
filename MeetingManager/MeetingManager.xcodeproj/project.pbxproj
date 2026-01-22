@@ -9,17 +9,20 @@
 /* Begin PBXBuildFile section */
 		114468FFA21DF04B77FA77B5 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE561D81FD8DC74E416DECF0 /* Route.swift */; };
 		2180389B76D7E38E8023EE06 /* CreateMeetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0947B9A65E4A762CA700F9A3 /* CreateMeetingView.swift */; };
-		633A24C490F24DD7AE9C5906 /* CheckInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0DC6BA2EF4E9FBE2B1B3C /* CheckInButton.swift */; };
-		64A9E9F5E1074727A8ADC8E7 /* MeetingDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD168239C8C453F80F5E79A /* MeetingDetailView.swift */; };
-		F826999FB4DC42ED94A30F6F /* MeetingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFC9BA99F84A7AA5ED16AB /* MeetingListView.swift */; };
 		4FF3971C647AACDA6B8FCDDA /* JoinOrganizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D486B3EC9EF7F49EE99E1D /* JoinOrganizationView.swift */; };
 		5CEA0EB028714E915A848A7A /* MemberListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FCB748FC7CC6B3DF1C96A7 /* MemberListView.swift */; };
+		633A24C490F24DD7AE9C5906 /* CheckInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0DC6BA2EF4E9FBE2B1B3C /* CheckInButton.swift */; };
+		64A9E9F5E1074727A8ADC8E7 /* MeetingDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD168239C8C453F80F5E79A /* MeetingDetailView.swift */; };
 		67A160C44F91404DB80A05CD /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944784FE7EA0442090E412D8 /* Secrets.swift */; };
 		8D67F9A72F1947F700FAE479 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 8D67F9A62F1947F700FAE479 /* Supabase */; };
 		8D67F9AD2F19491200FAE479 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D67F9AB2F19491200FAE479 /* User.swift */; };
 		8D67F9AE2F19491200FAE479 /* Meeting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D67F9A82F19491200FAE479 /* Meeting.swift */; };
 		8D67F9AF2F19491200FAE479 /* MeetingTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D67F9A92F19491200FAE479 /* MeetingTask.swift */; };
 		8D67F9B02F19491200FAE479 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D67F9AA2F19491200FAE479 /* Organization.swift */; };
+		8DBA77582F22AFD800C43859 /* OpenRouterConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBA77562F22AFD800C43859 /* OpenRouterConfig.swift */; };
+		8DBA775A2F22AFF100C43859 /* AIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBA77592F22AFF100C43859 /* AIService.swift */; };
+		8DBA77602F22B37100C43859 /* MeetingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBA775D2F22B37100C43859 /* MeetingState.swift */; };
+		8DBA77612F22B37100C43859 /* OrganizationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBA775E2F22B37100C43859 /* OrganizationState.swift */; };
 		8DBD85A52F1877C7006D34D1 /* MeetingManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000002000000000000001 /* MeetingManagerApp.swift */; };
 		8DBD85A62F1877CB006D34D1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000003000000000000001 /* ContentView.swift */; };
 		8DBD85A72F1877D4006D34D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1000004000000000000001 /* Assets.xcassets */; };
@@ -37,19 +40,24 @@
 		E1B5F6C0B7263A4DF5E02E8F /* OrganizationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95749220EAF41B305883E0A2 /* OrganizationDetailView.swift */; };
 		F0B602655316EACB613D366E /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23F94C62A7268596F8DC2A6 /* RootView.swift */; };
 		F5257161A38E9F0402DB2E94 /* MeetingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA51400AE1FEEE97FE5BB0B0 /* MeetingService.swift */; };
-		F91AB99EA9F2AC3D01BD09AD /* OrganizationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EAA28A966DD935C73098E6 /* OrganizationState.swift */; };/* End PBXBuildFile section */
+		F826999FB4DC42ED94A30F6F /* MeetingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFC9BA99F84A7AA5ED16AB /* MeetingListView.swift */; };
+		A64D1ACA73C2415FBA95EFB7 /* DocumentPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD66591CAB246FC855B4E62 /* DocumentPickerView.swift */; };
+		01F6D03DCE0C4CDD8508F12F /* DocumentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C704F854A2194E81B2B5FBC7 /* DocumentService.swift */; };
+/* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0947B9A65E4A762CA700F9A3 /* CreateMeetingView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateMeetingView.swift; sourceTree = "<group>"; };
 		1BECC8AA4CF04810ADBC6FF5 /* Secrets.example.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.example.swift; sourceTree = "<group>"; };
 		68C0DC6BA2EF4E9FBE2B1B3C /* CheckInButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CheckInButton.swift; sourceTree = "<group>"; };
-		FDD168239C8C453F80F5E79A /* MeetingDetailView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MeetingDetailView.swift; sourceTree = "<group>"; };
-		AAAFC9BA99F84A7AA5ED16AB /* MeetingListView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MeetingListView.swift; sourceTree = "<group>"; };
 		72D486B3EC9EF7F49EE99E1D /* JoinOrganizationView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JoinOrganizationView.swift; sourceTree = "<group>"; };
 		8D67F9A82F19491200FAE479 /* Meeting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meeting.swift; sourceTree = "<group>"; };
 		8D67F9A92F19491200FAE479 /* MeetingTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingTask.swift; sourceTree = "<group>"; };
 		8D67F9AA2F19491200FAE479 /* Organization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
 		8D67F9AB2F19491200FAE479 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		8DBA77562F22AFD800C43859 /* OpenRouterConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenRouterConfig.swift; sourceTree = "<group>"; };
+		8DBA77592F22AFF100C43859 /* AIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIService.swift; sourceTree = "<group>"; };
+		8DBA775D2F22B37100C43859 /* MeetingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingState.swift; sourceTree = "<group>"; };
+		8DBA775E2F22B37100C43859 /* OrganizationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationState.swift; sourceTree = "<group>"; };
 		8DBD85A82F1942E8006D34D1 /* AuthContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthContainerView.swift; sourceTree = "<group>"; };
 		8DBD85A92F1942E8006D34D1 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		8DBD85AA2F1942E8006D34D1 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
@@ -66,12 +74,16 @@
 		A1000002000000000000001 /* MeetingManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingManagerApp.swift; sourceTree = "<group>"; };
 		A1000003000000000000001 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A1000004000000000000001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AAAFC9BA99F84A7AA5ED16AB /* MeetingListView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MeetingListView.swift; sourceTree = "<group>"; };
 		ACAA49D663290A25C8C46DD1 /* OrganizationListView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OrganizationListView.swift; sourceTree = "<group>"; };
 		B582DFB2973FE41ABFDDBDF7 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		C23F94C62A7268596F8DC2A6 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		EE561D81FD8DC74E416DECF0 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
-		F1EAA28A966DD935C73098E6 /* OrganizationState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OrganizationState.swift; sourceTree = "<group>"; };
-		FA51400AE1FEEE97FE5BB0B0 /* MeetingService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MeetingService.swift; sourceTree = "<group>"; };/* End PBXFileReference section */
+		FA51400AE1FEEE97FE5BB0B0 /* MeetingService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MeetingService.swift; sourceTree = "<group>"; };
+		FDD168239C8C453F80F5E79A /* MeetingDetailView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MeetingDetailView.swift; sourceTree = "<group>"; };
+		CCD66591CAB246FC855B4E62 /* DocumentPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPickerView.swift; sourceTree = "<group>"; };
+		C704F854A2194E81B2B5FBC7 /* DocumentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentService.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		A1000010000000000000001 /* Frameworks */ = {
@@ -92,10 +104,7 @@
 				FDD168239C8C453F80F5E79A /* MeetingDetailView.swift */,
 				AAAFC9BA99F84A7AA5ED16AB /* MeetingListView.swift */,
 				0947B9A65E4A762CA700F9A3 /* CreateMeetingView.swift */,
-				E61CA3B56AAC4AB2875BA232 /* MeetingListView.swift */,
-				CBC8A73BEE414BC49758640E /* MeetingDetailView.swift */,
 			);
-			name = Meeting;
 			path = Meeting;
 			sourceTree = "<group>";
 		};
@@ -108,6 +117,25 @@
 				8D67F9AB2F19491200FAE479 /* User.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		8DBA77572F22AFD800C43859 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				8DBA77562F22AFD800C43859 /* OpenRouterConfig.swift */,
+			);
+			name = Config;
+			path = MeetingManager/Config;
+			sourceTree = "<group>";
+		};
+		8DBA775F2F22B37100C43859 /* State */ = {
+			isa = PBXGroup;
+			children = (
+				8DBA775D2F22B37100C43859 /* MeetingState.swift */,
+				8DBA775E2F22B37100C43859 /* OrganizationState.swift */,
+			);
+			name = State;
+			path = MeetingManager/State;
 			sourceTree = "<group>";
 		};
 		8DBD85B42F194400006D34D1 /* Auth */ = {
@@ -136,6 +164,8 @@
 		8DBD85C42F194402006D34D1 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				C704F854A2194E81B2B5FBC7 /* DocumentService.swift */,
+				8DBA77592F22AFF100C43859 /* AIService.swift */,
 				8DBD85C02F194401006D34D1 /* OrganizationService.swift */,
 				FA51400AE1FEEE97FE5BB0B0 /* MeetingService.swift */,
 			);
@@ -166,6 +196,8 @@
 		A1000020000000000000001 = {
 			isa = PBXGroup;
 			children = (
+				8DBA775F2F22B37100C43859 /* State */,
+				8DBA77572F22AFD800C43859 /* Config */,
 				A1000021000000000000001 /* MeetingManager */,
 				A1000022000000000000001 /* Products */,
 			);
@@ -182,7 +214,6 @@
 				A1000004000000000000001 /* Assets.xcassets */,
 				A0C5A84E943BBA30217884FE /* Navigation */,
 				E4D8353416E9E9075A524262 /* Views */,
-				F3ED61C55A898577FBD4DE4E /* State */,
 			);
 			path = MeetingManager;
 			sourceTree = "<group>";
@@ -202,17 +233,17 @@
 				8DBD85C72F194404006D34D1 /* Organization */,
 				C23F94C62A7268596F8DC2A6 /* RootView.swift */,
 				16526F6BB89E4A14B0EE9E79 /* Meeting */,
-			);
+		
+				A5575E0C94A541F58296F370 /* Document */,	);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		F3ED61C55A898577FBD4DE4E /* State */ = {
+		A5575E0C94A541F58296F370 /* Document */ = {
 			isa = PBXGroup;
 			children = (
-				F1EAA28A966DD935C73098E6 /* OrganizationState.swift */,
+				CCD66591CAB246FC855B4E62 /* DocumentPickerView.swift */,
 			);
-			name = State;
-			path = State;
+			path = Document;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -287,7 +318,9 @@
 		A1000032000000000000001 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
-			files = (
+			files = (				A64D1ACA73C2415FBA95EFB7 /* DocumentPickerView.swift in Sources */,
+				01F6D03DCE0C4CDD8508F12F /* DocumentService.swift in Sources */,
+
 				8DBD85AB2F1942E8006D34D1 /* SignupView.swift in Sources */,
 				8DBD85AC2F1942E8006D34D1 /* AuthContainerView.swift in Sources */,
 				8DBD85AD2F1942E8006D34D1 /* LoginView.swift in Sources */,
@@ -298,6 +331,7 @@
 				8DBD85A62F1877CB006D34D1 /* ContentView.swift in Sources */,
 				8DBD85A52F1877C7006D34D1 /* MeetingManagerApp.swift in Sources */,
 				D253A8CE33A430AC9D379F2B /* AppCoordinator.swift in Sources */,
+				8DBA77582F22AFD800C43859 /* OpenRouterConfig.swift in Sources */,
 				8DBD85B12F194308006D34D1 /* KeychainManager.swift in Sources */,
 				8DBD85B22F194308006D34D1 /* SupabaseConfig.swift in Sources */,
 				8DBD85B32F194308006D34D1 /* AuthService.swift in Sources */,
@@ -305,9 +339,9 @@
 				8DBD85C32F194401006D34D1 /* OrganizationService.swift in Sources */,
 				8DBD85C52F194403006D34D1 /* CreateOrganizationView.swift in Sources */,
 				114468FFA21DF04B77FA77B5 /* Route.swift in Sources */,
+				8DBA775A2F22AFF100C43859 /* AIService.swift in Sources */,
 				F0B602655316EACB613D366E /* RootView.swift in Sources */,
 				67A160C44F91404DB80A05CD /* Secrets.swift in Sources */,
-				F91AB99EA9F2AC3D01BD09AD /* OrganizationState.swift in Sources */,
 				DC33884453586499E28D853A /* OrganizationListView.swift in Sources */,
 				5CEA0EB028714E915A848A7A /* MemberListView.swift in Sources */,
 				E1B5F6C0B7263A4DF5E02E8F /* OrganizationDetailView.swift in Sources */,
@@ -317,6 +351,8 @@
 				633A24C490F24DD7AE9C5906 /* CheckInButton.swift in Sources */,
 				64A9E9F5E1074727A8ADC8E7 /* MeetingDetailView.swift in Sources */,
 				F826999FB4DC42ED94A30F6F /* MeetingListView.swift in Sources */,
+				8DBA77602F22B37100C43859 /* MeetingState.swift in Sources */,
+				8DBA77612F22B37100C43859 /* OrganizationState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
