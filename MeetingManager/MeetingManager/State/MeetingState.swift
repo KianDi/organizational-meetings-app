@@ -80,4 +80,55 @@ final class MeetingState {
             meetings[index] = updatedMeeting
         }
     }
+
+    @MainActor
+    func processDocument(
+        meetingId: UUID,
+        documentUrl: URL
+    ) async {
+        processingState = .uploadingDocument
+
+        do {
+            // Step 1: Parse document
+            processingState = .parsingDocument
+            let documentService = DocumentService()
+            let documentText = try await documentService.parseDocument(url: documentUrl)
+
+            // Step 2: Upload to meeting
+            let urlString = documentUrl.lastPathComponent
+            _ = try await meetingService.uploadDocument(
+                meetingId: meetingId,
+                documentText: documentText,
+                documentUrl: urlString
+            )
+
+            // Step 3: Generate summary
+            processingState = .generatingSummary
+            let summary = try await aiService.generateSummary(from: documentText)
+
+            // Step 4: Save summary
+            let updatedMeeting = try await meetingService.updateSummary(
+                meetingId: meetingId,
+                summary: summary
+            )
+
+            // Step 5: Update local state
+            if let index = meetings.firstIndex(where: { $0.id == meetingId }) {
+                meetings[index] = updatedMeeting
+            }
+
+            processingState = .completed
+
+            // Auto-clear completed state after 2 seconds
+            try? await Task.sleep(nanoseconds: 2_000_000_000)
+            processingState = .idle
+
+        } catch {
+            processingState = .failed(error.localizedDescription)
+
+            // Auto-clear error after 5 seconds
+            try? await Task.sleep(nanoseconds: 5_000_000_000)
+            processingState = .idle
+        }
+    }
 }
