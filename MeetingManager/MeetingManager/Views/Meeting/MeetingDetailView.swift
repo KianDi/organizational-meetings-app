@@ -297,7 +297,10 @@ struct MeetingDetailView: View {
         .sheet(isPresented: $showDocumentPicker) {
             DocumentPickerView { url in
                 Task {
-                    await handleDocumentPicked(url: url)
+                    await meetingState.processDocument(
+                        meetingId: currentMeeting.id,
+                        documentUrl: url
+                    )
                 }
             }
         }
