@@ -443,6 +443,43 @@ struct MeetingDetailView: View {
         .padding(.vertical, 8)
     }
 
+    /// Empty state when no document uploaded
+    @ViewBuilder
+    private var documentEmptyState: some View {
+        VStack(spacing: 16) {
+            Image(systemName: "doc.text.magnifyingglass")
+                .font(.system(size: 60))
+                .foregroundStyle(.secondary)
+
+            VStack(spacing: 8) {
+                Text("No Document Uploaded")
+                    .font(.title3)
+                    .fontWeight(.semibold)
+
+                Text("Upload meeting minutes to generate an AI summary and extract action items.")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.center)
+            }
+
+            // Show upload button if admin
+            if isAdmin(userId: currentUserId) {
+                Button {
+                    showDocumentPicker = true
+                } label: {
+                    Label("Upload Document", systemImage: "arrow.up.doc")
+                        .font(.headline)
+                }
+                .buttonStyle(.borderedProminent)
+                .tint(.blue)
+            }
+        }
+        .padding(40)
+        .frame(maxWidth: .infinity)
+        .background(Color(.secondarySystemBackground))
+        .cornerRadius(12)
+    }
+
     /// Processing status view
     @ViewBuilder
     private var processingStatusView: some View {
