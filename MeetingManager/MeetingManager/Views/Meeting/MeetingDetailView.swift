@@ -338,7 +338,8 @@ struct MeetingDetailView: View {
                     Task {
                         await meetingState.processDocument(
                             meetingId: currentMeeting.id,
-                            documentUrl: url
+                            documentUrl: url,
+                            organizationId: currentMeeting.organizationId
                         )
                     }
                 }
