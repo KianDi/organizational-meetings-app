@@ -343,6 +343,19 @@ struct MeetingDetailView: View {
         }
         .navigationTitle("Meeting Details")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            // Add share button if summary exists
+            if currentMeeting.summary != nil {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        prepareShareText()
+                        showShareSheet = true
+                    } label: {
+                        Image(systemName: "square.and.arrow.up")
+                    }
+                }
+            }
+        }
         .refreshable {
             await refreshMeeting()
         }
