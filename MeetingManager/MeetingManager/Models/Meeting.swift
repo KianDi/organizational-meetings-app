@@ -62,7 +62,8 @@ struct Meeting: Identifiable, Codable, Equatable {
         createdById: UUID,
         documentText: String? = nil,
         documentUrl: String? = nil,
-        uploadedAt: Date? = nil
+        uploadedAt: Date? = nil,
+        tasks: [MeetingTask]? = nil
     ) {
         self.id = id
         self.organizationId = organizationId
