@@ -401,6 +401,32 @@ struct MeetingDetailView: View {
         .padding(.vertical, 8)
     }
 
+    /// Tasks section view
+    @ViewBuilder
+    private func tasksSection(_ tasks: [MeetingTask]) -> some View {
+        VStack(alignment: .leading, spacing: 12) {
+            // Section header
+            HStack(spacing: 8) {
+                Image(systemName: "checkmark.circle")
+                    .foregroundStyle(.green)
+                Text("Action Items")
+                    .font(.title3)
+                    .fontWeight(.semibold)
+                Text("(\(tasks.count))")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+            }
+
+            // Task list
+            VStack(spacing: 8) {
+                ForEach(tasks) { task in
+                    TaskRowView(task: task)
+                }
+            }
+        }
+        .padding(.vertical, 8)
+    }
+
     /// Processing status view
     @ViewBuilder
     private var processingStatusView: some View {
