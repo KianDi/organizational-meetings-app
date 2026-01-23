@@ -5,8 +5,13 @@ struct ExtractedTaskData: Codable {
     let title: String
     let assigneeName: String?  // Name from document, will be matched to User
     let dueDate: String?       // ISO8601 string or natural language
-    let priority: String?      // "high", "medium", "low"
+    let priority: String       // "high", "medium", "low"
     let context: String?       // Source text where task was mentioned
+}
+
+/// Schema wrapper for JSON structured output
+private struct TaskExtractionSchema: Codable {
+    let tasks: [ExtractedTaskData]
 }
 
 /// Thread-safe service for OpenRouter API calls using URLSession
