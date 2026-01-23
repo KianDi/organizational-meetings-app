@@ -338,6 +338,7 @@ struct MeetingDetailView: View {
         }
         .task {
             await loadAttendees()
+            await loadAssigneeNames()
         }
         .sheet(isPresented: $showDocumentPicker) {
             DocumentPickerView { url in
