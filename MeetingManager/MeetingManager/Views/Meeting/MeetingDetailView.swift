@@ -760,6 +760,35 @@ struct MeetingDetailView: View {
             assigneeNames = names
         }
     }
+
+    /// Prepare text for sharing
+    private func prepareShareText() {
+        var text = """
+        \(currentMeeting.title)
+        \(formattedDate(currentMeeting.scheduledAt))
+
+        SUMMARY
+        \(currentMeeting.summary ?? "")
+        """
+
+        // Add tasks if present
+        if let tasks = currentMeeting.tasks, !tasks.isEmpty {
+            text += "\n\nACTION ITEMS\n"
+            for (index, task) in tasks.enumerated() {
+                text += "\n\(index + 1). \(task.title)"
+                if let assigneeId = task.assigneeId,
+                   let name = assigneeNames[assigneeId] {
+                    text += " - \(name)"
+                }
+                if let dueDate = task.dueDate {
+                    text += " (Due: \(formattedDate(dueDate)))"
+                }
+            }
+        }
+
+        text += "\n\nGenerated with MeetingManager"
+        shareText = text
+    }
 }
 
 // MARK: - Preview
