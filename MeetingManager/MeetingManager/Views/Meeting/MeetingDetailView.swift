@@ -403,6 +403,9 @@ struct MeetingDetailView: View {
         } message: {
             Text("Re-uploading will regenerate the AI summary. Continue?")
         }
+        .sheet(isPresented: $showShareSheet) {
+            ShareSheet(items: [shareText])
+        }
     }
 
     /// Summary section view
