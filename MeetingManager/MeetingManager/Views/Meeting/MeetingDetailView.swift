@@ -508,17 +508,31 @@ struct MeetingDetailView: View {
                 if meetingState.processingState.isProcessing {
                     ProgressView()
                         .progressViewStyle(CircularProgressViewStyle())
+
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(meetingState.processingState.displayText)
+                            .font(.subheadline)
+                            .foregroundStyle(.primary)
+
+                        Text(estimatedTimeRemaining)
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
                 } else if meetingState.processingState == .completed {
                     Image(systemName: "checkmark.circle.fill")
                         .foregroundStyle(.green)
+                        .font(.title3)
+
+                    Text("Processing complete")
+                        .font(.subheadline)
                 } else if case .failed = meetingState.processingState {
                     Image(systemName: "exclamationmark.circle.fill")
                         .foregroundStyle(.red)
-                }
 
-                Text(meetingState.processingState.displayText)
-                    .font(.subheadline)
-                    .foregroundStyle(isProcessingFailed ? .red : .secondary)
+                    Text(meetingState.processingState.displayText)
+                        .font(.subheadline)
+                        .foregroundStyle(.red)
+                }
             }
 
             // Retry button for failed processing
@@ -544,7 +558,21 @@ struct MeetingDetailView: View {
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(Color(.secondarySystemBackground))
-        .cornerRadius(8)
+        .cornerRadius(12)
+    }
+
+    /// Estimated time remaining for current processing state
+    private var estimatedTimeRemaining: String {
+        switch meetingState.processingState {
+        case .uploadingDocument, .parsingDocument:
+            return "~5 seconds"
+        case .generatingSummary:
+            return "~10 seconds"
+        case .extractingTasks:
+            return "~5 seconds"
+        default:
+            return ""
+        }
     }
 
     /// Status badge view
