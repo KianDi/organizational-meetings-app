@@ -213,6 +213,13 @@ struct MeetingDetailView: View {
                     Divider()
                 }
 
+                // Tasks section (new)
+                if let tasks = currentMeeting.tasks, !tasks.isEmpty {
+                    tasksSection(tasks)
+
+                    Divider()
+                }
+
                 // Check-in button section
                 if currentMeeting.isActive && !currentMeeting.attendeeIds.contains(currentUserId) {
                     CheckInButton(meeting: currentMeeting, userId: currentUserId)
