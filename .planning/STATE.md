@@ -115,6 +115,15 @@ Recent decisions affecting current work:
 | 05-03 | Auto-dismissing status messages | Completed state clears after 2s, error state after 5s to keep UI clean |
 | 05-03 | Inline retry button for failed processing | Retry button appears for 5s after failure, reuses lastFailedDocumentUrl |
 | 05-03 | ProcessingState enum for workflow tracking | 7 states (idle/uploading/parsing/generating/extracting/completed/failed) with UI helpers |
+| 05-05 | TaskRowView as reusable component | Standalone component with preview, handles completion, assignee, and due date display |
+| 05-05 | Smart date formatting for tasks | "Today", "Tomorrow", weekday name, or full date based on proximity |
+| 05-05 | Overdue task visual indicator | Red date color for incomplete tasks past due date |
+| 05-05 | Assignee name caching in detail view | Dictionary cache prevents repeated member fetches for task display |
+| 05-05 | Document empty state with CTA | Welcoming empty state guides users to upload, admin-only upload button |
+| 05-05 | Summary/task indicators in meeting list | Blue "Summary" and green task count badges for quick scan of processed meetings |
+| 05-05 | Native iOS share for summaries | Share sheet exports formatted text with summary, tasks, assignees, and dates |
+| 05-05 | Processing time estimates | Display "~5 seconds" or "~10 seconds" based on current processing stage |
+| 05-05 | Conditional content display | Summary/tasks only show when document uploaded, prevents confusion |
 
 ### Deferred Issues
 
