@@ -44,6 +44,8 @@
 		F0B602655316EACB613D366E /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23F94C62A7268596F8DC2A6 /* RootView.swift */; };
 		F5257161A38E9F0402DB2E94 /* MeetingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA51400AE1FEEE97FE5BB0B0 /* MeetingService.swift */; };
 		F826999FB4DC42ED94A30F6F /* MeetingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFC9BA99F84A7AA5ED16AB /* MeetingListView.swift */; };
+		62E23F86D70C4E729D76F9B0 /* TaskService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F83D71C850416BA0783B3E /* TaskService.swift */; };
+		8AA51AD698E6477D98B5C37D /* NameMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51543D286E06437CA5D8C9B5 /* NameMatcher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +87,8 @@
 		EE561D81FD8DC74E416DECF0 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		FA51400AE1FEEE97FE5BB0B0 /* MeetingService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MeetingService.swift; sourceTree = "<group>"; };
 		FDD168239C8C453F80F5E79A /* MeetingDetailView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MeetingDetailView.swift; sourceTree = "<group>"; };
+		A7F83D71C850416BA0783B3E /* TaskService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TaskService.swift; sourceTree = "<group>"; };
+		51543D286E06437CA5D8C9B5 /* NameMatcher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NameMatcher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,7 +175,8 @@
 				8DBA77592F22AFF100C43859 /* AIService.swift */,
 				8DBD85C02F194401006D34D1 /* OrganizationService.swift */,
 				FA51400AE1FEEE97FE5BB0B0 /* MeetingService.swift */,
-			);
+			
+				A7F83D71C850416BA0783B3E /* TaskService.swift */,);
 			path = Services;
 			sourceTree = "<group>";
 		};
@@ -357,7 +362,9 @@
 				8DBA77602F22B37100C43859 /* MeetingState.swift in Sources */,
 				8DBA77612F22B37100C43859 /* OrganizationState.swift in Sources */,
 				BF37112BB7EB4003E99B6A7D /* ProcessingState.swift in Sources */,
-			);
+			
+				62E23F86D70C4E729D76F9B0 /* TaskService.swift in Sources */,
+				8AA51AD698E6477D98B5C37D /* NameMatcher.swift in Sources */,);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
