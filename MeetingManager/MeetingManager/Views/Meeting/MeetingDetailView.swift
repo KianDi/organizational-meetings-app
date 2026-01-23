@@ -356,6 +356,7 @@ struct MeetingDetailView: View {
                         await meetingState.processDocument(
                             meetingId: currentMeeting.id,
                             documentUrl: url,
+                            organizationId: currentMeeting.organizationId,
                             regenerateSummary: true
                         )
                         pendingDocumentUrl = nil
