@@ -426,7 +426,10 @@ struct MeetingDetailView: View {
             // Task list
             VStack(spacing: 8) {
                 ForEach(tasks) { task in
-                    TaskRowView(task: task)
+                    TaskRowView(
+                        task: task,
+                        assigneeName: task.assigneeId.flatMap { assigneeNames[$0] }
+                    )
                 }
             }
         }
