@@ -33,6 +33,12 @@ struct MeetingDetailView: View {
     /// Meeting state for centralized meeting management
     @Environment(MeetingState.self) private var meetingState
 
+    /// Organization state for fetching member names
+    @Environment(OrganizationState.self) private var organizationState
+
+    /// Cache of assignee names by userId
+    @State private var assigneeNames: [UUID: String] = [:]
+
     // MARK: - Initialization
 
     init(meeting: Meeting, currentUserId: UUID) {
