@@ -67,9 +67,55 @@ actor AIService {
     /// Extract tasks and action items from document text
     /// Returns array of structured tasks with assignees and due dates
     func extractTasks(from documentText: String, organizationMembers: [User]) async throws -> [ExtractedTaskData] {
-        // TODO: Implement in Plan 05-04
-        // Will use structured outputs to extract action items with assignees
-        return []
+        guard OpenRouterConfig.isConfigured else {
+            throw AIError.notConfigured
+        }
+
+        // Build member context for better name matching
+        let memberContext = organizationMembers
+            .map { "\($0.name) (email: \($0.email))" }
+            .joined(separator: "\n")
+
+        return try await callWithRetry {
+            let messages = [
+                [
+                    "role": "system",
+                    "content": """
+                    You are a task extraction specialist. Extract action items from meeting documents.
+                    Match assignee names to the provided member list, handling typos and nicknames.
+                    If no assignee mentioned, leave assigneeName as null.
+                    If no due date mentioned, leave dueDate as null.
+                    Infer priority from urgency language (urgent/ASAP = high, normal = medium, backlog/someday = low).
+                    """
+                ],
+                [
+                    "role": "user",
+                    "content": """
+                    Extract all action items and tasks from this meeting document.
+
+                    Organization members:
+                    \(memberContext)
+
+                    Document:
+                    \(documentText)
+
+                    For each task, extract:
+                    - title: Clear, actionable task description
+                    - assigneeName: Person assigned (match to members list above, or null if unclear)
+                    - dueDate: Deadline in ISO8601 format if mentioned (YYYY-MM-DD), or null
+                    - priority: "high", "medium", or "low" based on urgency language
+                    - context: Original text snippet where task was mentioned
+
+                    Return JSON with a "tasks" array containing these fields.
+                    """
+                ]
+            ]
+
+            let jsonString = try await self.makeRequest(messages: messages, jsonMode: true)
+            let data = jsonString.data(using: .utf8)!
+            let schema = try JSONDecoder().decode(TaskExtractionSchema.self, from: data)
+            return schema.tasks
+        }
     }
 
     // MARK: - Private Helpers
