@@ -212,18 +212,24 @@ struct MeetingDetailView: View {
 
                 Divider()
 
-                // Summary section
-                if let summary = currentMeeting.summary {
-                    summarySection(summary)
-
-                    Divider()
+                // Show empty state if no document uploaded
+                if currentMeeting.documentText == nil {
+                    documentEmptyState
                 }
 
-                // Tasks section (new)
-                if let tasks = currentMeeting.tasks, !tasks.isEmpty {
-                    tasksSection(tasks)
+                // Only show summary/tasks if document processed
+                if currentMeeting.documentText != nil {
+                    if let summary = currentMeeting.summary {
+                        summarySection(summary)
 
-                    Divider()
+                        Divider()
+                    }
+
+                    if let tasks = currentMeeting.tasks, !tasks.isEmpty {
+                        tasksSection(tasks)
+
+                        Divider()
+                    }
                 }
 
                 // Check-in button section
