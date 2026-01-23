@@ -138,8 +138,8 @@ Resume file: None
 - ✓ 05-01: Document upload and document parsing (Wave 1) - COMPLETE
 - ✓ 05-02: AI service integration with DeepSeek/OpenRouter (Wave 1) - COMPLETE
 - ✓ 05-03: Summary generation and processing (Wave 2) - COMPLETE
-- 05-04: Task and position extraction logic (Wave 3) - NEXT
-- 05-05: Display summaries and extracted content (Wave 4)
+- ✓ 05-04: Task and position extraction logic (Wave 3) - COMPLETE
+- 05-05: Display summaries and extracted content (Wave 4) - NEXT
 
 **05-03 Accomplishments:**
 - Complete AI processing pipeline: upload → parse → summarize → save → update UI
