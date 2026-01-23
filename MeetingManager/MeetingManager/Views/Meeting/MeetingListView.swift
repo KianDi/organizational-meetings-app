@@ -175,20 +175,24 @@ private struct MeetingRowView: View {
                     Text(formattedScheduledTime(meeting.scheduledAt))
                         .font(.subheadline)
                         .foregroundColor(.secondary)
+
+                    // Processing indicators
+                    HStack(spacing: 12) {
+                        if meeting.summary != nil {
+                            Label("Summary", systemImage: "sparkles")
+                                .font(.caption)
+                                .foregroundStyle(.blue)
+                        }
+
+                        if let taskCount = meeting.tasks?.count, taskCount > 0 {
+                            Label("\(taskCount) tasks", systemImage: "checkmark.circle")
+                                .font(.caption)
+                                .foregroundStyle(.green)
+                        }
+                    }
                 }
 
                 Spacer()
-
-                // Task count badge (if tasks loaded)
-                if let taskCount = meeting.tasks?.count, taskCount > 0 {
-                    Text("\(taskCount)")
-                        .font(.caption)
-                        .foregroundStyle(.white)
-                        .padding(.horizontal, 8)
-                        .padding(.vertical, 4)
-                        .background(Color.blue)
-                        .clipShape(Capsule())
-                }
 
                 // Attendance badge
                 Text("\(meeting.attendeeIds.count) checked in")
