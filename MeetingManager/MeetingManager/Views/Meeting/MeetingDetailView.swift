@@ -765,27 +765,27 @@ struct MeetingDetailView: View {
 
         // Get unique assignee IDs
         let assigneeIds = Set(tasks.compactMap { $0.assigneeId })
+        guard !assigneeIds.isEmpty else { return }
 
-        // Fetch members if not already loaded
-        if organizationState.members.isEmpty {
-            do {
-                try await organizationState.loadMembers(organizationId: currentMeeting.organizationId)
-            } catch {
-                print("Failed to load members: \(error)")
-                return
+        // Fetch members directly from OrganizationService
+        let organizationService = OrganizationService()
+
+        do {
+            let members = try await organizationService.fetchMembers(organizationId: currentMeeting.organizationId)
+
+            // Build name mapping
+            var names: [UUID: String] = [:]
+            for id in assigneeIds {
+                if let member = members.first(where: { $0.id == id }) {
+                    names[id] = member.name
+                }
             }
-        }
 
-        // Build name mapping
-        var names: [UUID: String] = [:]
-        for id in assigneeIds {
-            if let member = organizationState.members.first(where: { $0.id == id }) {
-                names[id] = member.name
+            await MainActor.run {
+                assigneeNames = names
             }
-        }
-
-        await MainActor.run {
-            assigneeNames = names
+        } catch {
+            print("Failed to load members: \(error)")
         }
     }
 
