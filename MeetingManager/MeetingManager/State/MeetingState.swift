@@ -35,6 +35,23 @@ final class MeetingState {
     }
 
     @MainActor
+    func loadMeetingWithTasks(meetingId: UUID) async throws -> Meeting {
+        // Fetch meeting
+        var meeting = try await meetingService.fetchMeeting(meetingId: meetingId)
+
+        // Fetch associated tasks
+        let tasks = try await taskService.fetchTasksForMeeting(meetingId: meetingId)
+        meeting.tasks = tasks
+
+        // Update local cache
+        if let index = meetings.firstIndex(where: { $0.id == meetingId }) {
+            meetings[index] = meeting
+        }
+
+        return meeting
+    }
+
+    @MainActor
     func createMeeting(
         organizationId: UUID,
         title: String,
