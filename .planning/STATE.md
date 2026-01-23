@@ -31,7 +31,7 @@ Progress: ████████████████ 71%
 | 2 | 4 | 27 min | 7 min |
 | 3 | 4 | 42 min | 11 min |
 | 4 | 4 | 39 min | 10 min |
-| 5 | 5 | 128 min | 26 min |
+| 5 | 5 | 148 min | 30 min |
 
 **Recent Trend:**
 - Last 5 plans: 05-02 (23 min), 05-03 (35 min), 05-04 (30 min)
