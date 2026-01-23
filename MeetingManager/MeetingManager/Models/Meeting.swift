@@ -78,6 +78,27 @@ struct Meeting: Identifiable, Codable, Equatable {
         self.documentText = documentText
         self.documentUrl = documentUrl
         self.uploadedAt = uploadedAt
+        self.tasks = tasks
+    }
+
+    // MARK: - Coding Keys
+
+    /// Exclude tasks from Codable - loaded separately via TaskService
+    enum CodingKeys: String, CodingKey {
+        case id
+        case organizationId = "organization_id"
+        case title
+        case scheduledAt = "scheduled_at"
+        case startedAt = "started_at"
+        case endedAt = "ended_at"
+        case googleDocsUrl = "google_docs_url"
+        case summary
+        case attendeeIds = "attendee_ids"
+        case createdById = "created_by_id"
+        case documentText = "document_text"
+        case documentUrl = "document_url"
+        case uploadedAt = "uploaded_at"
+        // Exclude tasks - loaded separately
     }
 
     // MARK: - Computed Properties
