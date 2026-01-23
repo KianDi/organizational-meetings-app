@@ -46,6 +46,7 @@
 		F826999FB4DC42ED94A30F6F /* MeetingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFC9BA99F84A7AA5ED16AB /* MeetingListView.swift */; };
 		62E23F86D70C4E729D76F9B0 /* TaskService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F83D71C850416BA0783B3E /* TaskService.swift */; };
 		8AA51AD698E6477D98B5C37D /* NameMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51543D286E06437CA5D8C9B5 /* NameMatcher.swift */; };
+		DEFD0D9AAF704C909D51FBB4 /* TaskRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D79DE5C986C4FB498777A60 /* TaskRowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,8 +88,9 @@
 		EE561D81FD8DC74E416DECF0 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		FA51400AE1FEEE97FE5BB0B0 /* MeetingService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MeetingService.swift; sourceTree = "<group>"; };
 		FDD168239C8C453F80F5E79A /* MeetingDetailView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MeetingDetailView.swift; sourceTree = "<group>"; };
-		A7F83D71C850416BA0783B3E /* TaskService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TaskService.swift; sourceTree = "<group>"; };
-		51543D286E06437CA5D8C9B5 /* NameMatcher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NameMatcher.swift; sourceTree = "<group>"; };
+		A7F83D71C850416BA0783B3E /* TaskService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskService.swift; sourceTree = "<group>"; };
+		51543D286E06437CA5D8C9B5 /* NameMatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameMatcher.swift; sourceTree = "<group>"; };
+		2D79DE5C986C4FB498777A60 /* TaskRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,7 +112,8 @@
 				FDD168239C8C453F80F5E79A /* MeetingDetailView.swift */,
 				AAAFC9BA99F84A7AA5ED16AB /* MeetingListView.swift */,
 				0947B9A65E4A762CA700F9A3 /* CreateMeetingView.swift */,
-			);
+				5E7CF9CB33474EF7A34D9960 /* TaskRowView.swift */,
+				2D79DE5C986C4FB498777A60 /* TaskRowView.swift */,);
 			path = Meeting;
 			sourceTree = "<group>";
 		};
@@ -176,7 +179,8 @@
 				8DBD85C02F194401006D34D1 /* OrganizationService.swift */,
 				FA51400AE1FEEE97FE5BB0B0 /* MeetingService.swift */,
 			
-				A7F83D71C850416BA0783B3E /* TaskService.swift */,);
+				A7F83D71C850416BA0783B3E /* TaskService.swift */,
+				);
 			path = Services;
 			sourceTree = "<group>";
 		};
@@ -217,6 +221,7 @@
 				8D67F9AC2F19491200FAE479 /* Models */,
 				8DBD85B42F194400006D34D1 /* Auth */,
 				8DBD85C42F194402006D34D1 /* Services */,
+				AD183FCA94F44CD1B4076173 /* Utilities */,
 				A1000002000000000000001 /* MeetingManagerApp.swift */,
 				A1000003000000000000001 /* ContentView.swift */,
 				A1000004000000000000001 /* Assets.xcassets */,
@@ -252,6 +257,13 @@
 				A5575E0C94A541F58296F370 /* Document */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		AD183FCA94F44CD1B4076173 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				51543D286E06437CA5D8C9B5 /* NameMatcher.swift */,);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -364,7 +376,9 @@
 				BF37112BB7EB4003E99B6A7D /* ProcessingState.swift in Sources */,
 			
 				62E23F86D70C4E729D76F9B0 /* TaskService.swift in Sources */,
-				8AA51AD698E6477D98B5C37D /* NameMatcher.swift in Sources */,);
+				DEFD0D9AAF704C909D51FBB4 /* TaskRowView.swift in Sources */,
+				8AA51AD698E6477D98B5C37D /* NameMatcher.swift in Sources */,
+				BAE3CFBE67F6424CA667ECB2 /* TaskRowView.swift in Sources */,);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
