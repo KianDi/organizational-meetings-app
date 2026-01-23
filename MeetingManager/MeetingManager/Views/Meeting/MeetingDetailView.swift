@@ -371,18 +371,27 @@ struct MeetingDetailView: View {
     /// Summary section view
     @ViewBuilder
     private func summarySection(_ summary: String) -> some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text("AI Summary")
-                .font(.headline)
+        VStack(alignment: .leading, spacing: 12) {
+            // Section header with icon
+            HStack(spacing: 8) {
+                Image(systemName: "sparkles")
+                    .foregroundStyle(.blue)
+                Text("AI Summary")
+                    .font(.title3)
+                    .fontWeight(.semibold)
+            }
 
+            // Summary text with better formatting
             Text(summary)
                 .font(.body)
                 .foregroundStyle(.primary)
+                .lineSpacing(4)
                 .padding()
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .background(Color(.secondarySystemBackground))
-                .cornerRadius(8)
+                .cornerRadius(12)
         }
+        .padding(.vertical, 8)
     }
 
     /// Processing status view
