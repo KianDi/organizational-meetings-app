@@ -667,6 +667,36 @@ struct MeetingDetailView: View {
         formatter.timeStyle = .short
         return formatter.string(from: date)
     }
+
+    /// Load assignee names for tasks
+    private func loadAssigneeNames() async {
+        guard let tasks = currentMeeting.tasks else { return }
+
+        // Get unique assignee IDs
+        let assigneeIds = Set(tasks.compactMap { $0.assigneeId })
+
+        // Fetch members if not already loaded
+        if organizationState.members.isEmpty {
+            do {
+                try await organizationState.loadMembers(organizationId: currentMeeting.organizationId)
+            } catch {
+                print("Failed to load members: \(error)")
+                return
+            }
+        }
+
+        // Build name mapping
+        var names: [UUID: String] = [:]
+        for id in assigneeIds {
+            if let member = organizationState.members.first(where: { $0.id == id }) {
+                names[id] = member.name
+            }
+        }
+
+        await MainActor.run {
+            assigneeNames = names
+        }
+    }
 }
 
 // MARK: - Preview
