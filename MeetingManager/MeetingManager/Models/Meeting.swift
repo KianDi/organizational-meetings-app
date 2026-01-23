@@ -44,6 +44,9 @@ struct Meeting: Identifiable, Codable, Equatable {
     /// Timestamp when document was uploaded (added in Phase 5)
     var uploadedAt: Date?
 
+    /// Tasks extracted from this meeting (loaded separately, not stored in DB)
+    var tasks: [MeetingTask]?
+
     // MARK: - Initialization
 
     init(
