@@ -10,10 +10,19 @@ final class MeetingState {
 
     private let meetingService: MeetingService
     private let aiService: AIService
+    private let taskService: TaskService
+    private let organizationService: OrganizationService
 
-    init(meetingService: MeetingService = MeetingService(), aiService: AIService = AIService()) {
+    init(
+        meetingService: MeetingService = MeetingService(),
+        aiService: AIService = AIService(),
+        taskService: TaskService = TaskService(),
+        organizationService: OrganizationService = OrganizationService()
+    ) {
         self.meetingService = meetingService
         self.aiService = aiService
+        self.taskService = taskService
+        self.organizationService = organizationService
     }
 
     @MainActor
