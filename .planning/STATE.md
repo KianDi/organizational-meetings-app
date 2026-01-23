@@ -141,12 +141,14 @@ Resume file: None
 - ✓ 05-04: Task and position extraction logic (Wave 3) - COMPLETE
 - 05-05: Display summaries and extracted content (Wave 4) - NEXT
 
-**05-03 Accomplishments:**
-- Complete AI processing pipeline: upload → parse → summarize → save → update UI
-- ProcessingState enum tracking 7 workflow states with UI helpers (displayText, isProcessing)
-- MeetingState.processDocument orchestrating multi-step async workflow with conditional regeneration
-- Real-time processing status UI with spinner, checkmark, error icons, and retry button
-- Re-upload confirmation dialog preventing accidental summary overwrites
-- Auto-dismissing status messages (2s completed, 5s errors)
-- Summary display integrated into meeting detail view
-- Error recovery with retry button using lastFailedDocumentUrl
+**05-04 Accomplishments:**
+- Tasks table with RLS policies (member read, assignee update, creator delete)
+- TaskService actor for thread-safe task CRUD operations with batch creation
+- AI task extraction using OpenRouter JSON mode for 100% schema compliance
+- NameMatcher utility: 3-tier fuzzy name matching (exact → email → partial)
+- Natural language date parsing (ISO8601, "tomorrow", "next week", weekday names)
+- Complete extraction pipeline: upload → parse → summarize → extract tasks → save
+- MeetingState.processDocument now fetches members and matches assignees
+- Meeting.tasks property (optional, loaded separately for performance)
+- Task count badge in MeetingListView (blue capsule showing number of tasks)
+- Xcode project updated with TaskService.swift and NameMatcher.swift
