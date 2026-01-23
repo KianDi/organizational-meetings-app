@@ -179,6 +179,17 @@ private struct MeetingRowView: View {
 
                 Spacer()
 
+                // Task count badge (if tasks loaded)
+                if let taskCount = meeting.tasks?.count, taskCount > 0 {
+                    Text("\(taskCount)")
+                        .font(.caption)
+                        .foregroundStyle(.white)
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 4)
+                        .background(Color.blue)
+                        .clipShape(Capsule())
+                }
+
                 // Attendance badge
                 Text("\(meeting.attendeeIds.count) checked in")
                     .font(.caption)
