@@ -26,6 +26,10 @@ struct MeetingDetailView: View {
     @State private var pendingDocumentUrl: URL?
     @State private var lastFailedDocumentUrl: URL?
 
+    /// Share sheet state
+    @State private var showShareSheet: Bool = false
+    @State private var shareText: String = ""
+
     /// Error messages
     @State private var errorMessage: String?
     @State private var successMessage: String?
