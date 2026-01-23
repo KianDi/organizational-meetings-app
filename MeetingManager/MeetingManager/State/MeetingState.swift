@@ -37,7 +37,7 @@ final class MeetingState {
     @MainActor
     func loadMeetingWithTasks(meetingId: UUID) async throws -> Meeting {
         // Fetch meeting
-        var meeting = try await meetingService.fetchMeeting(meetingId: meetingId)
+        var meeting = try await meetingService.fetchMeeting(id: meetingId)
 
         // Fetch associated tasks
         let tasks = try await taskService.fetchTasksForMeeting(meetingId: meetingId)
