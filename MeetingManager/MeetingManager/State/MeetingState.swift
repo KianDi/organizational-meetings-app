@@ -94,6 +94,7 @@ final class MeetingState {
     func processDocument(
         meetingId: UUID,
         documentUrl: URL,
+        organizationId: UUID,
         regenerateSummary: Bool = true
     ) async {
         processingState = .uploadingDocument
@@ -130,7 +131,45 @@ final class MeetingState {
                 )
             }
 
-            // Step 5: Update local state
+            // Step 5: Extract tasks
+            processingState = .extractingTasks
+
+            // Fetch organization members for name matching
+            let members = try await organizationService.fetchMembers(organizationId: organizationId)
+
+            let extractedTasks = try await aiService.extractTasks(
+                from: documentText,
+                organizationMembers: members
+            )
+
+            // Convert extracted data to MeetingTask models
+            let tasks = extractedTasks.map { extracted -> MeetingTask in
+                let assigneeId = extracted.assigneeName.flatMap {
+                    NameMatcher.matchAssignee(name: $0, candidates: members)
+                }
+
+                let dueDate = extracted.dueDate.flatMap {
+                    NameMatcher.parseDate(from: $0)
+                }
+
+                return MeetingTask(
+                    meetingId: meetingId,
+                    organizationId: organizationId,
+                    title: extracted.title,
+                    assigneeId: assigneeId,
+                    dueDate: dueDate,
+                    isCompleted: false,
+                    createdAt: Date(),
+                    extractedFrom: extracted.context
+                )
+            }
+
+            // Save tasks to database
+            if !tasks.isEmpty {
+                _ = try await taskService.createTasks(tasks)
+            }
+
+            // Step 6: Update local state
             if let updatedMeeting = updatedMeeting,
                let index = meetings.firstIndex(where: { $0.id == meetingId }) {
                 meetings[index] = updatedMeeting
