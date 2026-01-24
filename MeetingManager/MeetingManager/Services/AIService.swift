@@ -111,10 +111,27 @@ actor AIService {
                 ]
             ]
 
+            print("🔍 [AIService] Calling extractTasks API...")
             let jsonString = try await self.makeRequest(messages: messages, jsonMode: true)
-            let data = jsonString.data(using: .utf8)!
-            let schema = try JSONDecoder().decode(TaskExtractionSchema.self, from: data)
-            return schema.tasks
+            print("✅ [AIService] Received JSON response (\(jsonString.count) chars)")
+            print("📄 [AIService] JSON Preview: \(String(jsonString.prefix(200)))...")
+
+            guard let data = jsonString.data(using: .utf8) else {
+                print("❌ [AIService] Failed to convert JSON string to data")
+                throw AIError.parsingError
+            }
+
+            print("🔧 [AIService] Attempting to decode TaskExtractionSchema...")
+            do {
+                let schema = try JSONDecoder().decode(TaskExtractionSchema.self, from: data)
+                print("✅ [AIService] Successfully decoded \(schema.tasks.count) tasks")
+                return schema.tasks
+            } catch {
+                print("❌ [AIService] JSON decoding failed: \(error)")
+                print("📋 [AIService] Raw JSON that failed to decode:")
+                print(jsonString)
+                throw AIError.parsingError
+            }
         }
     }
 
