@@ -33,13 +33,13 @@ enum AIError: Error {
 
 struct OpenRouterConfig {
     static let endpoint = "https://openrouter.ai/api/v1/chat/completions"
-    static let apiKey = ProcessInfo.processInfo.environment["OPENROUTER_API_KEY"] ?? ""
-    static let model = "deepseek/deepseek-chat"
+    static let apiKey = "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"
+    static let model = "tngtech/deepseek-r1t2-chimera:free"
     static let maxTokens = 4096
     static let appName = "MeetingManager"
 
     static var isConfigured: Bool {
-        !apiKey.isEmpty
+        !apiKey.isEmpty && apiKey != "YOUR_OPENROUTER_API_KEY_HERE"
     }
 }
 
