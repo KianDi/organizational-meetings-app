@@ -31,10 +31,14 @@ actor AIService {
     /// Generate meeting summary from document text
     /// Returns structured summary with key points
     func generateSummary(from documentText: String) async throws -> String {
+        print("🔍 [AIService] generateSummary called with \(documentText.count) characters")
+
         guard OpenRouterConfig.isConfigured else {
+            print("❌ [AIService] API key not configured")
             throw AIError.notConfigured
         }
 
+        print("✅ [AIService] API key configured, calling OpenRouter...")
         return try await callWithRetry {
             let messages = [
                 [
@@ -60,7 +64,10 @@ actor AIService {
                 ]
             ]
 
-            return try await self.makeRequest(messages: messages, jsonMode: false)
+            print("📡 [AIService] Sending summary generation request...")
+            let summary = try await self.makeRequest(messages: messages, jsonMode: false)
+            print("✅ [AIService] Summary generated (\(summary.count) chars)")
+            return summary
         }
     }
 
