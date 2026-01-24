@@ -214,18 +214,36 @@ final class MeetingState {
             }
 
             // Step 6: Update local state
+            print("\n🔄 [MeetingState] Step 6: Updating local state...")
             if let updatedMeeting = updatedMeeting,
                let index = meetings.firstIndex(where: { $0.id == meetingId }) {
                 meetings[index] = updatedMeeting
+                print("✅ [MeetingState] Local meeting state updated")
+            } else {
+                print("ℹ️  [MeetingState] No meeting state update needed")
             }
 
             processingState = .completed
+            print("\n✅ [MeetingState] ========================================")
+            print("✅ [MeetingState] PROCESSING COMPLETE!")
+            print("✅ [MeetingState] ========================================\n")
 
             // Auto-clear completed state after 2 seconds
             try? await Task.sleep(nanoseconds: 2_000_000_000)
             processingState = .idle
 
         } catch {
+            print("\n❌ [MeetingState] ========================================")
+            print("❌ [MeetingState] ERROR OCCURRED!")
+            print("❌ [MeetingState] Error: \(error)")
+            print("❌ [MeetingState] Localized: \(error.localizedDescription)")
+            if let nsError = error as NSError? {
+                print("❌ [MeetingState] Domain: \(nsError.domain)")
+                print("❌ [MeetingState] Code: \(nsError.code)")
+                print("❌ [MeetingState] UserInfo: \(nsError.userInfo)")
+            }
+            print("❌ [MeetingState] ========================================\n")
+
             processingState = .failed(error.localizedDescription)
 
             // Auto-clear error after 5 seconds
