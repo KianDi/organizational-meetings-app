@@ -163,6 +163,7 @@ final class MeetingState {
                 print("✅ [MeetingState] Summary saved")
             } else {
                 print("⏭️  [MeetingState] Step 3-4: Skipping summary (already exists)")
+            }
 
             // Step 5: Extract tasks
             print("\n🎯 [MeetingState] Step 5: Extracting tasks...")
