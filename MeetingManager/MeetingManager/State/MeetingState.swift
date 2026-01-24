@@ -114,13 +114,21 @@ final class MeetingState {
         organizationId: UUID,
         regenerateSummary: Bool = true
     ) async {
+        print("\n========================================")
+        print("🚀 [MeetingState] Starting document processing")
+        print("   Meeting ID: \(meetingId)")
+        print("   Document: \(documentUrl.lastPathComponent)")
+        print("========================================\n")
+
         processingState = .uploadingDocument
 
         do {
             // Step 1: Parse document
+            print("📄 [MeetingState] Step 1: Parsing document...")
             processingState = .parsingDocument
             let documentService = DocumentService()
             let documentText = try await documentService.parseDocument(url: documentUrl)
+            print("✅ [MeetingState] Document parsed: \(documentText.count) characters")
 
             // Step 2: Upload to meeting
             let urlString = documentUrl.lastPathComponent
