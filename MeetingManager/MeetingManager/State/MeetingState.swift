@@ -131,30 +131,38 @@ final class MeetingState {
             print("✅ [MeetingState] Document parsed: \(documentText.count) characters")
 
             // Step 2: Upload to meeting
+            print("\n💾 [MeetingState] Step 2: Uploading to database...")
             let urlString = documentUrl.lastPathComponent
             _ = try await meetingService.uploadDocument(
                 meetingId: meetingId,
                 documentText: documentText,
                 documentUrl: urlString
             )
+            print("✅ [MeetingState] Document uploaded to database")
 
             // Get current meeting to check if summary exists
             guard let currentMeeting = meetings.first(where: { $0.id == meetingId }) else {
+                print("❌ [MeetingState] Meeting not found in local state")
                 throw NSError(domain: "MeetingState", code: -1, userInfo: [NSLocalizedDescriptionKey: "Meeting not found"])
             }
 
             // Step 3: Generate summary (only if needed)
             var updatedMeeting: Meeting?
             if regenerateSummary || currentMeeting.summary == nil {
+                print("\n🤖 [MeetingState] Step 3: Generating AI summary...")
                 processingState = .generatingSummary
                 let summary = try await aiService.generateSummary(from: documentText)
+                print("✅ [MeetingState] Summary received from AI")
 
                 // Step 4: Save summary
+                print("💾 [MeetingState] Step 4: Saving summary to database...")
                 updatedMeeting = try await meetingService.updateSummary(
                     meetingId: meetingId,
                     summary: summary
                 )
-            }
+                print("✅ [MeetingState] Summary saved")
+            } else {
+                print("⏭️  [MeetingState] Step 3-4: Skipping summary (already exists)")
 
             // Step 5: Extract tasks
             processingState = .extractingTasks
