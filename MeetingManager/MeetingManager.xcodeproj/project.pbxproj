@@ -145,7 +145,7 @@
 				8DBA775E2F22B37100C43859 /* OrganizationState.swift */,
 			);
 			name = State;
-			path = MeetingManager/State;
+			path = State;
 			sourceTree = "<group>";
 		};
 		8DBD85B42F194400006D34D1 /* Auth */ = {
@@ -208,7 +208,6 @@
 		A1000020000000000000001 = {
 			isa = PBXGroup;
 			children = (
-				8DBA775F2F22B37100C43859 /* State */,
 				8DBA77572F22AFD800C43859 /* Config */,
 				A1000021000000000000001 /* MeetingManager */,
 				A1000022000000000000001 /* Products */,
@@ -221,6 +220,7 @@
 				8D67F9AC2F19491200FAE479 /* Models */,
 				8DBD85B42F194400006D34D1 /* Auth */,
 				8DBD85C42F194402006D34D1 /* Services */,
+				8DBA775F2F22B37100C43859 /* State */,
 				AD183FCA94F44CD1B4076173 /* Utilities */,
 				A1000002000000000000001 /* MeetingManagerApp.swift */,
 				A1000003000000000000001 /* ContentView.swift */,
