@@ -165,17 +165,23 @@ final class MeetingState {
                 print("⏭️  [MeetingState] Step 3-4: Skipping summary (already exists)")
 
             // Step 5: Extract tasks
+            print("\n🎯 [MeetingState] Step 5: Extracting tasks...")
             processingState = .extractingTasks
 
             // Fetch organization members for name matching
+            print("👥 [MeetingState] Fetching organization members...")
             let members = try await organizationService.fetchMembers(organizationId: organizationId)
+            print("✅ [MeetingState] Loaded \(members.count) members for name matching")
 
+            print("🤖 [MeetingState] Calling AI to extract tasks...")
             let extractedTasks = try await aiService.extractTasks(
                 from: documentText,
                 organizationMembers: members
             )
+            print("✅ [MeetingState] AI extracted \(extractedTasks.count) tasks")
 
             // Convert extracted data to MeetingTask models
+            print("🔄 [MeetingState] Converting extracted tasks to MeetingTask models...")
             let tasks = extractedTasks.map { extracted -> MeetingTask in
                 let assigneeId = extracted.assigneeName.flatMap {
                     NameMatcher.matchAssignee(name: $0, candidates: members)
@@ -196,10 +202,15 @@ final class MeetingState {
                     extractedFrom: extracted.context
                 )
             }
+            print("✅ [MeetingState] Converted \(tasks.count) tasks")
 
             // Save tasks to database
             if !tasks.isEmpty {
+                print("💾 [MeetingState] Saving \(tasks.count) tasks to database...")
                 _ = try await taskService.createTasks(tasks)
+                print("✅ [MeetingState] Tasks saved to database")
+            } else {
+                print("ℹ️  [MeetingState] No tasks to save")
             }
 
             // Step 6: Update local state
