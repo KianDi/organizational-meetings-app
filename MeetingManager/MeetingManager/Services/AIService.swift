@@ -171,6 +171,11 @@ actor AIService {
 
     /// Make HTTP request to OpenRouter
     private func makeRequest(messages: [[String: String]], jsonMode: Bool) async throws -> String {
+        print("📡 [AIService.makeRequest] Preparing request...")
+        print("   Endpoint: \(OpenRouterConfig.endpoint)")
+        print("   Model: \(OpenRouterConfig.model)")
+        print("   JSON Mode: \(jsonMode)")
+
         var request = URLRequest(url: URL(string: OpenRouterConfig.endpoint)!)
         request.httpMethod = "POST"
         request.setValue("Bearer \(OpenRouterConfig.apiKey)", forHTTPHeaderField: "Authorization")
@@ -188,21 +193,32 @@ actor AIService {
         }
 
         request.httpBody = try JSONSerialization.data(withJSONObject: body)
+        print("📤 [AIService.makeRequest] Sending request...")
 
         let (data, response) = try await session.data(for: request)
+        print("📥 [AIService.makeRequest] Received response")
 
         guard let httpResponse = response as? HTTPURLResponse else {
+            print("❌ [AIService.makeRequest] Invalid HTTP response type")
             throw AIError.networkError(NSError(domain: "Invalid response", code: -1))
         }
 
+        print("📊 [AIService.makeRequest] HTTP Status: \(httpResponse.statusCode)")
+
         if httpResponse.statusCode == 429 {
+            print("❌ [AIService.makeRequest] Rate limit exceeded")
             throw AIError.rateLimitExceeded
         }
 
         guard httpResponse.statusCode == 200 else {
+            print("❌ [AIService.makeRequest] Non-200 status code: \(httpResponse.statusCode)")
+            if let errorBody = String(data: data, encoding: .utf8) {
+                print("❌ [AIService.makeRequest] Error response body: \(errorBody)")
+            }
             throw AIError.apiKeyInvalid
         }
 
+        print("🔍 [AIService.makeRequest] Decoding OpenRouter response...")
         struct OpenRouterResponse: Codable {
             struct Choice: Codable {
                 struct Message: Codable {
@@ -215,9 +231,11 @@ actor AIService {
 
         let decoded = try JSONDecoder().decode(OpenRouterResponse.self, from: data)
         guard let content = decoded.choices.first?.message.content else {
+            print("❌ [AIService.makeRequest] No content in choices")
             throw AIError.parsingError
         }
 
+        print("✅ [AIService.makeRequest] Successfully extracted content (\(content.count) chars)")
         return content
     }
 }
