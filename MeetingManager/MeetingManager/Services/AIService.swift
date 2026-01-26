@@ -119,9 +119,20 @@ actor AIService {
             ]
 
             print("🔍 [AIService] Calling extractTasks API...")
-            let jsonString = try await self.makeRequest(messages: messages, jsonMode: true)
-            print("✅ [AIService] Received JSON response (\(jsonString.count) chars)")
-            print("📄 [AIService] JSON Preview: \(String(jsonString.prefix(200)))...")
+            let rawResponse = try await self.makeRequest(messages: messages, jsonMode: true)
+            print("✅ [AIService] Received JSON response (\(rawResponse.count) chars)")
+            print("📄 [AIService] JSON Preview: \(String(rawResponse.prefix(200)))...")
+
+            // Strip markdown code fences if present (```json ... ```)
+            var jsonString = rawResponse.trimmingCharacters(in: .whitespacesAndNewlines)
+            if jsonString.hasPrefix("```json") {
+                print("🔧 [AIService] Stripping markdown code fence...")
+                jsonString = jsonString
+                    .replacingOccurrences(of: "```json", with: "")
+                    .replacingOccurrences(of: "```", with: "")
+                    .trimmingCharacters(in: .whitespacesAndNewlines)
+                print("✅ [AIService] Code fence removed, clean JSON (\(jsonString.count) chars)")
+            }
 
             guard let data = jsonString.data(using: .utf8) else {
                 print("❌ [AIService] Failed to convert JSON string to data")
