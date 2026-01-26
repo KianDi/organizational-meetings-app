@@ -6,89 +6,61 @@
 -- =============================================
 
 -- Create tasks table
-CREATE TABLE IF NOT EXISTS public.tasks (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    meeting_id UUID NOT NULL REFERENCES public.meetings(id) ON DELETE CASCADE,
-    organization_id UUID NOT NULL REFERENCES public.organizations(id) ON DELETE CASCADE,
+CREATE TABLE IF NOT EXISTS tasks (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    meeting_id UUID NOT NULL REFERENCES meetings(id) ON DELETE CASCADE,
+    organization_id UUID NOT NULL REFERENCES organizations(id) ON DELETE CASCADE,
     title TEXT NOT NULL,
-    assignee_id UUID REFERENCES public.users(id) ON DELETE SET NULL,
+    assignee_id UUID REFERENCES auth.users(id),
     due_date TIMESTAMPTZ,
     is_completed BOOLEAN NOT NULL DEFAULT false,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    extracted_from TEXT,  -- Context snippet from document where task was mentioned
-    priority TEXT         -- 'high', 'medium', 'low'
+    extracted_from TEXT,  -- Source text where task was mentioned
+    priority TEXT,        -- 'high', 'medium', 'low'
+    CONSTRAINT valid_priority CHECK (priority IS NULL OR priority IN ('high', 'medium', 'low'))
 );
 
--- Create indexes for common queries
-CREATE INDEX IF NOT EXISTS idx_tasks_meeting_id ON public.tasks(meeting_id);
-CREATE INDEX IF NOT EXISTS idx_tasks_organization_id ON public.tasks(organization_id);
-CREATE INDEX IF NOT EXISTS idx_tasks_assignee_id ON public.tasks(assignee_id);
-CREATE INDEX IF NOT EXISTS idx_tasks_due_date ON public.tasks(due_date) WHERE due_date IS NOT NULL;
-CREATE INDEX IF NOT EXISTS idx_tasks_is_completed ON public.tasks(is_completed);
+-- Create index for common queries
+CREATE INDEX IF NOT EXISTS idx_tasks_organization ON tasks(organization_id);
+CREATE INDEX IF NOT EXISTS idx_tasks_assignee ON tasks(assignee_id);
+CREATE INDEX IF NOT EXISTS idx_tasks_meeting ON tasks(meeting_id);
+CREATE INDEX IF NOT EXISTS idx_tasks_due_date ON tasks(due_date) WHERE due_date IS NOT NULL;
 
 -- Enable Row Level Security
-ALTER TABLE public.tasks ENABLE ROW LEVEL SECURITY;
+ALTER TABLE tasks ENABLE ROW LEVEL SECURITY;
 
--- RLS Policy: Users can view tasks for their organization's meetings
-CREATE POLICY "Users can view tasks for their organization"
-    ON public.tasks
+-- Members can view all tasks in their organization
+CREATE POLICY "tasks_select_policy" ON tasks
     FOR SELECT
     USING (
         organization_id IN (
-            SELECT organization_id
-            FROM public.organization_members
-            WHERE user_id = auth.uid()
+            SELECT id FROM organizations
+            WHERE auth.uid() = ANY(member_ids)
         )
     );
 
--- RLS Policy: Users can create tasks for their organization's meetings
-CREATE POLICY "Users can create tasks for their organization"
-    ON public.tasks
+-- Organizers (meeting creators) can insert tasks
+CREATE POLICY "tasks_insert_policy" ON tasks
     FOR INSERT
     WITH CHECK (
-        organization_id IN (
-            SELECT organization_id
-            FROM public.organization_members
-            WHERE user_id = auth.uid()
+        meeting_id IN (
+            SELECT id FROM meetings
+            WHERE created_by_id = auth.uid()
         )
     );
 
--- RLS Policy: Users can update tasks in their organization
-CREATE POLICY "Users can update tasks in their organization"
-    ON public.tasks
+-- Task assignees can update their own task completion status
+CREATE POLICY "tasks_update_policy" ON tasks
     FOR UPDATE
-    USING (
-        organization_id IN (
-            SELECT organization_id
-            FROM public.organization_members
-            WHERE user_id = auth.uid()
-        )
-    )
-    WITH CHECK (
-        organization_id IN (
-            SELECT organization_id
-            FROM public.organization_members
-            WHERE user_id = auth.uid()
-        )
-    );
+    USING (assignee_id = auth.uid())
+    WITH CHECK (assignee_id = auth.uid());
 
--- RLS Policy: Users can delete tasks in their organization
-CREATE POLICY "Users can delete tasks in their organization"
-    ON public.tasks
+-- Meeting creators can delete tasks from their meetings
+CREATE POLICY "tasks_delete_policy" ON tasks
     FOR DELETE
     USING (
-        organization_id IN (
-            SELECT organization_id
-            FROM public.organization_members
-            WHERE user_id = auth.uid()
+        meeting_id IN (
+            SELECT id FROM meetings
+            WHERE created_by_id = auth.uid()
         )
     );
-
--- Grant permissions
-GRANT SELECT, INSERT, UPDATE, DELETE ON public.tasks TO authenticated;
-GRANT SELECT ON public.tasks TO anon;
-
--- Add comment for documentation
-COMMENT ON TABLE public.tasks IS 'Action items and tasks extracted from meetings or manually created';
-COMMENT ON COLUMN public.tasks.extracted_from IS 'Original text snippet from meeting document where task was mentioned';
-COMMENT ON COLUMN public.tasks.priority IS 'Task priority: high, medium, or low';
