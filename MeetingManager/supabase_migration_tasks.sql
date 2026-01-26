@@ -16,11 +16,7 @@ CREATE TABLE IF NOT EXISTS public.tasks (
     is_completed BOOLEAN NOT NULL DEFAULT false,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     extracted_from TEXT,  -- Context snippet from document where task was mentioned
-    priority TEXT,        -- 'high', 'medium', 'low'
-
-    -- Ensure task belongs to same org as meeting
-    CONSTRAINT fk_task_org_matches_meeting
-        CHECK (organization_id = (SELECT organization_id FROM meetings WHERE id = meeting_id))
+    priority TEXT         -- 'high', 'medium', 'low'
 );
 
 -- Create indexes for common queries
