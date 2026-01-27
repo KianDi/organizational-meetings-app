@@ -206,9 +206,10 @@ final class MeetingState {
             print("✅ [MeetingState] Converted \(tasks.count) tasks")
 
             // Save tasks to database
+            var createdTasks: [MeetingTask] = []
             if !tasks.isEmpty {
                 print("💾 [MeetingState] Saving \(tasks.count) tasks to database...")
-                _ = try await taskService.createTasks(tasks)
+                createdTasks = try await taskService.createTasks(tasks)
                 print("✅ [MeetingState] Tasks saved to database")
             } else {
                 print("ℹ️  [MeetingState] No tasks to save")
@@ -216,10 +217,19 @@ final class MeetingState {
 
             // Step 6: Update local state
             print("\n🔄 [MeetingState] Step 6: Updating local state...")
-            if let updatedMeeting = updatedMeeting,
-               let index = meetings.firstIndex(where: { $0.id == meetingId }) {
+            if let index = meetings.firstIndex(where: { $0.id == meetingId }) {
+                var updatedMeeting = meetings[index]
+
+                // Update summary if it was generated
+                if let summary = updatedMeeting?.summary {
+                    updatedMeeting.summary = summary
+                }
+
+                // Attach tasks to meeting
+                updatedMeeting.tasks = createdTasks
+
                 meetings[index] = updatedMeeting
-                print("✅ [MeetingState] Local meeting state updated")
+                print("✅ [MeetingState] Local meeting state updated with \(createdTasks.count) tasks")
             } else {
                 print("ℹ️  [MeetingState] No meeting state update needed")
             }
