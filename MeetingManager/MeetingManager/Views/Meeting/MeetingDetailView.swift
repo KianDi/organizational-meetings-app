@@ -775,22 +775,12 @@ struct MeetingDetailView: View {
 
     /// Toggle task completion status
     private func toggleTaskCompletion(_ task: MeetingTask) async {
-        let taskService = TaskService()
-
         do {
-            // Update in database
-            let updatedTask = try await taskService.updateTaskCompletion(
+            try await meetingState.updateTaskCompletion(
+                meetingId: currentMeeting.id,
                 taskId: task.id,
                 isCompleted: !task.isCompleted
             )
-
-            // Update local state
-            if let index = meetingState.meetings.firstIndex(where: { $0.id == currentMeeting.id }),
-               var tasks = meetingState.meetings[index].tasks,
-               let taskIndex = tasks.firstIndex(where: { $0.id == task.id }) {
-                tasks[taskIndex] = updatedTask
-                meetingState.meetings[index].tasks = tasks
-            }
         } catch {
             errorMessage = "Failed to update task: \(error.localizedDescription)"
         }
