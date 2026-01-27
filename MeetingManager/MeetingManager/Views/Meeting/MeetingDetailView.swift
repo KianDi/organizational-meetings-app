@@ -464,7 +464,12 @@ struct MeetingDetailView: View {
                 ForEach(tasks) { task in
                     TaskRowView(
                         task: task,
-                        assigneeName: task.assigneeId.flatMap { assigneeNames[$0] }
+                        assigneeName: task.assigneeId.flatMap { assigneeNames[$0] },
+                        onToggle: { task in
+                            Task {
+                                await toggleTaskCompletion(task)
+                            }
+                        }
                     )
                 }
             }
