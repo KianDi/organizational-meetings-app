@@ -13,8 +13,8 @@ struct OpenRouterConfig {
   /// Model to use for processing (DeepSeek is cost-effective)
   static let model = "tngtech/deepseek-r1t2-chimera:free"
 
-  /// Max tokens for AI responses (4K sufficient for summaries)
-  static let maxTokens = 4096
+  /// Max tokens for AI responses (8K for task extraction)
+  static let maxTokens = 8192
 
   /// App identifier for OpenRouter
   static let appName = "MeetingManager"
