@@ -363,6 +363,15 @@ struct MeetingDetailView: View {
             await loadAttendees()
             await loadAssigneeNames()
         }
+        .onChange(of: meetingState.processingState) { _, newState in
+            // Refresh meeting data when processing completes
+            if case .completed = newState {
+                Task {
+                    try? await Task.sleep(nanoseconds: 500_000_000) // Wait 0.5s for state to settle
+                    await refreshMeeting()
+                }
+            }
+        }
         .sheet(isPresented: $showDocumentPicker) {
             DocumentPickerView { url in
                 // If document already exists, show confirmation dialog
