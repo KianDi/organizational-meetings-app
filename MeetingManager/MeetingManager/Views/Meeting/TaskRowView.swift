@@ -8,14 +8,20 @@ struct TaskRowView: View {
     // For displaying assignee name (passed from parent)
     var assigneeName: String?
 
+    // Callback when task completion is toggled
+    var onToggle: ((MeetingTask) -> Void)?
+
     // MARK: - Body
 
     var body: some View {
-        HStack(alignment: .top, spacing: 12) {
-            // Completion indicator (read-only in this view)
-            Image(systemName: task.isCompleted ? "checkmark.circle.fill" : "circle")
-                .foregroundStyle(task.isCompleted ? .green : .gray)
-                .font(.title3)
+        Button {
+            onToggle?(task)
+        } label: {
+            HStack(alignment: .top, spacing: 12) {
+                // Completion indicator
+                Image(systemName: task.isCompleted ? "checkmark.circle.fill" : "circle")
+                    .foregroundStyle(task.isCompleted ? .green : .gray)
+                    .font(.title3)
 
             // Task content
             VStack(alignment: .leading, spacing: 4) {
