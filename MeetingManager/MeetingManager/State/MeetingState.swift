@@ -108,6 +108,23 @@ final class MeetingState {
     }
 
     @MainActor
+    func updateTaskCompletion(meetingId: UUID, taskId: UUID, isCompleted: Bool) async throws {
+        // Update in database
+        let updatedTask = try await taskService.updateTaskCompletion(
+            taskId: taskId,
+            isCompleted: isCompleted
+        )
+
+        // Update local state
+        if let meetingIndex = meetings.firstIndex(where: { $0.id == meetingId }),
+           var tasks = meetings[meetingIndex].tasks,
+           let taskIndex = tasks.firstIndex(where: { $0.id == taskId }) {
+            tasks[taskIndex] = updatedTask
+            meetings[meetingIndex].tasks = tasks
+        }
+    }
+
+    @MainActor
     func processDocument(
         meetingId: UUID,
         documentUrl: URL,
