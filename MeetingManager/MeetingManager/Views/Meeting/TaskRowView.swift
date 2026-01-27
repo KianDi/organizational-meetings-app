@@ -23,35 +23,35 @@ struct TaskRowView: View {
                     .foregroundStyle(task.isCompleted ? .green : .gray)
                     .font(.title3)
 
-            // Task content
-            VStack(alignment: .leading, spacing: 4) {
-                // Title
-                Text(task.title)
-                    .font(.body)
-                    .foregroundStyle(.primary)
-                    .strikethrough(task.isCompleted)
+                // Task content
+                VStack(alignment: .leading, spacing: 4) {
+                    // Title
+                    Text(task.title)
+                        .font(.body)
+                        .foregroundStyle(.primary)
+                        .strikethrough(task.isCompleted)
 
-                // Metadata row
-                HStack(spacing: 12) {
-                    // Assignee
-                    if let assigneeName {
-                        Label(assigneeName, systemImage: "person.fill")
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                    } else {
-                        Label("Unassigned", systemImage: "person.fill.questionmark")
-                            .font(.caption)
-                            .foregroundStyle(.orange)
-                    }
+                    // Metadata row
+                    HStack(spacing: 12) {
+                        // Assignee
+                        if let assigneeName {
+                            Label(assigneeName, systemImage: "person.fill")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        } else {
+                            Label("Unassigned", systemImage: "person.fill.questionmark")
+                                .font(.caption)
+                                .foregroundStyle(.orange)
+                        }
 
-                    // Due date
-                    if let dueDate = task.dueDate {
-                        Label(formatDate(dueDate), systemImage: "calendar")
-                            .font(.caption)
-                            .foregroundStyle(isOverdue(dueDate) ? .red : .secondary)
+                        // Due date
+                        if let dueDate = task.dueDate {
+                            Label(formatDate(dueDate), systemImage: "calendar")
+                                .font(.caption)
+                                .foregroundStyle(isOverdue(dueDate) ? .red : .secondary)
+                        }
                     }
                 }
-            }
 
                 Spacer()
             }
