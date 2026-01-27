@@ -218,17 +218,17 @@ final class MeetingState {
             // Step 6: Update local state
             print("\n🔄 [MeetingState] Step 6: Updating local state...")
             if let index = meetings.firstIndex(where: { $0.id == meetingId }) {
-                var updatedMeeting = meetings[index]
+                var meetingToUpdate = meetings[index]
 
-                // Update summary if it was generated
-                if let summary = updatedMeeting?.summary {
-                    updatedMeeting.summary = summary
+                // Update summary if it was generated in Step 3-4
+                if let newSummary = updatedMeeting?.summary {
+                    meetingToUpdate.summary = newSummary
                 }
 
                 // Attach tasks to meeting
-                updatedMeeting.tasks = createdTasks
+                meetingToUpdate.tasks = createdTasks
 
-                meetings[index] = updatedMeeting
+                meetings[index] = meetingToUpdate
                 print("✅ [MeetingState] Local meeting state updated with \(createdTasks.count) tasks")
             } else {
                 print("ℹ️  [MeetingState] No meeting state update needed")
