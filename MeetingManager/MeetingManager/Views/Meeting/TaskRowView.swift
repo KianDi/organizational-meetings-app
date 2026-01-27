@@ -53,8 +53,10 @@ struct TaskRowView: View {
                 }
             }
 
-            Spacer()
+                Spacer()
+            }
         }
+        .buttonStyle(.plain)
         .padding()
         .background(Color(.tertiarySystemBackground))
         .cornerRadius(8)
