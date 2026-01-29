@@ -10,6 +10,10 @@ final class MeetingState {
     private(set) var organizationTasks: [MeetingTask] = []
     private(set) var isLoadingTasks: Bool = false
 
+    // Multi-organization aggregated data
+    private(set) var allMeetings: [Meeting] = []
+    private(set) var allUserTasks: [MeetingTask] = []
+
     private let meetingService: MeetingService
     private let aiService: AIService
     private let taskService: TaskService
@@ -293,21 +297,33 @@ final class MeetingState {
 
     @MainActor
     func toggleTaskCompletion(taskId: UUID) async throws {
-        // Find task in organizationTasks
-        guard let taskIndex = organizationTasks.firstIndex(where: { $0.id == taskId }) else {
+        // Find task in organizationTasks or allUserTasks
+        let currentTask: MeetingTask?
+        if let taskIndex = organizationTasks.firstIndex(where: { $0.id == taskId }) {
+            currentTask = organizationTasks[taskIndex]
+        } else if let taskIndex = allUserTasks.firstIndex(where: { $0.id == taskId }) {
+            currentTask = allUserTasks[taskIndex]
+        } else {
             return
         }
 
-        let currentTask = organizationTasks[taskIndex]
+        guard let task = currentTask else { return }
 
         // Update in database
         let updatedTask = try await taskService.updateTaskCompletion(
             taskId: taskId,
-            isCompleted: !currentTask.isCompleted
+            isCompleted: !task.isCompleted
         )
 
         // Update local organizationTasks array
-        organizationTasks[taskIndex] = updatedTask
+        if let taskIndex = organizationTasks.firstIndex(where: { $0.id == taskId }) {
+            organizationTasks[taskIndex] = updatedTask
+        }
+
+        // Update local allUserTasks array
+        if let taskIndex = allUserTasks.firstIndex(where: { $0.id == taskId }) {
+            allUserTasks[taskIndex] = updatedTask
+        }
 
         // Also update in meeting's tasks array if present
         if let meetingIndex = meetings.firstIndex(where: { $0.id == updatedTask.meetingId }),
@@ -326,6 +342,9 @@ final class MeetingState {
         // Remove from organizationTasks array
         organizationTasks.removeAll { $0.id == taskId }
 
+        // Remove from allUserTasks array
+        allUserTasks.removeAll { $0.id == taskId }
+
         // Remove from any meeting's tasks array
         for (index, var meeting) in meetings.enumerated() {
             if var tasks = meeting.tasks {
@@ -334,5 +353,35 @@ final class MeetingState {
                 meetings[index] = meeting
             }
         }
+    }
+
+    @MainActor
+    func loadAllMeetings(organizationIds: [UUID]) async throws {
+        isLoading = true
+        defer { isLoading = false }
+
+        var aggregatedMeetings: [Meeting] = []
+
+        for organizationId in organizationIds {
+            let fetchedMeetings = try await meetingService.fetchMeetingsForOrganization(organizationId: organizationId)
+            aggregatedMeetings.append(contentsOf: fetchedMeetings)
+        }
+
+        allMeetings = aggregatedMeetings
+    }
+
+    @MainActor
+    func loadAllUserTasks(organizationIds: [UUID]) async throws {
+        isLoadingTasks = true
+        defer { isLoadingTasks = false }
+
+        var aggregatedTasks: [MeetingTask] = []
+
+        for organizationId in organizationIds {
+            let fetchedTasks = try await taskService.fetchTasksForOrganization(organizationId: organizationId)
+            aggregatedTasks.append(contentsOf: fetchedTasks)
+        }
+
+        allUserTasks = aggregatedTasks
     }
 }
