@@ -20,8 +20,8 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 2: Authentication System** - Email/password auth with user management
 - [x] **Phase 3: Organization Management** - Create orgs, invite system, member roles
 - [x] **Phase 4: Meeting Management** - Schedule meetings, check-in system, attendance tracking
-- [ ] **Phase 5: Document Upload & AI Processing** - Google Docs upload, AI summary generation, task extraction
-- [ ] **Phase 6: Task & Calendar Views** - Task list UI, calendar with meetings and deadlines
+- [x] **Phase 5: Document Upload & AI Processing** - PDF/text upload, AI summary generation, task extraction
+- [x] **Phase 6: Task & Calendar Views** - Task list UI, calendar with meetings and deadlines
 - [ ] **Phase 7: Polish & Testing** - UI refinement, error handling, testing
 
 ## Phase Details
@@ -82,11 +82,11 @@ Plans:
 **Plans**: 5 plans
 
 Plans:
-- [ ] 05-01: Google Docs file upload and parsing
-- [ ] 05-02: AI service integration and API client
-- [ ] 05-03: Summary generation prompt and processing
-- [ ] 05-04: Task and position extraction logic
-- [ ] 05-05: Display summaries and extracted content in meeting detail
+- [x] 05-01: Document upload and parsing (PDF/text)
+- [x] 05-02: AI service integration with DeepSeek/OpenRouter
+- [x] 05-03: Summary generation and processing
+- [x] 05-04: Task extraction with assignee matching
+- [x] 05-05: Display summaries and extracted content
 
 ### Phase 6: Task & Calendar Views
 **Goal**: Members see their tasks and a calendar with meetings and deadlines
@@ -95,9 +95,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 06-01: Task list UI with completion tracking
-- [ ] 06-02: Calendar view with meetings and deadlines
-- [ ] 06-03: Task and event detail screens
+- [x] 06-01: Task list UI with filtering and completion tracking
+- [x] 06-02: Calendar view with meetings and task deadlines
+- [x] 06-03: Polish and integration with error handling
 
 ### Phase 7: Polish & Testing
 **Goal**: Production-ready app with refined UI, error handling, and comprehensive testing
@@ -121,6 +121,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 | 2. Authentication System | 4/4 | Complete | 2026-01-15 |
 | 3. Organization Management | 4/4 | Complete | 2026-01-18 |
 | 4. Meeting Management | 4/4 | Complete | 2026-01-18 |
-| 5. Document Upload & AI Processing | 0/5 | Not started | - |
-| 6. Task & Calendar Views | 0/3 | Not started | - |
+| 5. Document Upload & AI Processing | 5/5 | Complete | 2026-01-23 |
+| 6. Task & Calendar Views | 3/3 | Complete | 2026-01-28 |
 | 7. Polish & Testing | 0/3 | Not started | - |
