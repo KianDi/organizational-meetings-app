@@ -7,8 +7,8 @@ struct CalendarView: View {
 
     let organizationId: UUID
 
-    @Environment(MeetingState.self) private var meetingState
-    @Environment(OrganizationState.self) private var organizationState
+    @Environment(MeetingState.self) var meetingState
+    @Environment(OrganizationState.self) var organizationState
 
     @State private var selectedDate: Date = Date()
     @State private var displayMonth: Date = Date()
@@ -159,6 +159,7 @@ struct CalendarView: View {
                 )
                 .padding(.horizontal)
             }
+            .scrollContentBackground(.hidden)
             .padding(.vertical)
         }
         .navigationTitle("Calendar")
@@ -178,11 +179,13 @@ struct CalendarView: View {
         }
         .overlay {
             if isLoading {
-                ProgressView("Loading calendar...")
-                    .padding()
-                    .background(Color(.systemBackground).opacity(0.9))
-                    .cornerRadius(12)
-                    .shadow(radius: 4)
+                VStack {
+                    ProgressView("Loading calendar...")
+                }
+                .padding()
+                .background(.regularMaterial)
+                .cornerRadius(12)
+                .shadow(radius: 4)
             }
         }
     }
