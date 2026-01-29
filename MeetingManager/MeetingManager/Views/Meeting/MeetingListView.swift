@@ -23,10 +23,8 @@ struct MeetingListView: View {
     // MARK: - Body
 
     var body: some View {
-        Group {
-            if meetingState.isLoading {
-                ProgressView("Loading meetings...")
-            } else if let error = errorMessage {
+        ZStack {
+            if let error = errorMessage {
                 VStack(spacing: 16) {
                     Image(systemName: "exclamationmark.triangle")
                         .font(.largeTitle)
@@ -42,13 +40,7 @@ struct MeetingListView: View {
                     .buttonStyle(.borderedProminent)
                 }
                 .padding()
-            } else if meetingState.meetings.isEmpty {
-                ContentUnavailableView(
-                    "No meetings scheduled",
-                    systemImage: "calendar.badge.plus",
-                    description: Text("Tap + to create a meeting")
-                )
-            } else {
+            } else if !meetingState.meetings.isEmpty {
                 List {
                     // Active meetings section
                     if !activeMeetings.isEmpty {
@@ -87,6 +79,17 @@ struct MeetingListView: View {
                     }
                 }
                 .listStyle(.insetGrouped)
+            } else if !meetingState.isLoadingMeetings {
+                ContentUnavailableView(
+                    "No meetings scheduled",
+                    systemImage: "calendar.badge.plus",
+                    description: Text("Tap + to create a meeting")
+                )
+            }
+
+            // Loading overlay - only show when list is empty AND loading
+            if meetingState.isLoadingMeetings && meetingState.meetings.isEmpty {
+                ProgressView("Loading meetings...")
             }
         }
         .navigationTitle("Meetings")

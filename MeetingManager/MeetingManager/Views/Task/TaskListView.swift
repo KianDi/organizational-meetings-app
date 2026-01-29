@@ -157,12 +157,17 @@ struct TaskListView: View {
 
     @ViewBuilder
     private var mainContent: some View {
-        if meetingState.isLoadingTasks {
-            ProgressView("Loading tasks...")
-        } else if groupedTasks.isEmpty {
-            emptyState
-        } else {
-            taskList
+        ZStack {
+            if groupedTasks.isEmpty && !meetingState.isLoadingTasks {
+                emptyState
+            } else if !groupedTasks.isEmpty {
+                taskList
+            }
+
+            // Loading overlay - only show when tasks are empty AND loading
+            if meetingState.isLoadingTasks && groupedTasks.isEmpty {
+                ProgressView("Loading tasks...")
+            }
         }
     }
 

@@ -79,8 +79,9 @@ struct MeetingDetailView: View {
     // MARK: - Body
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 24) {
+        ZStack {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 24) {
                 // Header section
                 VStack(alignment: .leading, spacing: 8) {
                     Text(currentMeeting.title)
@@ -338,8 +339,18 @@ struct MeetingDetailView: View {
                                 .fill(Color.green.opacity(0.1))
                         )
                 }
+                }
+                .padding()
             }
-            .padding()
+
+            // Loading overlay for initial data load
+            if meetingState.isLoading && currentMeeting.tasks == nil && !shouldShowProcessingStatus {
+                ProgressView("Loading meeting details...")
+                    .padding()
+                    .background(Color(.systemBackground).opacity(0.9))
+                    .cornerRadius(12)
+                    .shadow(radius: 4)
+            }
         }
         .navigationTitle("Meeting Details")
         .navigationBarTitleDisplayMode(.inline)
