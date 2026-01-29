@@ -9,6 +9,8 @@ final class MeetingState {
     private(set) var processingState: ProcessingState = .idle
     private(set) var organizationTasks: [MeetingTask] = []
     private(set) var isLoadingTasks: Bool = false
+    private(set) var error: Error?
+    private(set) var isLoadingMeetings: Bool = false
 
     // Multi-organization aggregated data
     private(set) var allMeetings: [Meeting] = []
@@ -33,28 +35,47 @@ final class MeetingState {
 
     @MainActor
     func loadMeetings(organizationId: UUID) async throws {
+        isLoadingMeetings = true
         isLoading = true
-        defer { isLoading = false }
+        error = nil
+        defer {
+            isLoadingMeetings = false
+            isLoading = false
+        }
 
-        let fetchedMeetings = try await meetingService.fetchMeetingsForOrganization(organizationId: organizationId)
-        meetings = fetchedMeetings
+        do {
+            let fetchedMeetings = try await meetingService.fetchMeetingsForOrganization(organizationId: organizationId)
+            meetings = fetchedMeetings
+        } catch {
+            self.error = error
+            throw error
+        }
     }
 
     @MainActor
     func loadMeetingWithTasks(meetingId: UUID) async throws -> Meeting {
-        // Fetch meeting
-        var meeting = try await meetingService.fetchMeeting(id: meetingId)
+        isLoading = true
+        error = nil
+        defer { isLoading = false }
 
-        // Fetch associated tasks
-        let tasks = try await taskService.fetchTasksForMeeting(meetingId: meetingId)
-        meeting.tasks = tasks
+        do {
+            // Fetch meeting
+            var meeting = try await meetingService.fetchMeeting(id: meetingId)
 
-        // Update local cache
-        if let index = meetings.firstIndex(where: { $0.id == meetingId }) {
-            meetings[index] = meeting
+            // Fetch associated tasks
+            let tasks = try await taskService.fetchTasksForMeeting(meetingId: meetingId)
+            meeting.tasks = tasks
+
+            // Update local cache
+            if let index = meetings.firstIndex(where: { $0.id == meetingId }) {
+                meetings[index] = meeting
+            }
+
+            return meeting
+        } catch {
+            self.error = error
+            throw error
         }
-
-        return meeting
     }
 
     @MainActor
@@ -289,10 +310,16 @@ final class MeetingState {
     @MainActor
     func loadOrganizationTasks(organizationId: UUID) async throws {
         isLoadingTasks = true
+        error = nil
         defer { isLoadingTasks = false }
 
-        let fetchedTasks = try await taskService.fetchTasksForOrganization(organizationId: organizationId)
-        organizationTasks = fetchedTasks
+        do {
+            let fetchedTasks = try await taskService.fetchTasksForOrganization(organizationId: organizationId)
+            organizationTasks = fetchedTasks
+        } catch {
+            self.error = error
+            throw error
+        }
     }
 
     @MainActor
@@ -358,30 +385,42 @@ final class MeetingState {
     @MainActor
     func loadAllMeetings(organizationIds: [UUID]) async throws {
         isLoading = true
+        error = nil
         defer { isLoading = false }
 
-        var aggregatedMeetings: [Meeting] = []
+        do {
+            var aggregatedMeetings: [Meeting] = []
 
-        for organizationId in organizationIds {
-            let fetchedMeetings = try await meetingService.fetchMeetingsForOrganization(organizationId: organizationId)
-            aggregatedMeetings.append(contentsOf: fetchedMeetings)
+            for organizationId in organizationIds {
+                let fetchedMeetings = try await meetingService.fetchMeetingsForOrganization(organizationId: organizationId)
+                aggregatedMeetings.append(contentsOf: fetchedMeetings)
+            }
+
+            allMeetings = aggregatedMeetings
+        } catch {
+            self.error = error
+            throw error
         }
-
-        allMeetings = aggregatedMeetings
     }
 
     @MainActor
     func loadAllUserTasks(organizationIds: [UUID]) async throws {
         isLoadingTasks = true
+        error = nil
         defer { isLoadingTasks = false }
 
-        var aggregatedTasks: [MeetingTask] = []
+        do {
+            var aggregatedTasks: [MeetingTask] = []
 
-        for organizationId in organizationIds {
-            let fetchedTasks = try await taskService.fetchTasksForOrganization(organizationId: organizationId)
-            aggregatedTasks.append(contentsOf: fetchedTasks)
+            for organizationId in organizationIds {
+                let fetchedTasks = try await taskService.fetchTasksForOrganization(organizationId: organizationId)
+                aggregatedTasks.append(contentsOf: fetchedTasks)
+            }
+
+            allUserTasks = aggregatedTasks
+        } catch {
+            self.error = error
+            throw error
         }
-
-        allUserTasks = aggregatedTasks
     }
 }
