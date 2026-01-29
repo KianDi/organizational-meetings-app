@@ -13,6 +13,8 @@ struct CalendarView: View {
     @State private var selectedDate: Date = Date()
     @State private var displayMonth: Date = Date()
     @State private var isLoading: Bool = false
+    @State private var errorMessage: String? = nil
+    @State private var showError: Bool = false
 
     // MARK: - Computed Properties
 
@@ -96,13 +98,14 @@ struct CalendarView: View {
                         Image(systemName: "chevron.left")
                             .font(.title2)
                             .foregroundStyle(.blue)
+                            .frame(width: 44, height: 44)
                     }
 
                     Spacer()
 
                     Text(monthYearString)
                         .font(.title2)
-                        .fontWeight(.semibold)
+                        .fontWeight(.bold)
 
                     Spacer()
 
@@ -112,6 +115,7 @@ struct CalendarView: View {
                         Image(systemName: "chevron.right")
                             .font(.title2)
                             .foregroundStyle(.blue)
+                            .frame(width: 44, height: 44)
                     }
                 }
                 .padding(.horizontal)
@@ -129,7 +133,7 @@ struct CalendarView: View {
                 .padding(.horizontal)
 
                 // Calendar grid
-                LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 4), count: 7), spacing: 8) {
+                LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 2), count: 7), spacing: 8) {
                     ForEach(daysInMonth, id: \.self) { date in
                         DayCell(
                             date: date,
@@ -145,6 +149,7 @@ struct CalendarView: View {
                     }
                 }
                 .padding(.horizontal)
+                .animation(.easeInOut(duration: 0.2), value: selectedDate)
 
                 // Selected day detail
                 CalendarDayView(
@@ -159,17 +164,25 @@ struct CalendarView: View {
         .navigationTitle("Calendar")
         .navigationBarTitleDisplayMode(.large)
         .refreshable {
-            await loadData()
+            await reloadCalendarData()
         }
         .task {
             await loadData()
         }
+        .alert("Error", isPresented: $showError) {
+            Button("OK", role: .cancel) { }
+        } message: {
+            if let error = errorMessage {
+                Text(error)
+            }
+        }
         .overlay {
             if isLoading {
-                ProgressView("Loading...")
+                ProgressView("Loading calendar...")
                     .padding()
-                    .background(Color(.systemBackground))
+                    .background(Color(.systemBackground).opacity(0.9))
                     .cornerRadius(12)
+                    .shadow(radius: 4)
             }
         }
     }
@@ -219,7 +232,19 @@ struct CalendarView: View {
             try await meetingState.loadMeetings(organizationId: organizationId)
             try await meetingState.loadOrganizationTasks(organizationId: organizationId)
         } catch {
-            print("Failed to load calendar data: \(error)")
+            errorMessage = "Failed to load calendar data: \(error.localizedDescription)"
+            showError = true
+        }
+    }
+
+    private func reloadCalendarData() async {
+        do {
+            // Reload both meetings and tasks
+            try await meetingState.loadMeetings(organizationId: organizationId)
+            try await meetingState.loadOrganizationTasks(organizationId: organizationId)
+        } catch {
+            errorMessage = "Failed to reload calendar data: \(error.localizedDescription)"
+            showError = true
         }
     }
 }
@@ -245,27 +270,29 @@ struct DayCell: View {
             Text(dayNumber)
                 .font(.body)
                 .foregroundStyle(isCurrentMonth ? .primary : .secondary)
+                .opacity(isCurrentMonth ? 1.0 : 0.4)
 
             // Indicator dots
             HStack(spacing: 2) {
                 if hasMeetings {
                     Circle()
                         .fill(.blue)
-                        .frame(width: 4, height: 4)
+                        .frame(width: 6, height: 6)
                 }
                 if hasTasks {
                     Circle()
                         .fill(.green)
-                        .frame(width: 4, height: 4)
+                        .frame(width: 6, height: 6)
                 }
             }
-            .frame(height: 4)
+            .frame(height: 6)
         }
         .frame(height: 44)
         .frame(maxWidth: .infinity)
         .background(
             RoundedRectangle(cornerRadius: 8)
                 .fill(isSelected ? Color.blue.opacity(0.2) : Color.clear)
+                .shadow(color: isSelected ? .blue.opacity(0.3) : .clear, radius: 4, x: 0, y: 2)
         )
         .overlay(
             RoundedRectangle(cornerRadius: 8)
