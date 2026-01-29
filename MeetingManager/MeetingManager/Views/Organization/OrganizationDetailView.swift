@@ -137,6 +137,29 @@ struct OrganizationDetailView: View {
                             }
                         }
                     }
+
+                    Section("Calendar") {
+                        NavigationLink {
+                            CalendarView(organizationId: org.id)
+                        } label: {
+                            HStack {
+                                Image(systemName: "calendar")
+                                    .foregroundStyle(.blue)
+                                    .font(.system(size: 24))
+
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text("View calendar")
+                                        .font(.body)
+                                }
+
+                                Spacer()
+
+                                Image(systemName: "chevron.right")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
+                        }
+                    }
                 }
                 .listStyle(.insetGrouped)
             }

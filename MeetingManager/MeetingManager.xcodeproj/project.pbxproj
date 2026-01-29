@@ -10,6 +10,7 @@
 		01F6D03DCE0C4CDD8508F12F /* DocumentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C704F854A2194E81B2B5FBC7 /* DocumentService.swift */; };
 		114468FFA21DF04B77FA77B5 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE561D81FD8DC74E416DECF0 /* Route.swift */; };
 		2180389B76D7E38E8023EE06 /* CreateMeetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0947B9A65E4A762CA700F9A3 /* CreateMeetingView.swift */; };
+		3A9F0C7EE512242E7AB7A7CD /* CalendarDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE5CF21A8CE3480ACD6FDFC /* CalendarDayView.swift */; };
 		4FF3971C647AACDA6B8FCDDA /* JoinOrganizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D486B3EC9EF7F49EE99E1D /* JoinOrganizationView.swift */; };
 		5CEA0EB028714E915A848A7A /* MemberListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FCB748FC7CC6B3DF1C96A7 /* MemberListView.swift */; };
 		62E23F86D70C4E729D76F9B0 /* TaskService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F83D71C850416BA0783B3E /* TaskService.swift */; };
@@ -45,6 +46,7 @@
 		DC33884453586499E28D853A /* OrganizationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAA49D663290A25C8C46DD1 /* OrganizationListView.swift */; };
 		DEFD0D9AAF704C909D51FBB4 /* TaskRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D79DE5C986C4FB498777A60 /* TaskRowView.swift */; };
 		E1B5F6C0B7263A4DF5E02E8F /* OrganizationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95749220EAF41B305883E0A2 /* OrganizationDetailView.swift */; };
+		E9D4F8D09D9344D23720CDC6 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32DC292E74D43DBE06FD5DD /* CalendarView.swift */; };
 		F0B602655316EACB613D366E /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23F94C62A7268596F8DC2A6 /* RootView.swift */; };
 		F5257161A38E9F0402DB2E94 /* MeetingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA51400AE1FEEE97FE5BB0B0 /* MeetingService.swift */; };
 		F826999FB4DC42ED94A30F6F /* MeetingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFC9BA99F84A7AA5ED16AB /* MeetingListView.swift */; };
@@ -54,6 +56,7 @@
 		0947B9A65E4A762CA700F9A3 /* CreateMeetingView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateMeetingView.swift; sourceTree = "<group>"; };
 		1351CC3356D5066E57BF94BD /* ProcessingState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProcessingState.swift; sourceTree = "<group>"; };
 		1BECC8AA4CF04810ADBC6FF5 /* Secrets.example.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.example.swift; sourceTree = "<group>"; };
+		2BE5CF21A8CE3480ACD6FDFC /* CalendarDayView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CalendarDayView.swift; sourceTree = "<group>"; };
 		2D79DE5C986C4FB498777A60 /* TaskRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRowView.swift; sourceTree = "<group>"; };
 		3021EFC79CEC231BC69F124A /* TaskListView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TaskListView.swift; path = Task/TaskListView.swift; sourceTree = "<group>"; };
 		51543D286E06437CA5D8C9B5 /* NameMatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameMatcher.swift; sourceTree = "<group>"; };
@@ -83,6 +86,7 @@
 		A1000002000000000000001 /* MeetingManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingManagerApp.swift; sourceTree = "<group>"; };
 		A1000003000000000000001 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A1000004000000000000001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A32DC292E74D43DBE06FD5DD /* CalendarView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		A7F83D71C850416BA0783B3E /* TaskService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskService.swift; sourceTree = "<group>"; };
 		AAAFC9BA99F84A7AA5ED16AB /* MeetingListView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MeetingListView.swift; sourceTree = "<group>"; };
 		ACAA49D663290A25C8C46DD1 /* OrganizationListView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OrganizationListView.swift; sourceTree = "<group>"; };
@@ -273,8 +277,19 @@
 				16526F6BB89E4A14B0EE9E79 /* Meeting */,
 				A5575E0C94A541F58296F370 /* Document */,
 				3AC87D47CBB841A988F98F6A /* Task */,
+				E75C84DFA546EAD282BB564D /* Calendar */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		E75C84DFA546EAD282BB564D /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				A32DC292E74D43DBE06FD5DD /* CalendarView.swift */,
+				2BE5CF21A8CE3480ACD6FDFC /* CalendarDayView.swift */,
+			);
+			name = Calendar;
+			path = Calendar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -389,6 +404,8 @@
 				DEFD0D9AAF704C909D51FBB4 /* TaskRowView.swift in Sources */,
 				8AA51AD698E6477D98B5C37D /* NameMatcher.swift in Sources */,
 				6B020339EF79B9AC50F77825 /* TaskListView.swift in Sources */,
+				E9D4F8D09D9344D23720CDC6 /* CalendarView.swift in Sources */,
+				3A9F0C7EE512242E7AB7A7CD /* CalendarDayView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
