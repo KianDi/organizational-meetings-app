@@ -168,9 +168,9 @@ struct TaskListView: View {
 
     private var emptyState: some View {
         ContentUnavailableView {
-            Label("No tasks yet", systemImage: "checkmark.circle")
+            Label("No Tasks Yet", systemImage: "checkmark.circle")
         } description: {
-            Text("Tasks will appear here when created from meeting documents")
+            Text("Tasks will appear here when extracted from meeting documents")
         }
     }
 
@@ -264,10 +264,13 @@ struct TaskListView: View {
     /// Toggle task completion status
     private func toggleTaskCompletion(_ task: MeetingTask) async {
         do {
+            // MeetingState handles optimistic UI update internally
             try await meetingState.toggleTaskCompletion(taskId: task.id)
         } catch {
+            // On error, reload tasks to revert any optimistic changes
             errorMessage = "Failed to update task: \(error.localizedDescription)"
             showError = true
+            await loadTasks()
         }
     }
 
