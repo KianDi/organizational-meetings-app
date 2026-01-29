@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		01F6D03DCE0C4CDD8508F12F /* DocumentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C704F854A2194E81B2B5FBC7 /* DocumentService.swift */; };
 		114468FFA21DF04B77FA77B5 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE561D81FD8DC74E416DECF0 /* Route.swift */; };
+		19C94A57EB8B762A9017F885 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51048DF13EB8B92E2F2E8FD5 /* MainTabView.swift */; };
 		2180389B76D7E38E8023EE06 /* CreateMeetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0947B9A65E4A762CA700F9A3 /* CreateMeetingView.swift */; };
 		3A9F0C7EE512242E7AB7A7CD /* CalendarDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE5CF21A8CE3480ACD6FDFC /* CalendarDayView.swift */; };
 		4FF3971C647AACDA6B8FCDDA /* JoinOrganizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D486B3EC9EF7F49EE99E1D /* JoinOrganizationView.swift */; };
@@ -41,6 +42,7 @@
 		8DBD85C32F194401006D34D1 /* OrganizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBD85C02F194401006D34D1 /* OrganizationService.swift */; };
 		8DBD85C52F194403006D34D1 /* CreateOrganizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBD85C62F194403006D34D1 /* CreateOrganizationView.swift */; };
 		A64D1ACA73C2415FBA95EFB7 /* DocumentPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD66591CAB246FC855B4E62 /* DocumentPickerView.swift */; };
+		B4BFF6C78F3102EB5A37B8CE /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A5891C151D84B5D38DA8D6 /* ProfileView.swift */; };
 		BF37112BB7EB4003E99B6A7D /* ProcessingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1351CC3356D5066E57BF94BD /* ProcessingState.swift */; };
 		D253A8CE33A430AC9D379F2B /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B582DFB2973FE41ABFDDBDF7 /* AppCoordinator.swift */; };
 		DC33884453586499E28D853A /* OrganizationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAA49D663290A25C8C46DD1 /* OrganizationListView.swift */; };
@@ -56,9 +58,11 @@
 		0947B9A65E4A762CA700F9A3 /* CreateMeetingView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateMeetingView.swift; sourceTree = "<group>"; };
 		1351CC3356D5066E57BF94BD /* ProcessingState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProcessingState.swift; sourceTree = "<group>"; };
 		1BECC8AA4CF04810ADBC6FF5 /* Secrets.example.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.example.swift; sourceTree = "<group>"; };
+		23A5891C151D84B5D38DA8D6 /* ProfileView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		2BE5CF21A8CE3480ACD6FDFC /* CalendarDayView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CalendarDayView.swift; sourceTree = "<group>"; };
 		2D79DE5C986C4FB498777A60 /* TaskRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRowView.swift; sourceTree = "<group>"; };
 		3021EFC79CEC231BC69F124A /* TaskListView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TaskListView.swift; path = Task/TaskListView.swift; sourceTree = "<group>"; };
+		51048DF13EB8B92E2F2E8FD5 /* MainTabView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		51543D286E06437CA5D8C9B5 /* NameMatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameMatcher.swift; sourceTree = "<group>"; };
 		68C0DC6BA2EF4E9FBE2B1B3C /* CheckInButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CheckInButton.swift; sourceTree = "<group>"; };
 		72D486B3EC9EF7F49EE99E1D /* JoinOrganizationView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JoinOrganizationView.swift; sourceTree = "<group>"; };
@@ -268,6 +272,15 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		D8D244F569BE8705A4692ACF /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				23A5891C151D84B5D38DA8D6 /* ProfileView.swift */,
+			);
+			name = Profile;
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		E4D8353416E9E9075A524262 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -278,6 +291,8 @@
 				A5575E0C94A541F58296F370 /* Document */,
 				3AC87D47CBB841A988F98F6A /* Task */,
 				E75C84DFA546EAD282BB564D /* Calendar */,
+				51048DF13EB8B92E2F2E8FD5 /* MainTabView.swift */,
+				D8D244F569BE8705A4692ACF /* Profile */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -406,6 +421,8 @@
 				6B020339EF79B9AC50F77825 /* TaskListView.swift in Sources */,
 				E9D4F8D09D9344D23720CDC6 /* CalendarView.swift in Sources */,
 				3A9F0C7EE512242E7AB7A7CD /* CalendarDayView.swift in Sources */,
+				19C94A57EB8B762A9017F885 /* MainTabView.swift in Sources */,
+				B4BFF6C78F3102EB5A37B8CE /* ProfileView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

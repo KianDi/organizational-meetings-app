@@ -22,8 +22,8 @@ struct RootView: View {
     var body: some View {
         Group {
             if authState.isAuthenticated {
-                // Logged in - show organization list as home screen
-                OrganizationListView()
+                // Logged in - show main tab view
+                MainTabView()
                     .environment(authState)
                     .environment(organizationState)
                     .environment(meetingState)
