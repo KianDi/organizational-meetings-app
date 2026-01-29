@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-01-14)
 
 **Core value:** Keeping members informed through AI-powered meeting summaries and reliable attendance tracking, so everyone knows what's happening and what their tasks are without reading full meeting documents.
-**Current focus:** Phase 5 — Document Upload & AI Processing
+**Current focus:** Phase 6 — Task & Calendar Views
 
 ## Current Position
 
-Phase: 5 of 7 (Document Upload & AI Processing)
-Plan: 5 of 5 in current phase
+Phase: 6 of 7 (Task & Calendar Views)
+Plan: 1 of 3 in current phase
 Status: Complete
-Last activity: 2026-01-23 — Completed 05-05-PLAN.md (Phase 5 Complete!)
+Last activity: 2026-01-28 — Completed 06-01-PLAN.md (Task List View)
 
-Progress: ████████████████ 71%
+Progress: ████████████████░ 74%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 21
+- Total plans completed: 22
 - Average duration: ~14 min
-- Total execution time: 4.87 hours
+- Total execution time: 5.10 hours
 
 **By Phase:**
 
@@ -32,10 +32,11 @@ Progress: ████████████████ 71%
 | 3 | 4 | 42 min | 11 min |
 | 4 | 4 | 39 min | 10 min |
 | 5 | 5 | 148 min | 30 min |
+| 6 | 1 | 14 min | 14 min |
 
 **Recent Trend:**
-- Last 5 plans: 05-02 (23 min), 05-03 (35 min), 05-04 (30 min), 05-05 (20 min)
-- Trend: Phase 5 complete - AI integration and UI polish took longer but delivered comprehensive feature set
+- Last 5 plans: 05-03 (35 min), 05-04 (30 min), 05-05 (20 min), 06-01 (14 min)
+- Trend: Back to efficient execution after Phase 5's complex AI integration
 
 ## Accumulated Context
 
@@ -124,6 +125,10 @@ Recent decisions affecting current work:
 | 05-05 | Native iOS share for summaries | Share sheet exports formatted text with summary, tasks, assignees, and dates |
 | 05-05 | Processing time estimates | Display "~5 seconds" or "~10 seconds" based on current processing stage |
 | 05-05 | Conditional content display | Summary/tasks only show when document uploaded, prevents confusion |
+| 06-01 | Dual cache updates for tasks | Updates both organizationTasks and meeting.tasks arrays to prevent stale data |
+| 06-01 | Date-based task grouping | 5 sections (Overdue, Today, This Week, Later, Completed) for clear prioritization |
+| 06-01 | Extracted view builders | Separate computed properties help Swift compiler with complex view hierarchies |
+| 06-01 | TaskListView reuses TaskRowView | Maintains consistency with meeting detail view task display |
 
 ### Deferred Issues
 
@@ -139,32 +144,22 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-23T19:15:00Z
-Stopped at: Completed 05-05-PLAN.md (PHASE 5 COMPLETE!)
+Last session: 2026-01-28
+Stopped at: Completed 06-01-PLAN.md (Task List View)
 Resume file: None
 
-**Phase 5 Complete! ✅**
-All 5 plans executed successfully:
-- ✓ 05-01: Document upload and parsing (Wave 1)
-- ✓ 05-02: AI service integration with DeepSeek/OpenRouter (Wave 1)
-- ✓ 05-03: Summary generation and processing (Wave 2)
-- ✓ 05-04: Task extraction with assignee matching (Wave 3)
-- ✓ 05-05: Display summaries and extracted content (Wave 4)
+**06-01 Accomplishments:**
+- TaskListView.swift: comprehensive task list with filtering and date grouping
+- Assignee filtering: All Tasks / My Tasks / Unassigned
+- Completion filtering: All / Active / Completed
+- Date sections: Overdue, Today, This Week, Later, Completed
+- MeetingState task methods: loadOrganizationTasks, toggleTaskCompletion, deleteTask
+- Dual cache updates: organizationTasks + meeting.tasks arrays
+- Navigation integration: Tasks section in OrganizationDetailView
+- Incomplete task count badge with green capsule styling
+- Pull-to-refresh and swipe-to-delete support
+- Reuses TaskRowView component for consistency
+- All code builds successfully with no errors
 
-**05-05 Accomplishments:**
-- MeetingState.loadMeetingWithTasks method for efficient task loading
-- Enhanced summary section with sparkles icon, better typography, line spacing
-- TaskRowView component: reusable task cards with completion, assignee, due dates
-- Smart date formatting: "Today", "Tomorrow", weekday names, overdue indicators
-- Assignee name resolution with OrganizationState and dictionary caching
-- Action Items section with task count badge and green checkmark icon
-- Document empty state: welcoming UI guides users to upload (admin-only button)
-- Meeting list indicators: blue "Summary" and green task count badges
-- Share summary feature: native iOS share sheet with formatted text export
-- Polished processing UI: time estimates (~5s, ~10s) for each stage
-- Pull-to-refresh now loads tasks alongside meeting data
-- ShareSheet UIKit wrapper for native sharing experience
-- Xcode project updated with TaskRowView.swift
-
-**Phase 5 Summary:**
-Complete document upload and AI processing pipeline with polished UI. Users can upload PDFs/text, receive AI-generated summaries, get extracted tasks with matched assignees, and share results. Ready for Phase 6: Task & Calendar Views.
+**Progress on Phase 6:**
+Plan 1 of 3 complete. Next: Calendar view for task date visualization.
