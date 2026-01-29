@@ -7,6 +7,8 @@ final class MeetingState {
     private(set) var meetings: [Meeting] = []
     private(set) var isLoading: Bool = false
     private(set) var processingState: ProcessingState = .idle
+    private(set) var organizationTasks: [MeetingTask] = []
+    private(set) var isLoadingTasks: Bool = false
 
     private let meetingService: MeetingService
     private let aiService: AIService
@@ -277,6 +279,60 @@ final class MeetingState {
             // Auto-clear error after 5 seconds
             try? await Task.sleep(nanoseconds: 5_000_000_000)
             processingState = .idle
+        }
+    }
+
+    @MainActor
+    func loadOrganizationTasks(organizationId: UUID) async throws {
+        isLoadingTasks = true
+        defer { isLoadingTasks = false }
+
+        let fetchedTasks = try await taskService.fetchTasksForOrganization(organizationId: organizationId)
+        organizationTasks = fetchedTasks
+    }
+
+    @MainActor
+    func toggleTaskCompletion(taskId: UUID) async throws {
+        // Find task in organizationTasks
+        guard let taskIndex = organizationTasks.firstIndex(where: { $0.id == taskId }) else {
+            return
+        }
+
+        let currentTask = organizationTasks[taskIndex]
+
+        // Update in database
+        let updatedTask = try await taskService.updateTaskCompletion(
+            taskId: taskId,
+            isCompleted: !currentTask.isCompleted
+        )
+
+        // Update local organizationTasks array
+        organizationTasks[taskIndex] = updatedTask
+
+        // Also update in meeting's tasks array if present
+        if let meetingIndex = meetings.firstIndex(where: { $0.id == updatedTask.meetingId }),
+           var meetingTasks = meetings[meetingIndex].tasks,
+           let meetingTaskIndex = meetingTasks.firstIndex(where: { $0.id == taskId }) {
+            meetingTasks[meetingTaskIndex] = updatedTask
+            meetings[meetingIndex].tasks = meetingTasks
+        }
+    }
+
+    @MainActor
+    func deleteTask(taskId: UUID) async throws {
+        // Delete from database
+        try await taskService.deleteTask(taskId: taskId)
+
+        // Remove from organizationTasks array
+        organizationTasks.removeAll { $0.id == taskId }
+
+        // Remove from any meeting's tasks array
+        for (index, var meeting) in meetings.enumerated() {
+            if var tasks = meeting.tasks {
+                tasks.removeAll { $0.id == taskId }
+                meeting.tasks = tasks
+                meetings[index] = meeting
+            }
         }
     }
 }
