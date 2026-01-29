@@ -99,7 +99,8 @@ struct OrganizationDetailView: View {
                         }
                     }
 
-                    Section("Tasks") {
+                    Section("Planning") {
+                        // Tasks
                         NavigationLink {
                             TaskListView(organizationId: org.id)
                         } label: {
@@ -109,11 +110,11 @@ struct OrganizationDetailView: View {
                                     .font(.system(size: 24))
 
                                 VStack(alignment: .leading, spacing: 4) {
-                                    Text("View tasks")
+                                    Text("Tasks")
                                         .font(.body)
 
                                     if incompleteTaskCount > 0 {
-                                        Text("\(incompleteTaskCount) incomplete")
+                                        Text("\(incompleteTaskCount) active")
                                             .font(.caption)
                                             .foregroundColor(.secondary)
                                     }
@@ -136,9 +137,10 @@ struct OrganizationDetailView: View {
                                     .foregroundColor(.secondary)
                             }
                         }
-                    }
 
-                    Section("Calendar") {
+                        Divider()
+
+                        // Calendar
                         NavigationLink {
                             CalendarView(organizationId: org.id)
                         } label: {
@@ -148,8 +150,12 @@ struct OrganizationDetailView: View {
                                     .font(.system(size: 24))
 
                                 VStack(alignment: .leading, spacing: 4) {
-                                    Text("View calendar")
+                                    Text("Calendar")
                                         .font(.body)
+
+                                    Text("Meetings & deadlines")
+                                        .font(.caption)
+                                        .foregroundColor(.secondary)
                                 }
 
                                 Spacer()
