@@ -1,106 +1,121 @@
 ---
 phase: 06-task-calendar-views
 plan: 03
-subsystem: ui
-tags: [swiftui, ios, calendar, tasks, ux-polish]
+subsystem: ui, navigation
+tags: [swiftui, ios, tab-bar, multi-org, navigation-architecture]
 
 # Dependency graph
 requires:
   - phase: 06-01
-    provides: TaskListView with filtering and organization-level task management
+    provides: TaskListView with organization-level task management
   - phase: 06-02
-    provides: CalendarView with monthly grid and event indicators
+    provides: CalendarView with monthly grid display
 provides:
-  - Unified Planning section in OrganizationDetailView for task and calendar access
-  - Enhanced loading states and error handling across task and calendar views
-  - Visual polish with animations, shadows, and improved typography
-  - User-friendly empty states and error recovery mechanisms
-affects: [phase-07, ui-polish, user-experience]
+  - Bottom tab bar navigation with Organizations, Calendar, Tasks, and Profile tabs
+  - Multi-organization data aggregation for Calendar and Tasks views
+  - ProfileView with user account management
+  - Centralized navigation structure replacing nested navigation
+affects: [navigation-architecture, user-experience, multi-org-support]
 
 # Tech tracking
 tech-stack:
-  added: []
-  patterns: [error-recovery-with-reload, optimistic-ui-rollback, unified-navigation-sections]
+  added: [TabView, multi-org-aggregation]
+  patterns: [tab-based-navigation, independent-navigation-stacks, data-aggregation]
 
 key-files:
-  created: []
+  created:
+    - MeetingManager/Views/MainTabView.swift
+    - MeetingManager/Views/Profile/ProfileView.swift
   modified:
-    - MeetingManager/Views/Organization/OrganizationDetailView.swift
-    - MeetingManager/Views/Task/TaskListView.swift
-    - MeetingManager/Views/Calendar/CalendarView.swift
+    - MeetingManager/State/MeetingState.swift
+    - MeetingManager/Views/RootView.swift
+    - MeetingManager.xcodeproj/project.pbxproj
 
 key-decisions:
-  - "Combined Tasks and Calendar into single 'Planning' section for better organization"
-  - "Changed 'incomplete' to 'active' for more positive language in task counts"
-  - "Added task reload on toggle failure for automatic error recovery"
-  - "Increased indicator dot size from 4pt to 6pt for better visibility"
-  - "Applied 0.2s easeInOut animation to date selection for smooth transitions"
+  - "Bottom tab bar for primary navigation instead of nested NavigationLink hierarchy"
+  - "Each tab has independent NavigationStack for separate navigation contexts"
+  - "Calendar and Tasks tabs aggregate data from all organizations"
+  - "Badge on Tasks tab shows incomplete task count for at-a-glance status"
+  - "ProfileView provides simple sign-out functionality as v1 implementation"
 
 patterns-established:
-  - "Error recovery pattern: reload data on operation failure to revert optimistic updates"
-  - "Grouped navigation sections: related features in single section with dividers"
-  - "Visual hierarchy: bold headers (title2 bold) with larger tap targets (44x44pt)"
-  - "Subtle depth cues: shadows on selected states for better affordance"
+  - "Multi-organization data aggregation: loadAllMeetings/loadAllUserTasks methods"
+  - "Dual array updates: sync both organizationTasks and allUserTasks on changes"
+  - "Tab-based navigation: TabView with independent NavigationStack per tab"
+  - "Environment state injection: pass state to all tabs for data access"
 
 issues-created: []
 
 # Metrics
-duration: 15min
+duration: 18min
 completed: 2026-01-28
 ---
 
-# Phase 6-03: Task & Calendar Views Polish Summary
+# Phase 6-03: Bottom Tab Bar Navigation Summary
 
-**Unified Planning navigation with enhanced loading states, error recovery, and visual polish across task and calendar interfaces**
+**Replaced nested navigation with bottom tab bar providing direct access to Organizations, Calendar, Tasks, and Profile**
 
 ## Performance
 
-- **Duration:** 15 min
-- **Started:** 2026-01-28T(plan start)
-- **Completed:** 2026-01-28T(plan end)
+- **Duration:** 18 min
+- **Started:** 2026-01-28T21:35
+- **Completed:** 2026-01-28T21:53
 - **Tasks:** 3
+- **Files created:** 2
 - **Files modified:** 3
 
 ## Accomplishments
-- Unified Tasks and Calendar navigation into single "Planning" section with clear visual hierarchy
-- Added comprehensive error handling with user-friendly alerts and automatic recovery
-- Applied visual polish to calendar with animations, shadows, and improved typography
-- Enhanced empty states with helpful guidance for users
+- Implemented bottom tab bar with four primary navigation tabs
+- Created multi-organization data aggregation for Calendar and Tasks views
+- Built ProfileView with user account information and sign-out capability
+- Extended MeetingState with methods to load data from all organizations
+- Replaced root-level nested navigation with flat tab-based architecture
 
 ## Task Commits
 
 Each task was committed atomically:
 
-1. **Task 1: Enhance OrganizationDetailView with Planning section** - `379a1b2` (feat)
-2. **Task 2: Add error handling to TaskListView** - `93e5aa8` (feat)
-3. **Task 3: Add visual polish to CalendarView** - `4832883` (feat)
+1. **Task 1: Create MainTabView with bottom tab bar navigation** - `aa113cc` (feat)
+2. **Task 2: Create ProfileView and add multi-org data loading to MeetingState** - `0b0f927` (feat)
+3. **Task 3: Replace OrganizationListView with MainTabView in RootView** - `3efc2cd` (feat)
 
 ## Files Created/Modified
-- `MeetingManager/Views/Organization/OrganizationDetailView.swift` - Combined Tasks and Calendar into unified Planning section with task count badge
-- `MeetingManager/Views/Task/TaskListView.swift` - Added error recovery with task reload on toggle failure
-- `MeetingManager/Views/Calendar/CalendarView.swift` - Enhanced with error alerts, animations, larger tap targets, and visual polish
+
+**Created:**
+- `MeetingManager/Views/MainTabView.swift` - Tab bar container with four tabs, each with independent NavigationStack
+- `MeetingManager/Views/Profile/ProfileView.swift` - User profile view with account info and sign-out
+
+**Modified:**
+- `MeetingManager/State/MeetingState.swift` - Added allMeetings, allUserTasks properties and loadAllMeetings, loadAllUserTasks methods
+- `MeetingManager/Views/RootView.swift` - Replaced OrganizationListView with MainTabView as authenticated root
+- `MeetingManager.xcodeproj/project.pbxproj` - Added new files to Xcode project
 
 ## Decisions Made
 
-1. **Unified Planning Section**: Combined separate Tasks and Calendar sections into single "Planning" section for better organization and reduced visual clutter
-2. **Positive Language**: Changed "incomplete" to "active" in task count badge for more encouraging user experience
-3. **Error Recovery**: Added automatic task reload on toggle failure to revert any optimistic UI changes
-4. **Visual Enhancement Priorities**: Focused on subtle improvements (shadows, animations, spacing) rather than major redesign
-5. **Tap Target Sizing**: Increased navigation button size to 44x44pt minimum for better mobile usability
+1. **Bottom Tab Bar Navigation**: Replaced nested NavigationLink hierarchy with TabView for primary navigation, providing easier access to all main features
+2. **Independent NavigationStacks**: Each tab has its own NavigationStack to maintain independent navigation contexts and proper back button behavior
+3. **Multi-Organization Aggregation**: Calendar and Tasks tabs show data from ALL organizations user belongs to, not just one at a time
+4. **Task Badge**: Tasks tab displays badge with incomplete task count for at-a-glance status visibility
+5. **ProfileView Simplicity**: V1 implementation focuses on essential account management (email display, sign out) without advanced features
+6. **Dual Array Management**: MeetingState maintains both organizationTasks (single-org) and allUserTasks (multi-org) for different view contexts
+7. **Data Loading Strategy**: Calendar and Tasks tabs load all organization data on first appear using new aggregate methods
 
 ## Deviations from Plan
 
-None - plan executed exactly as written.
+None - plan executed exactly as written with all verification passing.
 
 ## Issues Encountered
 
-None - all tasks completed successfully with builds passing.
+1. **Badge Type Error**: Initial implementation used `nil` in ternary expression for badge modifier. Fixed by using `0` instead of `nil` when count is zero (SwiftUI automatically hides zero badges).
+2. **Xcode Project Group Finding**: Groups in project.pbxproj had empty names and used path-based identification. Resolved by using path property instead of name property for group finding.
 
 ## Next Phase Readiness
+
 - Phase 6 (Task & Calendar Views) is now complete with all 3 plans finished
-- Task and calendar features are production-ready with polished UX
+- Bottom tab bar navigation provides intuitive access to all app features
+- Multi-organization support enables users to see aggregated data across all their organizations
 - Ready to proceed to Phase 7 (final phase in roadmap)
-- All views have proper loading states, error handling, and visual polish
+- All features production-ready with proper navigation, loading states, and error handling
 
 ---
 *Phase: 06-task-calendar-views*
