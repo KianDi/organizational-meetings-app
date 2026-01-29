@@ -143,7 +143,14 @@ struct MeetingListView: View {
         do {
             try await meetingState.loadMeetings(organizationId: organization.id)
         } catch {
-            errorMessage = "Failed to load meetings: \(error.localizedDescription)"
+            // Provide user-friendly error message
+            if error.localizedDescription.contains("network") || error.localizedDescription.contains("internet") {
+                errorMessage = "Network connection failed. Please check your internet connection and try again."
+            } else if error.localizedDescription.contains("401") || error.localizedDescription.contains("403") {
+                errorMessage = "Authentication failed. Please sign in again."
+            } else {
+                errorMessage = "Failed to load meetings. Please try again."
+            }
         }
     }
 }

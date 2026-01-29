@@ -122,7 +122,14 @@ struct CreateMeetingView: View {
             // Dismiss on success
             dismiss()
         } catch {
-            errorMessage = error.localizedDescription
+            // Provide user-friendly error message
+            if error.localizedDescription.contains("network") || error.localizedDescription.contains("internet") {
+                errorMessage = "Network connection failed. Please check your internet connection and try again."
+            } else if error.localizedDescription.contains("401") || error.localizedDescription.contains("403") {
+                errorMessage = "You don't have permission to create meetings in this organization."
+            } else {
+                errorMessage = "Failed to create meeting. Please try again."
+            }
         }
     }
 }

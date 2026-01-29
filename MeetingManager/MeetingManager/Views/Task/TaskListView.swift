@@ -242,7 +242,14 @@ struct TaskListView: View {
         do {
             try await meetingState.loadOrganizationTasks(organizationId: organizationId)
         } catch {
-            errorMessage = "Failed to load tasks: \(error.localizedDescription)"
+            // Provide user-friendly error message
+            if error.localizedDescription.contains("network") || error.localizedDescription.contains("internet") {
+                errorMessage = "Network connection failed. Please check your internet connection and try again."
+            } else if error.localizedDescription.contains("401") || error.localizedDescription.contains("403") {
+                errorMessage = "Authentication failed. Please sign in again."
+            } else {
+                errorMessage = "Failed to load tasks. Please try again."
+            }
             showError = true
         }
     }
@@ -273,7 +280,13 @@ struct TaskListView: View {
             try await meetingState.toggleTaskCompletion(taskId: task.id)
         } catch {
             // On error, reload tasks to revert any optimistic changes
-            errorMessage = "Failed to update task: \(error.localizedDescription)"
+            if error.localizedDescription.contains("network") || error.localizedDescription.contains("internet") {
+                errorMessage = "Network connection failed. Unable to update task."
+            } else if error.localizedDescription.contains("401") || error.localizedDescription.contains("403") {
+                errorMessage = "You don't have permission to update this task."
+            } else {
+                errorMessage = "Failed to update task. Please try again."
+            }
             showError = true
             await loadTasks()
         }
@@ -284,7 +297,13 @@ struct TaskListView: View {
         do {
             try await meetingState.deleteTask(taskId: task.id)
         } catch {
-            errorMessage = "Failed to delete task: \(error.localizedDescription)"
+            if error.localizedDescription.contains("network") || error.localizedDescription.contains("internet") {
+                errorMessage = "Network connection failed. Unable to delete task."
+            } else if error.localizedDescription.contains("401") || error.localizedDescription.contains("403") {
+                errorMessage = "You don't have permission to delete this task."
+            } else {
+                errorMessage = "Failed to delete task. Please try again."
+            }
             showError = true
         }
     }

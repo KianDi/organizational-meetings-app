@@ -691,7 +691,11 @@ struct MeetingDetailView: View {
             }.sorted { $0.name.lowercased() < $1.name.lowercased() }
 
         } catch {
-            errorMessage = "Failed to load attendees: \(error.localizedDescription)"
+            if error.localizedDescription.contains("network") || error.localizedDescription.contains("internet") {
+                errorMessage = "Network connection failed. Unable to load attendees."
+            } else {
+                errorMessage = "Failed to load attendees. Please try again."
+            }
         }
     }
 
@@ -701,7 +705,11 @@ struct MeetingDetailView: View {
             _ = try await meetingState.loadMeetingWithTasks(meetingId: currentMeeting.id)
             await loadAttendees()
         } catch {
-            errorMessage = "Failed to refresh meeting: \(error.localizedDescription)"
+            if error.localizedDescription.contains("network") || error.localizedDescription.contains("internet") {
+                errorMessage = "Network connection failed. Unable to refresh meeting."
+            } else {
+                errorMessage = "Failed to refresh meeting. Please try again."
+            }
         }
     }
 
@@ -714,7 +722,13 @@ struct MeetingDetailView: View {
         do {
             try await meetingState.startMeeting(meetingId: currentMeeting.id)
         } catch {
-            errorMessage = "Failed to start meeting: \(error.localizedDescription)"
+            if error.localizedDescription.contains("network") || error.localizedDescription.contains("internet") {
+                errorMessage = "Network connection failed. Unable to start meeting."
+            } else if error.localizedDescription.contains("401") || error.localizedDescription.contains("403") {
+                errorMessage = "You don't have permission to start this meeting."
+            } else {
+                errorMessage = "Failed to start meeting. Please try again."
+            }
         }
     }
 
@@ -727,7 +741,13 @@ struct MeetingDetailView: View {
         do {
             try await meetingState.endMeeting(meetingId: currentMeeting.id)
         } catch {
-            errorMessage = "Failed to end meeting: \(error.localizedDescription)"
+            if error.localizedDescription.contains("network") || error.localizedDescription.contains("internet") {
+                errorMessage = "Network connection failed. Unable to end meeting."
+            } else if error.localizedDescription.contains("401") || error.localizedDescription.contains("403") {
+                errorMessage = "You don't have permission to end this meeting."
+            } else {
+                errorMessage = "Failed to end meeting. Please try again."
+            }
         }
     }
 
@@ -793,7 +813,13 @@ struct MeetingDetailView: View {
                 isCompleted: !task.isCompleted
             )
         } catch {
-            errorMessage = "Failed to update task: \(error.localizedDescription)"
+            if error.localizedDescription.contains("network") || error.localizedDescription.contains("internet") {
+                errorMessage = "Network connection failed. Unable to update task."
+            } else if error.localizedDescription.contains("401") || error.localizedDescription.contains("403") {
+                errorMessage = "You don't have permission to update this task."
+            } else {
+                errorMessage = "Failed to update task. Please try again."
+            }
         }
     }
 

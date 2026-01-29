@@ -232,7 +232,14 @@ struct CalendarView: View {
             try await meetingState.loadMeetings(organizationId: organizationId)
             try await meetingState.loadOrganizationTasks(organizationId: organizationId)
         } catch {
-            errorMessage = "Failed to load calendar data: \(error.localizedDescription)"
+            // Provide user-friendly error message
+            if error.localizedDescription.contains("network") || error.localizedDescription.contains("internet") {
+                errorMessage = "Network connection failed. Please check your internet connection and try again."
+            } else if error.localizedDescription.contains("401") || error.localizedDescription.contains("403") {
+                errorMessage = "Authentication failed. Please sign in again."
+            } else {
+                errorMessage = "Failed to load calendar data. Please try again."
+            }
             showError = true
         }
     }
@@ -243,7 +250,14 @@ struct CalendarView: View {
             try await meetingState.loadMeetings(organizationId: organizationId)
             try await meetingState.loadOrganizationTasks(organizationId: organizationId)
         } catch {
-            errorMessage = "Failed to reload calendar data: \(error.localizedDescription)"
+            // Provide user-friendly error message
+            if error.localizedDescription.contains("network") || error.localizedDescription.contains("internet") {
+                errorMessage = "Network connection failed. Please check your internet connection."
+            } else if error.localizedDescription.contains("401") || error.localizedDescription.contains("403") {
+                errorMessage = "Authentication failed. Please sign in again."
+            } else {
+                errorMessage = "Failed to reload calendar data. Please try again."
+            }
             showError = true
         }
     }
