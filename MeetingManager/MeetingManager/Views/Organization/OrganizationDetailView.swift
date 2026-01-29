@@ -24,6 +24,14 @@ struct OrganizationDetailView: View {
     /// Authentication state for current user
     @Environment(AuthState.self) private var authState
 
+    /// Meeting state for task data
+    @Environment(MeetingState.self) private var meetingState
+
+    /// Computed property for incomplete task count
+    private var incompleteTaskCount: Int {
+        meetingState.organizationTasks.filter { !$0.isCompleted }.count
+    }
+
     // MARK: - Body
 
     var body: some View {
@@ -90,6 +98,45 @@ struct OrganizationDetailView: View {
                             }
                         }
                     }
+
+                    Section("Tasks") {
+                        NavigationLink {
+                            TaskListView(organizationId: org.id)
+                        } label: {
+                            HStack {
+                                Image(systemName: "checkmark.circle.fill")
+                                    .foregroundStyle(.green)
+                                    .font(.system(size: 24))
+
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text("View tasks")
+                                        .font(.body)
+
+                                    if incompleteTaskCount > 0 {
+                                        Text("\(incompleteTaskCount) incomplete")
+                                            .font(.caption)
+                                            .foregroundColor(.secondary)
+                                    }
+                                }
+
+                                Spacer()
+
+                                if incompleteTaskCount > 0 {
+                                    Text("\(incompleteTaskCount)")
+                                        .font(.caption)
+                                        .foregroundStyle(.white)
+                                        .padding(.horizontal, 8)
+                                        .padding(.vertical, 4)
+                                        .background(.green)
+                                        .clipShape(Capsule())
+                                }
+
+                                Image(systemName: "chevron.right")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
+                        }
+                    }
                 }
                 .listStyle(.insetGrouped)
             }
@@ -119,6 +166,7 @@ struct OrganizationDetailView: View {
         }
         .task {
             await loadOrganization()
+            await loadOrganizationTasks()
         }
     }
 
@@ -147,6 +195,16 @@ struct OrganizationDetailView: View {
         formatter.dateStyle = .medium
         formatter.timeStyle = .short
         return formatter.string(from: date)
+    }
+
+    /// Load organization tasks for badge count
+    private func loadOrganizationTasks() async {
+        do {
+            try await meetingState.loadOrganizationTasks(organizationId: organizationId)
+        } catch {
+            // Silently fail - task count is optional UI enhancement
+            print("Failed to load organization tasks: \(error)")
+        }
     }
 }
 
