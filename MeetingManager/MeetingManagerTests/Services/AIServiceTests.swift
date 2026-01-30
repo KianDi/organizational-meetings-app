@@ -129,7 +129,7 @@ final class AIServiceTests: XCTestCase {
             title: "Follow up",
             assigneeName: nil,
             dueDate: nil,
-            priority: nil,
+            priority: "medium",
             context: nil
         )
 
