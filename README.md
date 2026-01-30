@@ -1,6 +1,6 @@
 # Meeting Manager
 
-A comprehensive meeting management app for student organizations, featuring attendance tracking, AI-powered meeting summaries, automatic task extraction, and integrated calendar views.
+A comprehensive meeting management app for student organizations, featuring attendance tracking, AI-powered meeting summaries, automatic task extraction, and integrated calendar views. Made this for my own org, Surge Interest Group but feel free to use at your own discretion.
 
 ## Features
 
