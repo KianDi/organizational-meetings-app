@@ -35,7 +35,11 @@ For detailed setup instructions, see [SETUP.md](SETUP.md).
 **Quick overview:**
 1. Clone the repository
 2. Set up Supabase project and run database migrations
-3. Configure credentials in `MeetingManager/Auth/Secrets.swift` and `MeetingManager/Config/OpenRouterConfig.swift`
+3. Copy config templates and add your credentials:
+   - `cp MeetingManager/Auth/SupabaseConfig.swift.template MeetingManager/Auth/SupabaseConfig.swift`
+   - `cp MeetingManager/Config/OpenRouterConfig.swift.template MeetingManager/Config/OpenRouterConfig.swift`
+   - Create `MeetingManager/Auth/Secrets.swift` with Supabase credentials
+   - Edit `OpenRouterConfig.swift` to add your API key
 4. Open `MeetingManager.xcodeproj` in Xcode
 5. Build and run on iOS Simulator (Cmd+R)
 

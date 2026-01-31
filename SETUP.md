@@ -61,7 +61,14 @@ The schema automatically enables RLS policies. Verify in **Authentication** → 
 
 ### 2.5 Configure App Credentials
 
-Edit `MeetingManager/MeetingManager/Auth/Secrets.swift`:
+**Step 1:** Copy the template file to create your config:
+
+```bash
+cd MeetingManager/MeetingManager/Auth
+cp SupabaseConfig.swift.template SupabaseConfig.swift
+```
+
+**Step 2:** Create `Secrets.swift` in the same directory:
 
 ```swift
 enum Secrets {
@@ -71,6 +78,8 @@ enum Secrets {
 ```
 
 Replace with your actual Project URL and anon key from step 2.2.
+
+**Note:** `SupabaseConfig.swift` and `Secrets.swift` are in `.gitignore` to protect your credentials.
 
 ## 3. OpenRouter Setup
 
@@ -98,13 +107,22 @@ Replace with your actual Project URL and anon key from step 2.2.
 
 ### 3.4 Configure App API Key
 
-Edit `MeetingManager/MeetingManager/Config/OpenRouterConfig.swift`:
+**Step 1:** Copy the template file to create your config:
+
+```bash
+cd MeetingManager/MeetingManager/Config
+cp OpenRouterConfig.swift.template OpenRouterConfig.swift
+```
+
+**Step 2:** Edit `OpenRouterConfig.swift` and replace the placeholder:
 
 ```swift
 static let apiKey = "sk-or-v1-YOUR_API_KEY_HERE"
 ```
 
 Replace with your actual API key from step 3.3.
+
+**Note:** `OpenRouterConfig.swift` is in `.gitignore` to protect your API key from being committed to git.
 
 ## 4. Build and Run
 
@@ -207,13 +225,22 @@ Or in Xcode: **Cmd+U**
 ### Secrets.swift
 - Location: `MeetingManager/Auth/Secrets.swift`
 - Purpose: Supabase credentials
+- **Important**: Create this file manually (not in git repository)
 - Fields:
   - `supabaseURL`: Your Supabase project URL
   - `supabaseAnonKey`: Your Supabase anon/public key
 
+### SupabaseConfig.swift
+- Location: `MeetingManager/Auth/SupabaseConfig.swift`
+- Template: `SupabaseConfig.swift.template` (copy and rename)
+- Purpose: Supabase client configuration
+- **Important**: Copy from template, do not commit to git
+
 ### OpenRouterConfig.swift
 - Location: `MeetingManager/Config/OpenRouterConfig.swift`
+- Template: `OpenRouterConfig.swift.template` (copy and rename)
 - Purpose: AI service configuration
+- **Important**: Copy from template, do not commit to git
 - Fields:
   - `apiKey`: Your OpenRouter API key
   - `endpoint`: OpenRouter API endpoint (pre-configured)
