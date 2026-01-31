@@ -105,7 +105,7 @@ iOSInjectionProject/
 # Secrets (credentials not committed to git)
 **/Secrets.swift
 
-# API Keys
-# Note: OpenRouterConfig.swift is tracked with placeholder key
-# Users should replace YOUR_OPENROUTER_API_KEY_HERE with their actual key
-# Consider using environment variables for production deployment
+# API Keys and Config Files
+# These files contain sensitive credentials and should never be committed
+**/OpenRouterConfig.swift
+**/SupabaseConfig.swift

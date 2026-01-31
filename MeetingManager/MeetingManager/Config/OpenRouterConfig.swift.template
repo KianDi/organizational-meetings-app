@@ -5,7 +5,8 @@ struct OpenRouterConfig {
 
   /// OpenRouter API key
   /// Get your key at: https://openrouter.ai/keys
-  static let apiKey = "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"
+  /// IMPORTANT: Copy this file to OpenRouterConfig.swift and replace with your actual key
+  static let apiKey = "YOUR_OPENROUTER_API_KEY_HERE"
 
   /// API endpoint
   static let endpoint = "https://openrouter.ai/api/v1/chat/completions"

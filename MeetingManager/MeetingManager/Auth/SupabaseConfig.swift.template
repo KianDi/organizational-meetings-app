@@ -3,6 +3,9 @@ import SwiftUI
 
 /// Configuration for Supabase client with environment injection support.
 /// Provides a shared SupabaseClient instance and SwiftUI environment integration.
+///
+/// IMPORTANT: Copy this file to SupabaseConfig.swift and update with your actual credentials
+/// Or create Secrets.swift with your Supabase URL and anon key
 enum SupabaseConfig {
     // MARK: - Configuration
 
